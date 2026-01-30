@@ -1,0 +1,223 @@
+﻿<template>
+  <div
+    class="g-divider"
+    :class="[
+      `g-divider--${variant}`,
+      `g-divider--${orientation}`,
+      { 'g-divider--with-text': hasText }
+    ]"
+    role="separator"
+    :aria-orientation="orientation"
+  >
+    <span v-if="hasText" class="g-divider__text">
+      <slot>{{ text }}</slot>
+    </span>
+  </div>
+</template>
+
+<script setup>
+import { computed, useSlots } from 'vue'
+
+defineOptions({
+  name: 'GDivider'
+})
+
+const props = defineProps({
+  text: {
+    type: String,
+    default: ''
+  },
+  variant: {
+    type: String,
+    default: 'default',
+    validator: (value) => ['default', 'primary', 'danger', 'subtle', 'glow'].includes(value)
+  },
+  orientation: {
+    type: String,
+    default: 'horizontal',
+    validator: (value) => ['horizontal', 'vertical'].includes(value)
+  }
+})
+
+const slots = useSlots()
+
+const hasText = computed(() => {
+  return props.text || slots.default
+})
+</script>
+
+<style scoped>
+/* ============================================
+   G-DIVIDER
+   Space Horror UI Component
+   ============================================ */
+
+.g-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* --------------------------------------------
+   HORIZONTAL
+   -------------------------------------------- */
+
+.g-divider--horizontal {
+  width: 100%;
+  height: 1px;
+  flex-direction: row;
+}
+
+.g-divider--horizontal::before,
+.g-divider--horizontal::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--divider-line, #2a3444);
+}
+
+.g-divider--horizontal.g-divider--with-text::before {
+  margin-right: 16px;
+}
+
+.g-divider--horizontal.g-divider--with-text::after {
+  margin-left: 16px;
+}
+
+/* Decorative ends */
+.g-divider--horizontal::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--divider-line, #2a3444) 20%
+  );
+}
+
+.g-divider--horizontal::after {
+  background: linear-gradient(
+    90deg,
+    var(--divider-line, #2a3444) 80%,
+    transparent
+  );
+}
+
+.g-divider--horizontal.g-divider--with-text::before,
+.g-divider--horizontal.g-divider--with-text::after {
+  background: var(--divider-line, #2a3444);
+}
+
+/* --------------------------------------------
+   VERTICAL
+   -------------------------------------------- */
+
+.g-divider--vertical {
+  width: 1px;
+  height: 100%;
+  min-height: 20px;
+  flex-direction: column;
+}
+
+.g-divider--vertical::before,
+.g-divider--vertical::after {
+  content: '';
+  flex: 1;
+  width: 1px;
+  background: var(--divider-line, #2a3444);
+}
+
+.g-divider--vertical.g-divider--with-text::before {
+  margin-bottom: 12px;
+}
+
+.g-divider--vertical.g-divider--with-text::after {
+  margin-top: 12px;
+}
+
+/* Decorative ends */
+.g-divider--vertical::before {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--divider-line, #2a3444) 20%
+  );
+}
+
+.g-divider--vertical::after {
+  background: linear-gradient(
+    180deg,
+    var(--divider-line, #2a3444) 80%,
+    transparent
+  );
+}
+
+.g-divider--vertical.g-divider--with-text::before,
+.g-divider--vertical.g-divider--with-text::after {
+  background: var(--divider-line, #2a3444);
+}
+
+/* --------------------------------------------
+   TEXT
+   -------------------------------------------- */
+
+.g-divider__text {
+  flex-shrink: 0;
+  padding: 0 4px;
+
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--divider-text, #505868);
+  white-space: nowrap;
+}
+
+.g-divider--vertical .g-divider__text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 4px 0;
+}
+
+/* --------------------------------------------
+   VARIANTS
+   -------------------------------------------- */
+
+/* Default */
+.g-divider--default {
+  --divider-line: #2a3444;
+  --divider-text: #505868;
+}
+
+/* Primary */
+.g-divider--primary {
+  --divider-line: rgba(0, 212, 212, 0.3);
+  --divider-text: #00a0a0;
+}
+
+/* Danger */
+.g-divider--danger {
+  --divider-line: rgba(255, 51, 68, 0.3);
+  --divider-text: #cc2936;
+}
+
+/* Subtle */
+.g-divider--subtle {
+  --divider-line: #1e2632;
+  --divider-text: #3a4a5e;
+}
+
+/* Glow */
+.g-divider--glow {
+  --divider-line: #00d4d4;
+  --divider-text: #00d4d4;
+}
+
+.g-divider--glow::before,
+.g-divider--glow::after {
+  box-shadow: 0 0 8px rgba(0, 212, 212, 0.4);
+}
+
+.g-divider--glow .g-divider__text {
+  text-shadow: 0 0 8px rgba(0, 212, 212, 0.6);
+}
+</style>

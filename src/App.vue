@@ -66,12 +66,16 @@
     resize
   />
 
+  <g-divider/>
+
   <!-- Single -->
   <g-checkbox v-model="autoSave" label="Auto-save enabled" />
 
   <!-- Variants -->
   <g-checkbox v-model="confirmed" variant="success" label="Systems nominal" />
   <g-checkbox v-model="override" variant="danger" label="Override safety" />
+
+  <g-divider/>
 
   <g-toggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot" />
   <g-toggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields" />
@@ -91,6 +95,7 @@ import {ref} from 'vue'
 import GTextarea from "@/components/shared/GTextarea.vue";
 import GCheckbox from "@/components/shared/GCheckbox.vue";
 import GToggle from "@/components/shared/GToggle.vue";
+import GDivider from "@/components/shared/GDivider.vue";
 
 const activeSystem = ref(null)
 
