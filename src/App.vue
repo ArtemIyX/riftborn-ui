@@ -4,6 +4,8 @@
   <g-button-adv variant="success" text="Hello world" @click="hello"/>
   <g-button-common variant="danger" text="Hello world" @click="hello"/>
 
+  <g-divider/>
+
   <g-combobox
     v-model="selectedSystem"
     :options="systems"
@@ -17,6 +19,8 @@
     variant="primary"
     placeholder="OVERRIDE TARGET"
   />
+
+  <g-divider/>
 
   <g-input
     variant="default"
@@ -42,6 +46,8 @@
     error="Invalid format"
   />
 
+  <g-divider/>
+
   <g-textarea
     v-model="logEntry"
     label="Captain's Log"
@@ -50,6 +56,8 @@
     show-count
     :maxlength="500"
   />
+
+  <g-divider/>
 
   <g-textarea
     v-model="distressSignal"
@@ -93,6 +101,37 @@
   <g-radio v-model="priority" value="medium" variant="primary" label="Medium" />
   <g-radio v-model="priority" value="critical" variant="danger" label="Critical" />
 
+  <g-divider/>
+
+  <g-slider v-model="power" label="Reactor Power" suffix="%" />
+
+  <g-slider
+    v-model="throttle"
+    label="Throttle"
+    :min="0"
+    :max="100"
+    :step="5"
+    show-ticks
+    variant="primary"
+  />
+
+  <g-slider
+    v-model="temperature"
+    label="Core Temp"
+    suffix="°C"
+    :min="0"
+    :max="1000"
+    variant="danger"
+    show-min-max
+  />
+
+  <g-slider
+    v-model="oxygen"
+    label="O₂ Level"
+    suffix="%"
+    variant="success"
+    size="large"
+  />
 </template>
 
 <script setup>
@@ -109,6 +148,7 @@ import GCheckbox from "@/components/shared/GCheckbox.vue";
 import GToggle from "@/components/shared/GToggle.vue";
 import GDivider from "@/components/shared/GDivider.vue";
 import GRadio from "@/components/shared/GRadio.vue";
+import GSlider from "@/components/shared/GSlider.vue";
 
 const activeSystem = ref(null)
 
@@ -137,6 +177,10 @@ const override = ref(false);
 const confirmed = ref(false);
 const someSelected = ref(false)
 
+const power = ref(0.0)
+const throttle = ref(0.0)
+const oxygen = ref(0.0)
+const temperature = ref(0.0)
 
 const selectedSystem = ref(null)
 const systems = [
