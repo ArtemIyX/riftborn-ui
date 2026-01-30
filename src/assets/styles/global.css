@@ -1,0 +1,17 @@
+﻿:root {
+  --font-title: 'Bebas Neue', sans-serif;
+  --font-ui: 'Rajdhani', sans-serif;
+  --font-tech: 'Share Tech Mono', monospace;
+  --font-special: 'Xanh Mono', monospace;
+}
+
+body {
+  font-family: var(--font-ui), serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-title), serif;
+}
+code, pre, .terminal {
+  font-family: var(--font-tech), serif;
+}

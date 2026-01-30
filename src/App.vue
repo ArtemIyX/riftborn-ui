@@ -7,6 +7,13 @@
     <p class="panel-text">Oxygen: <span class="status-warning">34%</span></p>
     <button class="btn-primary">Repair</button>
   </div>
+
+  <div class="game-ui">
+    <h1 class="title">VOID DESCENT</h1>
+    <p class="status">Hull Integrity: 87%</p>
+    <div class="terminal">System online...</div>
+    <div class="crew-log">Day 47. Something is wrong.</div>
+  </div>
 </template>
 
 <script setup>
@@ -50,5 +57,24 @@
 .btn-primary:hover {
   background: var(--primary-glow);
   box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+}
+
+.status {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+}
+
+.terminal {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.crew-log {
+  font-family: 'Xanh Mono', monospace;
+  font-style: italic;
 }
 </style>
