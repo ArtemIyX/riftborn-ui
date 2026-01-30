@@ -8,9 +8,9 @@
 </template>
 
 <script setup>
-import GButton from "@/components/shared/GButton.vue";
-import GButtonAdv from "@/components/shared/GButtonAdv.vue";
-import GButtonCommon from "@/components/shared/GButtonCommon.vue";
+import GButton from "@/components/shared/buttons/GButton.vue";
+import GButtonAdv from "@/components/shared/buttons/GButtonAdv.vue";
+import GButtonCommon from "@/components/shared/buttons/GButtonCommon.vue";
 
 const hello = () => {
   console.log("Hello world");
