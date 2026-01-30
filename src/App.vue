@@ -59,13 +59,22 @@
     required
   />
 
-
   <g-textarea
     v-model="notes"
     variant="ghost"
     placeholder="Quick notes..."
     resize
   />
+
+  <!-- Single -->
+  <g-checkbox v-model="autoSave" label="Auto-save enabled" />
+
+  <!-- Variants -->
+  <g-checkbox v-model="confirmed" variant="success" label="Systems nominal" />
+  <g-checkbox v-model="override" variant="danger" label="Override safety" />
+
+
+
 </template>
 
 <script setup>
@@ -78,11 +87,13 @@ import GInput from "@/components/shared/GInput.vue";
 
 import {ref} from 'vue'
 import GTextarea from "@/components/shared/GTextarea.vue";
+import GCheckbox from "@/components/shared/GCheckbox.vue";
 
 
 const hello = () => {
   console.log("Hello world");
 }
+
 
 const shipName = ref(null)
 const frequency = ref(null)
@@ -91,6 +102,13 @@ const logEntry = ref(null)
 const distressSignal = ref(null)
 const notes = ref(null)
 
+const systems_check = ref([]);
+const autoSave = ref(false);
+const override = ref(false);
+const confirmed = ref(false);
+const someSelected = ref(false)
+
+
 const selectedSystem = ref(null)
 const systems = [
   {value: 'life-support', label: 'Life Support'},
@@ -98,6 +116,11 @@ const systems = [
   {value: 'weapons', label: 'Weapons Array'},
   {value: 'sonar', label: 'Sonar Systems'}
 ]
+
+const changed = () => {
+
+}
+
 </script>
 
 <style scoped>
