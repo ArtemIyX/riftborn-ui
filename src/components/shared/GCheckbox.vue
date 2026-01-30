@@ -30,9 +30,8 @@
       class="g-checkbox__box"
       :class="{ 'g-checkbox__box--focused': isFocused }"
     >
-      <!-- Check icon -->
+      <!-- Check icon (always rendered, visibility controlled by CSS) -->
       <svg
-        v-if="isChecked && !indeterminate"
         class="g-checkbox__icon g-checkbox__icon--check"
         viewBox="0 0 24 24"
         fill="none"
@@ -42,9 +41,8 @@
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
 
-      <!-- Indeterminate icon -->
+      <!-- Indeterminate icon (always rendered, visibility controlled by CSS) -->
       <svg
-        v-if="indeterminate"
         class="g-checkbox__icon g-checkbox__icon--indeterminate"
         viewBox="0 0 24 24"
         fill="none"
@@ -227,16 +225,31 @@ defineExpose({
    -------------------------------------------- */
 
 .g-checkbox__icon {
+  position: absolute;
   color: var(--check-accent, #00d4d4);
   opacity: 0;
   transform: scale(0.5);
   transition:
     opacity 0.15s ease,
     transform 0.15s ease;
+  pointer-events: none;
 }
 
-.g-checkbox--checked .g-checkbox__icon--check,
+.g-checkbox__icon--indeterminate {
+  display: none;
+}
+
+.g-checkbox--checked:not(.g-checkbox--indeterminate) .g-checkbox__icon--check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.g-checkbox--indeterminate .g-checkbox__icon--check {
+  display: none;
+}
+
 .g-checkbox--indeterminate .g-checkbox__icon--indeterminate {
+  display: block;
   opacity: 1;
   transform: scale(1);
 }
@@ -252,6 +265,7 @@ defineExpose({
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s ease;
+  z-index: 1;
 }
 
 .g-checkbox__corner::before,
@@ -262,8 +276,8 @@ defineExpose({
 }
 
 .g-checkbox__corner--tl {
-  top: -1px;
-  left: -1px;
+  top: 0;
+  left: 0;
 }
 .g-checkbox__corner--tl::before {
   top: 0;
@@ -279,8 +293,8 @@ defineExpose({
 }
 
 .g-checkbox__corner--br {
-  bottom: -1px;
-  right: -1px;
+  bottom: 0;
+  right: 0;
 }
 .g-checkbox__corner--br::before {
   bottom: 0;
