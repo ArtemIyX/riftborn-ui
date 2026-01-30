@@ -1,0 +1,399 @@
+﻿<template>
+  <label
+    class="g-radio"
+    :class="[
+      `g-radio--${variant}`,
+      `g-radio--${size}`,
+      {
+        'g-radio--checked': isChecked,
+        'g-radio--disabled': disabled
+      }
+    ]"
+  >
+    <!-- Hidden input -->
+    <input
+      ref="inputRef"
+      type="radio"
+      class="g-radio__input"
+      :name="name"
+      :value="value"
+      :checked="isChecked"
+      :disabled="disabled"
+      v-bind="$attrs"
+      @change="onChange"
+      @focus="isFocused = true"
+      @blur="isFocused = false"
+    />
+
+    <!-- Custom radio -->
+    <span
+      class="g-radio__box"
+      :class="{ 'g-radio__box--focused': isFocused }"
+    >
+      <!-- Outer ring -->
+      <span class="g-radio__ring"></span>
+
+      <!-- Inner dot -->
+      <span class="g-radio__dot"></span>
+
+      <!-- Pulse effect -->
+      <span class="g-radio__pulse"></span>
+    </span>
+
+    <!-- Label -->
+    <span v-if="label || $slots.default" class="g-radio__label">
+      <slot>{{ label }}</slot>
+    </span>
+  </label>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+
+defineOptions({
+  name: 'GRadio',
+  inheritAttrs: false
+})
+
+const props = defineProps({
+  modelValue: {
+    type: [String, Number, Boolean, Object],
+    default: null
+  },
+  value: {
+    type: [String, Number, Boolean, Object],
+    required: true
+  },
+  name: {
+    type: String,
+    default: ''
+  },
+  label: {
+    type: String,
+    default: ''
+  },
+  variant: {
+    type: String,
+    default: 'default',
+    validator: (value) => ['default', 'primary', 'danger', 'success'].includes(value)
+  },
+  size: {
+    type: String,
+    default: 'medium',
+    validator: (value) => ['small', 'medium', 'large'].includes(value)
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits(['update:modelValue', 'change'])
+
+// Refs
+const inputRef = ref(null)
+const isFocused = ref(false)
+
+// Computed
+const isChecked = computed(() => {
+  return props.modelValue === props.value
+})
+
+// Methods
+const onChange = () => {
+  if (props.disabled) return
+  emit('update:modelValue', props.value)
+  emit('change', props.value)
+}
+
+const focus = () => {
+  inputRef.value?.focus()
+}
+
+const blur = () => {
+  inputRef.value?.blur()
+}
+
+// Expose
+defineExpose({
+  focus,
+  blur,
+  inputRef
+})
+</script>
+
+<style scoped>
+/* ============================================
+   G-RADIO
+   Space Horror UI Component
+   ============================================ */
+
+.g-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* --------------------------------------------
+   HIDDEN INPUT
+   -------------------------------------------- */
+
+.g-radio__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------
+   BOX
+   -------------------------------------------- */
+
+.g-radio__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background-color: var(--radio-bg, #0f1218);
+  border: 1px solid var(--radio-border, #2a3444);
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.g-radio:hover .g-radio__box {
+  background-color: var(--radio-bg-hover, #161b24);
+  border-color: var(--radio-border-hover, #3a4a5e);
+}
+
+.g-radio__box--focused {
+  border-color: var(--radio-accent, #00d4d4);
+  box-shadow: 0 0 8px var(--radio-glow, rgba(0, 212, 212, 0.2));
+}
+
+.g-radio--checked .g-radio__box {
+  background-color: var(--radio-bg-active, rgba(0, 212, 212, 0.1));
+  border-color: var(--radio-accent, #00d4d4);
+}
+
+/* --------------------------------------------
+   RING
+   -------------------------------------------- */
+
+.g-radio__ring {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.g-radio--checked .g-radio__ring {
+  border-color: var(--radio-accent, #00d4d4);
+  opacity: 0.3;
+}
+
+/* --------------------------------------------
+   DOT
+   -------------------------------------------- */
+
+.g-radio__dot {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--radio-accent, #00d4d4);
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.g-radio--checked .g-radio__dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --------------------------------------------
+   PULSE EFFECT
+   -------------------------------------------- */
+
+.g-radio__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--radio-accent, #00d4d4);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.g-radio--checked .g-radio__pulse {
+  animation: g-radio-pulse 1.5s ease-out infinite;
+}
+
+@keyframes g-radio-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------
+   LABEL
+   -------------------------------------------- */
+
+.g-radio__label {
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--radio-label, #e0e4ea);
+  transition: color 0.15s ease;
+}
+
+.g-radio:hover .g-radio__label {
+  color: var(--radio-label-hover, #fff);
+}
+
+.g-radio--checked .g-radio__label {
+  color: var(--radio-accent, #00d4d4);
+}
+
+/* --------------------------------------------
+   SIZES
+   -------------------------------------------- */
+
+/* Small */
+.g-radio--small .g-radio__box {
+  width: 14px;
+  height: 14px;
+}
+
+.g-radio--small .g-radio__dot {
+  width: 4px;
+  height: 4px;
+}
+
+.g-radio--small .g-radio__label {
+  font-size: 11px;
+}
+
+/* Medium */
+.g-radio--medium .g-radio__box {
+  width: 18px;
+  height: 18px;
+}
+
+.g-radio--medium .g-radio__dot {
+  width: 6px;
+  height: 6px;
+}
+
+.g-radio--medium .g-radio__label {
+  font-size: 12px;
+}
+
+/* Large */
+.g-radio--large .g-radio__box {
+  width: 22px;
+  height: 22px;
+}
+
+.g-radio--large .g-radio__dot {
+  width: 8px;
+  height: 8px;
+}
+
+.g-radio--large .g-radio__label {
+  font-size: 14px;
+}
+
+/* --------------------------------------------
+   VARIANTS
+   -------------------------------------------- */
+
+/* Default */
+.g-radio--default {
+  --radio-bg: #0f1218;
+  --radio-bg-hover: #161b24;
+  --radio-bg-active: rgba(0, 212, 212, 0.1);
+  --radio-border: #2a3444;
+  --radio-border-hover: #3a4a5e;
+  --radio-accent: #00d4d4;
+  --radio-glow: rgba(0, 212, 212, 0.2);
+  --radio-label: #e0e4ea;
+  --radio-label-hover: #fff;
+}
+
+/* Primary */
+.g-radio--primary {
+  --radio-bg: rgba(0, 212, 212, 0.05);
+  --radio-bg-hover: rgba(0, 212, 212, 0.1);
+  --radio-bg-active: rgba(0, 212, 212, 0.15);
+  --radio-border: rgba(0, 212, 212, 0.3);
+  --radio-border-hover: rgba(0, 212, 212, 0.5);
+  --radio-accent: #00d4d4;
+  --radio-glow: rgba(0, 212, 212, 0.25);
+  --radio-label: #00d4d4;
+  --radio-label-hover: #00ffff;
+}
+
+/* Danger */
+.g-radio--danger {
+  --radio-bg: rgba(255, 51, 68, 0.05);
+  --radio-bg-hover: rgba(255, 51, 68, 0.1);
+  --radio-bg-active: rgba(255, 51, 68, 0.15);
+  --radio-border: rgba(255, 51, 68, 0.3);
+  --radio-border-hover: rgba(255, 51, 68, 0.5);
+  --radio-accent: #ff3344;
+  --radio-glow: rgba(255, 51, 68, 0.25);
+  --radio-label: #ff3344;
+  --radio-label-hover: #ff6677;
+}
+
+/* Success */
+.g-radio--success {
+  --radio-bg: rgba(0, 204, 102, 0.05);
+  --radio-bg-hover: rgba(0, 204, 102, 0.1);
+  --radio-bg-active: rgba(0, 204, 102, 0.15);
+  --radio-border: rgba(0, 204, 102, 0.3);
+  --radio-border-hover: rgba(0, 204, 102, 0.5);
+  --radio-accent: #00cc66;
+  --radio-glow: rgba(0, 204, 102, 0.25);
+  --radio-label: #00cc66;
+  --radio-label-hover: #00ff7f;
+}
+
+/* --------------------------------------------
+   DISABLED
+   -------------------------------------------- */
+
+.g-radio--disabled {
+  pointer-events: none;
+}
+
+.g-radio--disabled .g-radio__box {
+  --radio-bg: rgba(80, 88, 104, 0.05);
+  --radio-border: rgba(80, 88, 104, 0.2);
+  --radio-accent: #505868;
+}
+
+.g-radio--disabled .g-radio__label {
+  color: #505868;
+}
+
+.g-radio--disabled .g-radio__pulse {
+  display: none;
+}
+</style>

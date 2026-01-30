@@ -81,6 +81,18 @@
   <g-toggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields" />
   <g-toggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')" label="Self Destruct" />
 
+  <g-divider/>
+  <!-- Radio group - all share same v-model -->
+  <g-radio v-model="selectedSystem_radio" value="navigation" label="Navigation" />
+  <g-radio v-model="selectedSystem_radio" value="weapons" label="Weapons" />
+  <g-radio v-model="selectedSystem_radio" value="shields" label="Shields" />
+  <g-radio v-model="selectedSystem_radio" value="engines" label="Engines" />
+
+  <!-- With variants -->
+  <g-radio v-model="priority" value="low" variant="success" label="Low" />
+  <g-radio v-model="priority" value="medium" variant="primary" label="Medium" />
+  <g-radio v-model="priority" value="critical" variant="danger" label="Critical" />
+
 </template>
 
 <script setup>
@@ -96,9 +108,12 @@ import GTextarea from "@/components/shared/GTextarea.vue";
 import GCheckbox from "@/components/shared/GCheckbox.vue";
 import GToggle from "@/components/shared/GToggle.vue";
 import GDivider from "@/components/shared/GDivider.vue";
+import GRadio from "@/components/shared/GRadio.vue";
 
 const activeSystem = ref(null)
 
+const selectedSystem_radio = ref(null)
+const priority = ref(null)
 const isActive = (key) => activeSystem.value === key
 const toggle = (key) => {
   activeSystem.value = activeSystem.value === key ? null : key
