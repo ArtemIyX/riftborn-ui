@@ -1,0 +1,470 @@
+﻿<template>
+  <div
+    class="g-textarea"
+    :class="[
+      `g-textarea--${variant}`,
+      `g-textarea--${size}`,
+      {
+        'g-textarea--focused': isFocused,
+        'g-textarea--disabled': disabled,
+        'g-textarea--readonly': readonly,
+        'g-textarea--error': error,
+        'g-textarea--resize': resize
+      }
+    ]"
+  >
+    <!-- Label -->
+    <label v-if="label" class="g-textarea__label" :for="textareaId">
+      {{ label }}
+      <span v-if="required" class="g-textarea__required">*</span>
+    </label>
+
+    <!-- Textarea wrapper -->
+    <div class="g-textarea__wrapper">
+      <textarea
+        :id="textareaId"
+        ref="textareaRef"
+        class="g-textarea__field"
+        :value="modelValue"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readonly"
+        :maxlength="maxlength"
+        :rows="rows"
+        v-bind="$attrs"
+        @input="onInput"
+        @focus="onFocus"
+        @blur="onBlur"
+        @keydown="$emit('keydown', $event)"
+        @keyup="$emit('keyup', $event)"
+      ></textarea>
+
+      <!-- Scanline effect -->
+      <span v-if="variant === 'primary'" class="g-textarea__scanline"></span>
+    </div>
+
+    <!-- Footer -->
+    <div class="g-textarea__footer">
+      <!-- Helper / Error text -->
+      <div v-if="error || hint" class="g-textarea__helper">
+        <span v-if="error" class="g-textarea__error">{{ error }}</span>
+        <span v-else-if="hint" class="g-textarea__hint">{{ hint }}</span>
+      </div>
+      <div v-else></div>
+
+      <!-- Character count -->
+      <div v-if="showCount" class="g-textarea__count">
+        {{ modelValue?.length || 0 }}<span v-if="maxlength">/{{ maxlength }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+
+defineOptions({
+  name: 'GTextarea',
+  inheritAttrs: false
+})
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: ''
+  },
+  placeholder: {
+    type: String,
+    default: ''
+  },
+  label: {
+    type: String,
+    default: ''
+  },
+  hint: {
+    type: String,
+    default: ''
+  },
+  error: {
+    type: String,
+    default: ''
+  },
+  variant: {
+    type: String,
+    default: 'default',
+    validator: (value) => ['default', 'primary', 'ghost'].includes(value)
+  },
+  size: {
+    type: String,
+    default: 'medium',
+    validator: (value) => ['small', 'medium', 'large'].includes(value)
+  },
+  rows: {
+    type: Number,
+    default: 4
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  readonly: {
+    type: Boolean,
+    default: false
+  },
+  required: {
+    type: Boolean,
+    default: false
+  },
+  maxlength: {
+    type: Number,
+    default: null
+  },
+  showCount: {
+    type: Boolean,
+    default: false
+  },
+  resize: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits(['update:modelValue', 'focus', 'blur', 'keydown', 'keyup'])
+
+// Refs
+const textareaRef = ref(null)
+const isFocused = ref(false)
+
+// Computed
+let idCounter = 0
+const textareaId = computed(() => `g-textarea-${++idCounter}`)
+
+// Methods
+const onInput = (e) => {
+  emit('update:modelValue', e.target.value)
+}
+
+const onFocus = (e) => {
+  isFocused.value = true
+  emit('focus', e)
+}
+
+const onBlur = (e) => {
+  isFocused.value = false
+  emit('blur', e)
+}
+
+const focus = () => {
+  textareaRef.value?.focus()
+}
+
+const blur = () => {
+  textareaRef.value?.blur()
+}
+
+// Expose methods
+defineExpose({
+  focus,
+  blur,
+  textareaRef
+})
+</script>
+
+<style scoped>
+/* ============================================
+   G-TEXTAREA
+   Space Horror UI Component
+   ============================================ */
+
+.g-textarea {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* --------------------------------------------
+   LABEL
+   -------------------------------------------- */
+
+.g-textarea__label {
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--textarea-label, #8892a2);
+  cursor: pointer;
+}
+
+.g-textarea__required {
+  color: #ff3344;
+  margin-left: 2px;
+}
+
+/* --------------------------------------------
+   WRAPPER
+   -------------------------------------------- */
+
+.g-textarea__wrapper {
+  position: relative;
+  overflow: hidden;
+
+  background-color: var(--textarea-bg, #0f1218);
+  border: 1px solid var(--textarea-border, #2a3444);
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.g-textarea__wrapper:hover {
+  background-color: var(--textarea-bg-hover, #161b24);
+  border-color: var(--textarea-border-hover, #3a4a5e);
+}
+
+.g-textarea--focused .g-textarea__wrapper {
+  border-color: var(--textarea-accent, #00d4d4);
+  box-shadow: 0 0 12px var(--textarea-glow, rgba(0, 212, 212, 0.15));
+}
+
+.g-textarea--error .g-textarea__wrapper {
+  border-color: #ff3344;
+  box-shadow: 0 0 12px rgba(255, 51, 68, 0.15);
+}
+
+/* --------------------------------------------
+   FIELD
+   -------------------------------------------- */
+
+.g-textarea__field {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--textarea-color, #e0e4ea);
+
+  transition: color 0.15s ease;
+}
+
+.g-textarea--resize .g-textarea__field {
+  resize: vertical;
+}
+
+.g-textarea__field::placeholder {
+  color: var(--textarea-placeholder, #505868);
+}
+
+/* Scrollbar */
+.g-textarea__field::-webkit-scrollbar {
+  width: 6px;
+}
+
+.g-textarea__field::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.g-textarea__field::-webkit-scrollbar-thumb {
+  background: #2a3444;
+  border-radius: 3px;
+}
+
+.g-textarea__field::-webkit-scrollbar-thumb:hover {
+  background: #3a4a5e;
+}
+
+/* --------------------------------------------
+   SCANLINE (primary variant)
+   -------------------------------------------- */
+
+.g-textarea__scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--textarea-accent, #00d4d4),
+    transparent
+  );
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.g-textarea--focused .g-textarea__scanline {
+  opacity: 0.5;
+  animation: g-textarea-scanline 3s ease-in-out infinite;
+}
+
+@keyframes g-textarea-scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.5;
+  }
+  95% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(calc(100vh));
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------
+   FOOTER
+   -------------------------------------------- */
+
+.g-textarea__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 16px;
+}
+
+/* --------------------------------------------
+   HELPER TEXT
+   -------------------------------------------- */
+
+.g-textarea__helper {
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.g-textarea__hint {
+  color: #505868;
+}
+
+.g-textarea__error {
+  color: #ff3344;
+}
+
+/* --------------------------------------------
+   CHARACTER COUNT
+   -------------------------------------------- */
+
+.g-textarea__count {
+  flex-shrink: 0;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 10px;
+  color: #505868;
+}
+
+.g-textarea--focused .g-textarea__count {
+  color: var(--textarea-accent, #00d4d4);
+}
+
+/* --------------------------------------------
+   SIZES
+   -------------------------------------------- */
+
+.g-textarea--small .g-textarea__field {
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.g-textarea--medium .g-textarea__field {
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+.g-textarea--large .g-textarea__field {
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+/* --------------------------------------------
+   VARIANTS
+   -------------------------------------------- */
+
+/* Default */
+.g-textarea--default {
+  --textarea-bg: #0f1218;
+  --textarea-bg-hover: #161b24;
+  --textarea-color: #e0e4ea;
+  --textarea-border: #2a3444;
+  --textarea-border-hover: #3a4a5e;
+  --textarea-accent: #00d4d4;
+  --textarea-glow: rgba(0, 212, 212, 0.15);
+  --textarea-label: #8892a2;
+  --textarea-placeholder: #505868;
+}
+
+/* Primary */
+.g-textarea--primary {
+  --textarea-bg: rgba(0, 212, 212, 0.05);
+  --textarea-bg-hover: rgba(0, 212, 212, 0.08);
+  --textarea-color: #e0e4ea;
+  --textarea-border: rgba(0, 212, 212, 0.3);
+  --textarea-border-hover: rgba(0, 212, 212, 0.5);
+  --textarea-accent: #00d4d4;
+  --textarea-glow: rgba(0, 212, 212, 0.2);
+  --textarea-label: #00d4d4;
+  --textarea-placeholder: #007070;
+}
+
+/* Ghost */
+.g-textarea--ghost {
+  --textarea-bg: transparent;
+  --textarea-bg-hover: rgba(136, 146, 162, 0.05);
+  --textarea-color: #e0e4ea;
+  --textarea-border: transparent;
+  --textarea-border-hover: transparent;
+  --textarea-accent: #8892a2;
+  --textarea-glow: rgba(136, 146, 162, 0.1);
+  --textarea-label: #8892a2;
+  --textarea-placeholder: #505868;
+}
+
+.g-textarea--ghost .g-textarea__wrapper {
+  border: none;
+  border-bottom: 1px solid #2a3444;
+}
+
+.g-textarea--ghost.g-textarea--focused .g-textarea__wrapper {
+  border-bottom-color: var(--textarea-accent);
+  box-shadow: none;
+}
+
+/* --------------------------------------------
+   DISABLED & READONLY
+   -------------------------------------------- */
+
+.g-textarea--disabled {
+  pointer-events: none;
+}
+
+.g-textarea--disabled .g-textarea__wrapper {
+  --textarea-bg: rgba(80, 88, 104, 0.05);
+  --textarea-border: rgba(80, 88, 104, 0.15);
+}
+
+.g-textarea--disabled .g-textarea__field {
+  color: #505868;
+}
+
+.g-textarea--disabled .g-textarea__label {
+  color: #505868;
+}
+
+.g-textarea--readonly .g-textarea__field {
+  cursor: default;
+}
+</style>

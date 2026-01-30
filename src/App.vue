@@ -1,8 +1,6 @@
-
-
 <template>
 
-  <g-button variant="primary" text="Hello world"  @click="hello"/>
+  <g-button variant="primary" text="Hello world" @click="hello"/>
   <g-button-adv variant="success" text="Hello world" @click="hello"/>
   <g-button-common variant="danger" text="Hello world" @click="hello"/>
 
@@ -43,6 +41,31 @@
     placeholder="Search coordinates..."
     error="Invalid format"
   />
+
+  <g-textarea
+    v-model="logEntry"
+    label="Captain's Log"
+    placeholder="Enter log entry..."
+    :rows="6"
+    show-count
+    :maxlength="500"
+  />
+
+  <g-textarea
+    v-model="distressSignal"
+    variant="primary"
+    label="Distress Message"
+    hint="Broadcast on all frequencies"
+    required
+  />
+
+
+  <g-textarea
+    v-model="notes"
+    variant="ghost"
+    placeholder="Quick notes..."
+    resize
+  />
 </template>
 
 <script setup>
@@ -53,7 +76,8 @@ import GCombobox from "@/components/shared/GCombobox.vue";
 
 import GInput from "@/components/shared/GInput.vue";
 
-import { ref } from 'vue'
+import {ref} from 'vue'
+import GTextarea from "@/components/shared/GTextarea.vue";
 
 
 const hello = () => {
@@ -63,13 +87,16 @@ const hello = () => {
 const shipName = ref(null)
 const frequency = ref(null)
 const coordinates = ref(null)
+const logEntry = ref(null)
+const distressSignal = ref(null)
+const notes = ref(null)
 
 const selectedSystem = ref(null)
 const systems = [
-  { value: 'life-support', label: 'Life Support' },
-  { value: 'navigation', label: 'Navigation' },
-  { value: 'weapons', label: 'Weapons Array' },
-  { value: 'sonar', label: 'Sonar Systems' }
+  {value: 'life-support', label: 'Life Support'},
+  {value: 'navigation', label: 'Navigation'},
+  {value: 'weapons', label: 'Weapons Array'},
+  {value: 'sonar', label: 'Sonar Systems'}
 ]
 </script>
 
