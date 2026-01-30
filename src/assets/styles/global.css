@@ -1,17 +1,110 @@
-﻿:root {
+﻿/* ============================================
+   GLOBAL STYLES
+   Space Submarine Horror UI Framework
+   ============================================ */
+
+/* Import base definitions */
+@import './colors.css';
+@import '/src/assets/fonts/fonts.css';
+
+/* Import utilities */
+@import './utility-colors.css';
+
+/* --------------------------------------------
+   CSS CUSTOM PROPERTIES (Fonts)
+   -------------------------------------------- */
+
+:root {
   --font-title: 'Bebas Neue', sans-serif;
   --font-ui: 'Rajdhani', sans-serif;
   --font-tech: 'Share Tech Mono', monospace;
   --font-special: 'Xanh Mono', monospace;
 }
 
-body {
-  font-family: var(--font-ui), serif;
+/* --------------------------------------------
+   BASE STYLES
+   -------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-h1, h2, h3 {
-  font-family: var(--font-title), serif;
+html {
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-code, pre, .terminal {
-  font-family: var(--font-tech), serif;
+
+body {
+  font-family: var(--font-ui), serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------
+   TYPOGRAPHY DEFAULTS
+   -------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title), sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+code, pre, .terminal, .mono {
+  font-family: var(--font-tech), monospace;
+}
+
+.font-special {
+  font-family: var(--font-special), fantasy;
+}
+
+/* --------------------------------------------
+   SELECTION
+   -------------------------------------------- */
+
+::selection {
+  background-color: var(--primary);
+  color: var(--text-inverse);
+}
+
+/* --------------------------------------------
+   SCROLLBAR (webkit)
+   -------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-focus);
+}
+
+/* --------------------------------------------
+   FOCUS STYLES
+   -------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }

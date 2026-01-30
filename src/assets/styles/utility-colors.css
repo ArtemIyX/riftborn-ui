@@ -1,0 +1,203 @@
+﻿/* ============================================
+   UTILITY COLORS
+   Space Submarine Horror UI Framework
+   ============================================ */
+
+/* --------------------------------------------
+   TEXT COLORS
+   -------------------------------------------- */
+
+/* Primary (cyan - terminal, sci-fi) */
+.text-primary { color: var(--primary); }
+.text-primary-muted { color: var(--primary-muted); }
+.text-primary-dim { color: var(--primary-dim); }
+
+/* Secondary (blue - sonar, scanning) */
+.text-secondary { color: var(--secondary); }
+.text-secondary-muted { color: var(--secondary-muted); }
+
+/* Default text hierarchy */
+.text-default { color: var(--text-primary); }
+.text-muted { color: var(--text-secondary); }
+.text-faint { color: var(--text-muted); }
+.text-inverse { color: var(--text-inverse); }
+
+/* Success (life support, systems online) */
+.text-success { color: var(--success); }
+.text-success-muted { color: var(--success-muted); }
+
+/* Warning (pressure, fuel low, caution) */
+.text-warning { color: var(--warning); }
+.text-warning-muted { color: var(--warning-muted); }
+
+/* Danger (hull breach, critical) */
+.text-danger { color: var(--danger); }
+.text-danger-muted { color: var(--danger-muted); }
+
+/* Info (scan data) */
+.text-info { color: var(--info); }
+.text-info-muted { color: var(--info-muted); }
+
+/* Horror accent */
+.text-creep { color: var(--creep); }
+
+
+/* --------------------------------------------
+   BACKGROUND COLORS
+   -------------------------------------------- */
+
+/* Base backgrounds (void) */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-hover { background-color: var(--bg-hover); }
+
+/* Accent backgrounds */
+.bg-accent-primary { background-color: var(--primary); }
+.bg-accent-primary-muted { background-color: var(--primary-muted); }
+.bg-accent-primary-dim { background-color: var(--primary-dim); }
+
+.bg-accent-secondary { background-color: var(--secondary); }
+.bg-accent-secondary-muted { background-color: var(--secondary-muted); }
+
+/* Status backgrounds */
+.bg-success { background-color: var(--success); }
+.bg-success-muted { background-color: var(--success-muted); }
+
+.bg-warning { background-color: var(--warning); }
+.bg-warning-muted { background-color: var(--warning-muted); }
+
+.bg-danger { background-color: var(--danger); }
+.bg-danger-muted { background-color: var(--danger-muted); }
+
+.bg-info { background-color: var(--info); }
+.bg-info-muted { background-color: var(--info-muted); }
+
+.bg-creep { background-color: var(--creep); }
+
+
+/* --------------------------------------------
+   GLOW BACKGROUNDS (atmospheric)
+   -------------------------------------------- */
+
+.bg-glow-primary { background-color: var(--primary-glow); }
+.bg-glow-secondary { background-color: var(--secondary-glow); }
+.bg-glow-success { background-color: var(--success-glow); }
+.bg-glow-warning { background-color: var(--warning-glow); }
+.bg-glow-danger { background-color: var(--danger-glow); }
+.bg-glow-creep { background-color: var(--creep-glow); }
+
+
+/* --------------------------------------------
+   BORDER COLORS
+   -------------------------------------------- */
+
+/* Base borders */
+.border-subtle { border-color: var(--border-subtle); }
+.border-default { border-color: var(--border-default); }
+.border-focus { border-color: var(--border-focus); }
+
+/* Accent borders */
+.border-primary { border-color: var(--primary); }
+.border-primary-muted { border-color: var(--primary-muted); }
+.border-primary-dim { border-color: var(--primary-dim); }
+
+.border-secondary { border-color: var(--secondary); }
+.border-secondary-muted { border-color: var(--secondary-muted); }
+
+/* Status borders */
+.border-success { border-color: var(--success); }
+.border-success-muted { border-color: var(--success-muted); }
+
+.border-warning { border-color: var(--warning); }
+.border-warning-muted { border-color: var(--warning-muted); }
+
+.border-danger { border-color: var(--danger); }
+.border-danger-muted { border-color: var(--danger-muted); }
+
+.border-info { border-color: var(--info); }
+.border-info-muted { border-color: var(--info-muted); }
+
+.border-creep { border-color: var(--creep); }
+
+
+/* --------------------------------------------
+   OVERLAY UTILITIES
+   -------------------------------------------- */
+
+.overlay-light { background-color: var(--overlay-light); }
+.overlay-medium { background-color: var(--overlay-medium); }
+.overlay-heavy { background-color: var(--overlay-heavy); }
+
+
+/* --------------------------------------------
+   STATUS COMBINATIONS
+   (text + glow background for quick status styling)
+   -------------------------------------------- */
+
+.status-online {
+  color: var(--success);
+  background-color: var(--success-glow);
+}
+
+.status-standby {
+  color: var(--primary);
+  background-color: var(--primary-glow);
+}
+
+.status-warning {
+  color: var(--warning);
+  background-color: var(--warning-glow);
+}
+
+.status-critical {
+  color: var(--danger);
+  background-color: var(--danger-glow);
+}
+
+.status-offline {
+  color: var(--text-muted);
+  background-color: var(--bg-tertiary);
+}
+
+.status-scanning {
+  color: var(--secondary);
+  background-color: var(--secondary-glow);
+}
+
+.status-anomaly {
+  color: var(--creep);
+  background-color: var(--creep-glow);
+}
+
+
+/* --------------------------------------------
+   FILL COLORS (for SVG icons)
+   -------------------------------------------- */
+
+.fill-primary { fill: var(--primary); }
+.fill-primary-muted { fill: var(--primary-muted); }
+.fill-secondary { fill: var(--secondary); }
+.fill-success { fill: var(--success); }
+.fill-warning { fill: var(--warning); }
+.fill-danger { fill: var(--danger); }
+.fill-info { fill: var(--info); }
+.fill-creep { fill: var(--creep); }
+.fill-text { fill: var(--text-primary); }
+.fill-muted { fill: var(--text-secondary); }
+
+
+/* --------------------------------------------
+   STROKE COLORS (for SVG icons)
+   -------------------------------------------- */
+
+.stroke-primary { stroke: var(--primary); }
+.stroke-primary-muted { stroke: var(--primary-muted); }
+.stroke-secondary { stroke: var(--secondary); }
+.stroke-success { stroke: var(--success); }
+.stroke-warning { stroke: var(--warning); }
+.stroke-danger { stroke: var(--danger); }
+.stroke-info { stroke: var(--info); }
+.stroke-creep { stroke: var(--creep); }
+.stroke-text { stroke: var(--text-primary); }
+.stroke-muted { stroke: var(--text-secondary); }
