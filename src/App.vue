@@ -132,6 +132,44 @@
     variant="success"
     size="large"
   />
+
+  <g-divider/>
+
+  <g-progress :value="75" label="Hull Integrity" />
+
+  <!-- With threshold warning -->
+  <g-progress
+    :value="23"
+    label="Oxygen"
+    variant="danger"
+    :threshold="20"
+    status="CRITICAL"
+  />
+
+  <!-- Loading state -->
+  <g-progress
+    indeterminate
+    label="Scanning..."
+    variant="info"
+  />
+
+  <!-- Segmented (like power cells) -->
+  <g-progress
+    :value="60"
+    label="Power Cells"
+    :segments="10"
+    variant="success"
+  />
+
+  <!-- Animated striped -->
+  <g-progress
+    :value="45"
+    label="Download"
+    striped
+    animated
+    suffix=" MB"
+    :max="200"
+  />
 </template>
 
 <script setup>
@@ -149,6 +187,7 @@ import GToggle from "@/components/shared/GToggle.vue";
 import GDivider from "@/components/shared/GDivider.vue";
 import GRadio from "@/components/shared/GRadio.vue";
 import GSlider from "@/components/shared/GSlider.vue";
+import GProgress from "@/components/shared/GProgress.vue";
 
 const activeSystem = ref(null)
 
