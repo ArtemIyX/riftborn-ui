@@ -1,0 +1,57 @@
+﻿:root {
+  /* Backgrounds (deep void) */
+  --bg-primary: #0a0c10;
+  --bg-secondary: #0f1218;
+  --bg-tertiary: #161b24;
+  --bg-hover: #1c232e;
+
+  /* Borders & dividers */
+  --border-subtle: #1e2632;
+  --border-default: #2a3444;
+  --border-focus: #3a4a5e;
+
+  /* Primary (cyan - sci-fi terminal) */
+  --primary: #00d4d4;
+  --primary-muted: #00a0a0;
+  --primary-dim: #007070;
+  --primary-glow: rgba(0, 212, 212, 0.15);
+
+  /* Secondary (blue - sonar, scanning) */
+  --secondary: #4488ff;
+  --secondary-muted: #3366cc;
+  --secondary-glow: rgba(68, 136, 255, 0.15);
+
+  /* Text */
+  --text-primary: #e0e4ea;
+  --text-secondary: #8892a2;
+  --text-muted: #505868;
+  --text-inverse: #0a0c10;
+
+  /* Success (life support, oxygen, systems online) */
+  --success: #00cc66;
+  --success-muted: #00994d;
+  --success-glow: rgba(0, 204, 102, 0.15);
+
+  /* Warning (pressure, fuel low, caution) */
+  --warning: #ff9922;
+  --warning-muted: #cc7a1b;
+  --warning-glow: rgba(255, 153, 34, 0.15);
+
+  /* Danger (hull breach, monster alert, critical) */
+  --danger: #ff3344;
+  --danger-muted: #cc2936;
+  --danger-glow: rgba(255, 51, 68, 0.2);
+
+  /* Info (sonar ping, scan data) */
+  --info: #6688cc;
+  --info-muted: #4466aa;
+
+  /* Horror accents */
+  --creep: #8844aa;
+  --creep-glow: rgba(136, 68, 170, 0.2);
+
+  /* Overlays */
+  --overlay-light: rgba(0, 0, 0, 0.4);
+  --overlay-medium: rgba(0, 0, 0, 0.6);
+  --overlay-heavy: rgba(0, 0, 0, 0.85);
+}
