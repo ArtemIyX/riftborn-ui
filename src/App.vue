@@ -73,7 +73,9 @@
   <g-checkbox v-model="confirmed" variant="success" label="Systems nominal" />
   <g-checkbox v-model="override" variant="danger" label="Override safety" />
 
-
+  <g-toggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot" />
+  <g-toggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields" />
+  <g-toggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')" label="Self Destruct" />
 
 </template>
 
@@ -88,7 +90,14 @@ import GInput from "@/components/shared/GInput.vue";
 import {ref} from 'vue'
 import GTextarea from "@/components/shared/GTextarea.vue";
 import GCheckbox from "@/components/shared/GCheckbox.vue";
+import GToggle from "@/components/shared/GToggle.vue";
 
+const activeSystem = ref(null)
+
+const isActive = (key) => activeSystem.value === key
+const toggle = (key) => {
+  activeSystem.value = activeSystem.value === key ? null : key
+}
 
 const hello = () => {
   console.log("Hello world");
