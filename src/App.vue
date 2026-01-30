@@ -2,15 +2,15 @@
 
 <template>
 
-  <div >
-    <h1>VOID DESCENT</h1>
-    <p class="text-danger">Hull Integrity: 87%</p>
-    <div>System online...</div>
-    <div>Day 47. Something is wrong.</div>
-  </div>
+  <g-button variant="secondary" text="Hello world" size="large" @click="hello"/>
 </template>
 
 <script setup>
+import GButton from "@/components/shared/GButton.vue";
+
+const hello = () => {
+  console.log("Hello world");
+}
 </script>
 
 <style scoped>
