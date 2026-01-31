@@ -77,33 +77,34 @@
   <g-divider/>
 
   <!-- Single -->
-  <g-checkbox v-model="autoSave" label="Auto-save enabled" />
+  <g-checkbox v-model="autoSave" label="Auto-save enabled"/>
 
   <!-- Variants -->
-  <g-checkbox v-model="confirmed" variant="success" label="Systems nominal" />
-  <g-checkbox v-model="override" variant="danger" label="Override safety" />
+  <g-checkbox v-model="confirmed" variant="success" label="Systems nominal"/>
+  <g-checkbox v-model="override" variant="danger" label="Override safety"/>
 
   <g-divider/>
 
-  <g-toggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot" />
-  <g-toggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields" />
-  <g-toggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')" label="Self Destruct" />
+  <g-toggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot"/>
+  <g-toggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields"/>
+  <g-toggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')"
+            label="Self Destruct"/>
 
   <g-divider/>
   <!-- Radio group - all share same v-model -->
-  <g-radio v-model="selectedSystem_radio" value="navigation" label="Navigation" />
-  <g-radio v-model="selectedSystem_radio" value="weapons" label="Weapons" />
-  <g-radio v-model="selectedSystem_radio" value="shields" label="Shields" />
-  <g-radio v-model="selectedSystem_radio" value="engines" label="Engines" />
+  <g-radio v-model="selectedSystem_radio" value="navigation" label="Navigation"/>
+  <g-radio v-model="selectedSystem_radio" value="weapons" label="Weapons"/>
+  <g-radio v-model="selectedSystem_radio" value="shields" label="Shields"/>
+  <g-radio v-model="selectedSystem_radio" value="engines" label="Engines"/>
 
   <!-- With variants -->
-  <g-radio v-model="priority" value="low" variant="success" label="Low" />
-  <g-radio v-model="priority" value="medium" variant="primary" label="Medium" />
-  <g-radio v-model="priority" value="critical" variant="danger" label="Critical" />
+  <g-radio v-model="priority" value="low" variant="success" label="Low"/>
+  <g-radio v-model="priority" value="medium" variant="primary" label="Medium"/>
+  <g-radio v-model="priority" value="critical" variant="danger" label="Critical"/>
 
   <g-divider/>
 
-  <g-slider v-model="power" label="Reactor Power" suffix="%" />
+  <g-slider v-model="power" label="Reactor Power" suffix="%"/>
 
   <g-slider
     v-model="throttle"
@@ -135,7 +136,7 @@
 
   <g-divider/>
 
-  <g-progress :value="75" label="Hull Integrity" />
+  <g-progress :value="75" label="Hull Integrity"/>
 
   <!-- With threshold warning -->
   <g-progress
@@ -265,8 +266,8 @@
       <p>Warning: Oxygen reserves at 23%. Immediate resupply required.</p>
 
       <template #footer>
-        <GButtonCommon text="DETAILS" variant="ghost" size="small" />
-        <GButton text="RESUPPLY" variant="danger" size="small" />
+        <GButtonCommon text="DETAILS" variant="ghost" size="small"/>
+        <GButton text="RESUPPLY" variant="danger" size="small"/>
       </template>
     </g-card>
 
@@ -309,10 +310,11 @@
       :show-status="true"
       :active="true"
     >
-      <p>Biological signature detected in cargo bay 3. Pattern does not match any known species in database.</p>
+      <p>Biological signature detected in cargo bay 3. Pattern does not match any known species in
+        database.</p>
 
       <template #footer>
-        <GButton text="INVESTIGATE" variant="warning" size="small" />
+        <GButton text="INVESTIGATE" variant="warning" size="small"/>
       </template>
     </g-card>
 
@@ -352,17 +354,29 @@
       variant="default"
     >
       <template #header-actions>
-        <GButtonCommon text="+" variant="ghost" size="small" />
+        <GButtonCommon text="+" variant="ghost" size="small"/>
       </template>
 
       <p>All crew members accounted for. Morale: Stable.</p>
     </g-card>
   </div>
+
+  <g-divider/>
   <g-toast-container/>
 
   <g-button-common @click="pushToast">
     Push toast
   </g-button-common>
+  <g-divider/>
+
+  <g-input-number
+    v-model="power2"
+    :min="0"
+    :max="100"
+    unit="%"
+    label="POWER ALLOCATION"
+    size="small"
+  />
 
 </template>
 
@@ -387,10 +401,13 @@ import GModal from "@/components/shared/GModal.vue";
 import GCard from "@/components/shared/GCard.vue";
 import GToastContainer from "@/components/shared/GToastContainer.vue";
 import {useToast} from "@/components/shared/useToast.js";
+import GInputNumber from "@/components/shared/GInputNumber.vue";
 
 const toast = useToast()
 
 const showModal = ref(false)
+
+const power2 = ref(50.0)
 
 const pushToast = () => {
   toast.show({
@@ -400,7 +417,10 @@ const pushToast = () => {
     duration: 5000,      // 0 = persistent
     closable: true,
     showProgress: true,
-    action: { label: 'BUTTON', onClick: () => {} }
+    action: {
+      label: 'BUTTON', onClick: () => {
+      }
+    }
   })
 }
 
