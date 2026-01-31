@@ -198,7 +198,7 @@
     <span>⚠️</span>
   </g-tooltip>
 
-  <GTooltip title="Reactor Status" text="Core temperature nominal">
+  <g-tooltip title="Reactor Status" text="Core temperature nominal">
     <g-button>⚛️ Reactor</g-button>
 
     <template #widget>
@@ -209,7 +209,40 @@
         size="small"
       />
     </template>
-  </GTooltip>
+  </g-tooltip>
+
+
+  <GButton
+    text="OPEN MODAL"
+    variant="primary"
+    @click="showModal = true"
+  />
+
+  <GModal
+    v-model="showModal"
+    title="SYSTEM STATUS"
+    variant="danger"
+    size="medium"
+    persistent
+  >
+    <p>All systems operational. Hull integrity at 98%. Oxygen levels nominal.</p>
+    <p>No immediate threats detected in sector 7-G.</p>
+
+    <template #actions>
+      <GButtonCommon
+        text="CANCEL"
+        variant="danger"
+        @click="showModal = false"
+      />
+      <GButton
+        text="CONFIRM"
+        variant="danger"
+        size="small"
+        @click="showModal = false"
+      />
+    </template>
+  </GModal>
+
 </template>
 
 <script setup>
@@ -229,6 +262,11 @@ import GRadio from "@/components/shared/GRadio.vue";
 import GSlider from "@/components/shared/GSlider.vue";
 import GProgress from "@/components/shared/GProgress.vue";
 import GTooltip from "@/components/shared/GTooltip.vue";
+import GModal from "@/components/shared/GModal.vue";
+
+const showModal = ref(false)
+
+
 
 const activeSystem = ref(null)
 
