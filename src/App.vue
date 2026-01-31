@@ -358,6 +358,11 @@
       <p>All crew members accounted for. Morale: Stable.</p>
     </g-card>
   </div>
+  <g-toast-container/>
+
+  <g-button-common @click="pushToast">
+    Push toast
+  </g-button-common>
 
 </template>
 
@@ -380,10 +385,24 @@ import GProgress from "@/components/shared/GProgress.vue";
 import GTooltip from "@/components/shared/GTooltip.vue";
 import GModal from "@/components/shared/GModal.vue";
 import GCard from "@/components/shared/GCard.vue";
+import GToastContainer from "@/components/shared/GToastContainer.vue";
+import {useToast} from "@/components/shared/useToast.js";
+
+const toast = useToast()
 
 const showModal = ref(false)
 
-
+const pushToast = () => {
+  toast.show({
+    title: 'ALERT',
+    message: 'Details here',
+    variant: 'danger',
+    duration: 5000,      // 0 = persistent
+    closable: true,
+    showProgress: true,
+    action: { label: 'BUTTON', onClick: () => {} }
+  })
+}
 
 const activeSystem = ref(null)
 
