@@ -243,6 +243,122 @@
     </template>
   </GModal>
 
+  <div class="card-grid">
+    <!-- Basic Card -->
+    <g-card
+      title="Hull Integrity"
+      subtitle="Sector 7-G"
+      variant="success"
+      :show-status="true"
+    >
+      <p>All compartments sealed. No breaches detected.</p>
+      <p>Last inspection: 2 hours ago</p>
+    </g-card>
+
+    <!-- Danger Card with Footer -->
+    <g-card
+      title="Oxygen Levels"
+      subtitle="Critical System"
+      variant="danger"
+      :show-status="true"
+    >
+      <p>Warning: Oxygen reserves at 23%. Immediate resupply required.</p>
+
+      <template #footer>
+        <GButtonCommon text="DETAILS" variant="ghost" size="small" />
+        <GButton text="RESUPPLY" variant="danger" size="small" />
+      </template>
+    </g-card>
+
+    <!-- Collapsible Card -->
+    <g-card
+      title="Navigation Log"
+      subtitle="Last 24 hours"
+      variant="primary"
+      :collapsible="true"
+      :collapsed="isNavCollapsed"
+      @update:collapsed="isNavCollapsed = $event"
+    >
+      <p>• 06:00 - Course correction alpha-7</p>
+      <p>• 12:30 - Entered asteroid field</p>
+      <p>• 18:45 - Exited asteroid field</p>
+      <p>• 22:00 - Autopilot engaged</p>
+    </g-card>
+
+    <!-- Warning Card -->
+    <g-card
+      title="Power Grid"
+      variant="warning"
+      :show-status="true"
+      :hoverable="true"
+    >
+      <template #icon>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </template>
+
+      <p>Reactor output fluctuating. Non-critical systems on standby.</p>
+    </g-card>
+
+    <!-- Creep/Anomaly Card -->
+    <g-card
+      title="Unknown Signal"
+      subtitle="Origin: Unidentified"
+      variant="creep"
+      :show-status="true"
+      :active="true"
+    >
+      <p>Biological signature detected in cargo bay 3. Pattern does not match any known species in database.</p>
+
+      <template #footer>
+        <GButton text="INVESTIGATE" variant="warning" size="small" />
+      </template>
+    </g-card>
+
+    <!-- Loading Card -->
+    <g-card
+      title="Scanning..."
+      variant="primary"
+      :loading="isLoading"
+      loading-text="ANALYZING DATA..."
+    >
+      <p>Scan results will appear here.</p>
+
+      <template #footer>
+        <GButtonCommon
+          :text="isLoading ? 'SCANNING...' : 'START SCAN'"
+          variant="primary"
+          size="small"
+          :disabled="isLoading"
+          @click="startScan"
+        />
+      </template>
+    </g-card>
+
+    <!-- Ghost Card -->
+    <g-card
+      title="System Notes"
+      variant="ghost"
+      size="compact"
+    >
+      <p>Minimal styling for secondary information panels.</p>
+    </g-card>
+
+    <!-- Card with Header Actions -->
+    <g-card
+      title="Crew Status"
+      subtitle="5 Active Members"
+      variant="default"
+    >
+      <template #header-actions>
+        <GButtonCommon text="+" variant="ghost" size="small" />
+      </template>
+
+      <p>All crew members accounted for. Morale: Stable.</p>
+    </g-card>
+  </div>
+
 </template>
 
 <script setup>
@@ -263,6 +379,7 @@ import GSlider from "@/components/shared/GSlider.vue";
 import GProgress from "@/components/shared/GProgress.vue";
 import GTooltip from "@/components/shared/GTooltip.vue";
 import GModal from "@/components/shared/GModal.vue";
+import GCard from "@/components/shared/GCard.vue";
 
 const showModal = ref(false)
 
@@ -315,5 +432,11 @@ const changed = () => {
 </script>
 
 <style scoped>
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
 
 </style>
