@@ -170,6 +170,46 @@
     suffix=" MB"
     :max="200"
   />
+
+  <g-divider/>
+
+  <!-- Simple text tooltip -->
+  <g-tooltip text="Emergency systems activated">
+    <g-button>Status</g-button>
+  </g-tooltip>
+
+  <!-- With title and hotkey -->
+  <g-tooltip
+    title="Fire Torpedoes"
+    text="Launch forward torpedo array"
+    hotkey="Ctrl + F"
+    variant="danger"
+  >
+    <g-button>🚀</g-button>
+  </g-tooltip>
+
+  <!-- With icon -->
+  <g-tooltip
+    icon="warning"
+    text="Hull integrity critical"
+    variant="warning"
+    placement="right"
+  >
+    <span>⚠️</span>
+  </g-tooltip>
+
+  <GTooltip title="Reactor Status" text="Core temperature nominal">
+    <g-button>⚛️ Reactor</g-button>
+
+    <template #widget>
+      <GProgress
+        :value="78"
+        label="Power Output"
+        variant="success"
+        size="small"
+      />
+    </template>
+  </GTooltip>
 </template>
 
 <script setup>
@@ -188,6 +228,7 @@ import GDivider from "@/components/shared/GDivider.vue";
 import GRadio from "@/components/shared/GRadio.vue";
 import GSlider from "@/components/shared/GSlider.vue";
 import GProgress from "@/components/shared/GProgress.vue";
+import GTooltip from "@/components/shared/GTooltip.vue";
 
 const activeSystem = ref(null)
 
