@@ -382,28 +382,26 @@
 
 <script setup>
 import {ref} from 'vue'
-
-import GButton from "@/components/shared/buttons/GButton.vue";
-import GButtonAdv from "@/components/shared/buttons/GButtonAdv.vue";
-import GButtonCommon from "@/components/shared/buttons/GButtonCommon.vue";
-import GCombobox from "@/components/shared/GCombobox.vue";
-
-import GInput from "@/components/shared/GInput.vue";
-import GInputNumber from "@/components/shared/GInputNumber.vue";
-
-import GTextarea from "@/components/shared/GTextarea.vue";
-import GCheckbox from "@/components/shared/GCheckbox.vue";
-import GToggle from "@/components/shared/GToggle.vue";
-import GDivider from "@/components/shared/GDivider.vue";
-import GRadio from "@/components/shared/GRadio.vue";
-import GSlider from "@/components/shared/GSlider.vue";
-import GProgress from "@/components/shared/GProgress.vue";
-import GTooltip from "@/components/shared/GTooltip.vue";
-import GModal from "@/components/shared/GModal.vue";
-import GCard from "@/components/shared/GCard.vue";
-import GToastContainer from "@/components/shared/GToastContainer.vue";
 import {useToast} from "@/components/shared/useToast.js";
-
+import {
+  GButton,
+  GButtonAdv,
+  GButtonCommon,
+  GCombobox,
+  GCard,
+  GCheckbox,
+  GDivider,
+  GInput,
+  GInputNumber,
+  GModal,
+  GProgress,
+  GRadio,
+  GSlider,
+  GTextarea,
+  GToastContainer,
+  GToggle,
+  GTooltip
+} from "@/components/shared"
 
 const toast = useToast()
 

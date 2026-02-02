@@ -1,0 +1,17 @@
+﻿export {default as GButton} from "@/components/shared/buttons/GButton.vue";
+export {default as GButtonAdv} from "@/components/shared/buttons/GButtonAdv.vue";
+export {default as GButtonCommon} from "@/components/shared/buttons/GButtonCommon.vue";
+export {default as GCombobox} from "@/components/shared/g-combobox/GCombobox.vue";
+export {default as GInput} from "@/components/shared/g-input/GInput.vue";
+export {default as GInputNumber} from "@/components/shared/g-input-number/GInputNumber.vue";
+export {default as GTextarea} from "@/components/shared/g-textarea/GTextarea.vue";
+export {default as GCheckbox} from "@/components/shared/g-checkbox/GCheckbox.vue";
+export {default as GToggle} from "@/components/shared/g-toggle/GToggle.vue";
+export {default as GDivider} from "@/components/shared/g-divider/GDivider.vue";
+export {default as GRadio} from "@/components/shared/g-radio/GRadio.vue";
+export {default as GSlider} from "@/components/shared/g-slider/GSlider.vue";
+export {default as GProgress} from "@/components/shared/g-progress/GProgress.vue";
+export {default as GTooltip} from "@/components/shared/g-tooltip/GTooltip.vue";
+export {default as GModal} from "@/components/shared/g-modal/GModal.vue";
+export {default as GCard} from "@/components/shared/g-card/GCard.vue";
+export {default as GToastContainer} from "@/components/shared/g-toast/GToastContainer.vue";
