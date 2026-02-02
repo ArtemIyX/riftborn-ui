@@ -19,6 +19,8 @@
   --font-ui: 'Rajdhani', sans-serif;
   --font-tech: 'Share Tech Mono', monospace;
   --font-special: 'Xanh Mono', monospace;
+
+  --stack-spacing: 0.5rem
 }
 
 /* --------------------------------------------
