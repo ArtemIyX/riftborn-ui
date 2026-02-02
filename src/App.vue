@@ -454,12 +454,12 @@
 
   <!-- Simple required field -->
   <GLabel for="password" required>Password</GLabel>
-
+  <br/>
   <!-- With hint -->
   <GLabel for="depth" hint="Enter depth in meters" hint-icon required>
     Target Depth
   </GLabel>
-
+  <br/>
   <!-- Critical field -->
   <GLabel
     variant="danger"
@@ -470,21 +470,57 @@
   >
     Hull Integrity
   </GLabel>
-
+  <br/>
   <!-- With tooltip -->
   <GLabel tooltip="This field is required for navigation">
     Target Location
   </GLabel>
-
+  <br/>
   <!-- With badge -->
   <GLabel badge="NEW" variant="primary">
     Advanced Sonar
   </GLabel>
-
+  <br/>
   <!-- Status label -->
   <GLabel variant="success" show-status badge="OK">
     Life Support System
   </GLabel>
+  <br/>
+  <GDivider text="Links"/>
+  <!-- Simple link -->
+  <GLink href="/missions">View Missions</GLink>
+  <br/>
+  <!-- External with auto icon -->
+  <GLink href="https://example.com" external>
+    External Docs
+  </GLink>
+  <br/>
+  <!-- Technical mono link -->
+  <GLink family="mono" variant="info" href="/logs">
+    system.logs.access
+  </GLink>
+  <br/>
+  <!-- Critical alert -->
+  <GLink variant="danger" glow flicker href="/alert">
+    <template #icon-left>
+      <GLabel variant="danger">!!</GLabel>
+    </template>
+    Hull Breach Detected
+  </GLink>
+
+  <br/>
+  <!-- With badge -->
+  <GLink badge="NEW" variant="primary" href="/features">
+    New Features
+  </GLink>
+
+  <br/>
+  <!-- Animated underline -->
+  <GLink underline-animated href="/details">
+    View Details →
+  </GLink>
+
+  <GDivider/>
 
 </template>
 
