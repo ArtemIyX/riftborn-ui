@@ -1,0 +1,331 @@
+﻿/* ============================================
+   G-BOX
+   Space Horror UI Component
+   ============================================ */
+
+.g-box {
+  position: relative;
+/*  background-color: var(--box-bg, #161b24);*/
+  overflow: hidden;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* --------------------------------------------
+   SIZES (padding presets)
+   -------------------------------------------- */
+
+.g-box--none {
+  padding: 0;
+}
+
+.g-box--small {
+  padding: 0.75rem;
+}
+
+.g-box--medium {
+  padding: 1.25rem;
+}
+
+.g-box--large {
+  padding: 2rem;
+}
+
+/* --------------------------------------------
+   BORDERED
+   -------------------------------------------- */
+
+.g-box--bordered {
+  border: 0.0625rem solid var(--box-border, #2a3444);
+}
+
+/* --------------------------------------------
+   ANGLED CORNERS (clip-path)
+   -------------------------------------------- */
+
+.g-box--angled {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 0.75rem) 0,
+    100% 0.75rem,
+    100% 100%,
+    0.75rem 100%,
+    0 calc(100% - 0.75rem)
+  );
+}
+
+.g-box--angled.g-box--bordered {
+  border: none;
+}
+
+.g-box--angled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 0.0625rem solid var(--box-border, #2a3444);
+  clip-path: inherit;
+  pointer-events: none;
+  transition: border-color 0.2s ease;
+}
+
+/* --------------------------------------------
+   CORNER ACCENTS
+   -------------------------------------------- */
+
+.g-box__corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.g-box__corner {
+  position: absolute;
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.g-box__corner::before,
+.g-box__corner::after {
+  content: '';
+  position: absolute;
+  background-color: var(--box-accent, #00d4d4);
+  transition: background-color 0.2s ease;
+}
+
+.g-box__corner--tl {
+  top: -0.0625rem;
+  left: -0.0625rem;
+}
+.g-box__corner--tl::before {
+  top: 0;
+  left: 0;
+  width: 0.625rem;
+  height: 0.0625rem;
+}
+.g-box__corner--tl::after {
+  top: 0;
+  left: 0;
+  width: 0.0625rem;
+  height: 0.625rem;
+}
+
+.g-box__corner--tr {
+  top: -0.0625rem;
+  right: -0.0625rem;
+}
+.g-box__corner--tr::before {
+  top: 0;
+  right: 0;
+  width: 0.625rem;
+  height: 0.0625rem;
+}
+.g-box__corner--tr::after {
+  top: 0;
+  right: 0;
+  width: 0.0625rem;
+  height: 0.625rem;
+}
+
+.g-box__corner--bl {
+  bottom: -0.0625rem;
+  left: -0.0625rem;
+}
+.g-box__corner--bl::before {
+  bottom: 0;
+  left: 0;
+  width: 0.625rem;
+  height: 0.0625rem;
+}
+.g-box__corner--bl::after {
+  bottom: 0;
+  left: 0;
+  width: 0.0625rem;
+  height: 0.625rem;
+}
+
+.g-box__corner--br {
+  bottom: -0.0625rem;
+  right: -0.0625rem;
+}
+.g-box__corner--br::before {
+  bottom: 0;
+  right: 0;
+  width: 0.625rem;
+  height: 0.0625rem;
+}
+.g-box__corner--br::after {
+  bottom: 0;
+  right: 0;
+  width: 0.0625rem;
+  height: 0.625rem;
+}
+
+/* --------------------------------------------
+   GLOW EFFECT
+   -------------------------------------------- */
+
+.g-box__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    var(--box-glow, rgba(0, 212, 212, 0.08)) 0%,
+    transparent 70%
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.g-box--glow {
+  box-shadow:
+    0 0 1.25rem var(--box-glow, rgba(0, 212, 212, 0.1)),
+    inset 0 0 1.25rem var(--box-glow, rgba(0, 212, 212, 0.03));
+}
+
+/* --------------------------------------------
+   HEADER
+   -------------------------------------------- */
+
+.g-box__header {
+  position: relative;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 0.0625rem solid var(--box-border, #2a3444);
+}
+
+.g-box__title {
+  margin: 0;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--box-title, #00d4d4);
+}
+
+.g-box--small .g-box__header {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.g-box--small .g-box__title {
+  font-size: 0.6875rem;
+}
+
+.g-box--large .g-box__header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.g-box--large .g-box__title {
+  font-size: 0.9375rem;
+}
+
+/* --------------------------------------------
+   CONTENT
+   -------------------------------------------- */
+
+.g-box__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------
+   FOOTER
+   -------------------------------------------- */
+
+.g-box__footer {
+  position: relative;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  border-top: 0.0625rem solid var(--box-border, #2a3444);
+}
+
+.g-box--small .g-box__footer {
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.g-box--large .g-box__footer {
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------
+   VARIANTS
+   -------------------------------------------- */
+
+/* Default (Neutral) */
+.g-box--default {
+  --box-bg: #161b24;
+  --box-border: #2a3444;
+  --box-accent: #00d4d4;
+  --box-title: #8892a2;
+  --box-glow: rgba(0, 212, 212, 0.08);
+}
+
+/* Primary (Cyan - Terminal) */
+.g-box--primary {
+  --box-bg: rgba(0, 212, 212, 0.05);
+  --box-border: rgba(0, 212, 212, 0.3);
+  --box-accent: #00d4d4;
+  --box-title: #00d4d4;
+  --box-glow: rgba(0, 212, 212, 0.15);
+}
+
+/* Secondary (Blue - Sonar) */
+.g-box--secondary {
+  --box-bg: rgba(68, 136, 255, 0.05);
+  --box-border: rgba(68, 136, 255, 0.3);
+  --box-accent: #4488ff;
+  --box-title: #4488ff;
+  --box-glow: rgba(68, 136, 255, 0.15);
+}
+
+/* Danger (Red - Critical) */
+.g-box--danger {
+  --box-bg: rgba(255, 51, 68, 0.05);
+  --box-border: rgba(255, 51, 68, 0.3);
+  --box-accent: #ff3344;
+  --box-title: #ff3344;
+  --box-glow: rgba(255, 51, 68, 0.15);
+}
+
+/* Warning (Orange - Caution) */
+.g-box--warning {
+  --box-bg: rgba(255, 153, 34, 0.05);
+  --box-border: rgba(255, 153, 34, 0.3);
+  --box-accent: #ff9922;
+  --box-title: #ff9922;
+  --box-glow: rgba(255, 153, 34, 0.15);
+}
+
+/* Success (Green - Systems Online) */
+.g-box--success {
+  --box-bg: rgba(0, 204, 102, 0.05);
+  --box-border: rgba(0, 204, 102, 0.3);
+  --box-accent: #00cc66;
+  --box-title: #00cc66;
+  --box-glow: rgba(0, 204, 102, 0.15);
+}
+
+/* Info (Blue) */
+.g-box--info {
+  --box-bg: rgba(68, 136, 255, 0.05);
+  --box-border: rgba(68, 136, 255, 0.3);
+  --box-accent: #4488ff;
+  --box-title: #4488ff;
+  --box-glow: rgba(68, 136, 255, 0.15);
+}
+
+/* Creep (Purple - Anomaly/Horror) */
+.g-box--creep {
+  --box-bg: rgba(136, 68, 170, 0.05);
+  --box-border: rgba(136, 68, 170, 0.3);
+  --box-accent: #8844aa;
+  --box-title: #8844aa;
+  --box-glow: rgba(136, 68, 170, 0.2);
+}

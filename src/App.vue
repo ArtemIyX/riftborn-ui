@@ -1,31 +1,34 @@
 <template>
   <GToastContainer/>
 
-  <section>
-    <h2>Basic Horizontal Layout</h2>
-    <GFlex gap="1">
-      <div class="box">Item 1</div>
-      <div class="box">Item 2</div>
-      <div class="box">Item 3</div>
-    </GFlex>
-  </section>
+  <!-- Basic box -->
+  <GBox>Content here</GBox>
 
-  <section>
-    <h2>Vertical Layout</h2>
-    <GFlex direction="column" gap="1">
-      <div class="box">Item 1</div>
-      <div class="box">Item 2</div>
-      <div class="box">Item 3</div>
-    </GFlex>
-  </section>
+  <!-- With title and variant -->
+  <GBox title="System Status" variant="primary" glow>
+    Hull integrity: 100%
+  </GBox>
 
-  <section>
-    <h2>Center Alignment</h2>
-    <GFlex justify="center" align="center" height="10rem" gap="1">
-      <div class="box">Centered Item 1</div>
-      <div class="box">Centered Item 2</div>
-    </GFlex>
-  </section>
+  <!-- Angled with corners -->
+  <GBox variant="danger" angled corners>
+    CRITICAL WARNING
+  </GBox>
+
+  <!-- Custom header/footer -->
+  <GBox size="large" variant="secondary">
+    <template #header>
+      <div class="flex justify-between">
+        <span>NAVIGATION</span>
+        <span>ONLINE</span>
+      </div>
+    </template>
+
+    <p>Content goes here</p>
+
+    <template #footer>
+      Last updated: 2024-02-02
+    </template>
+  </GBox>
 
 </template>
 
