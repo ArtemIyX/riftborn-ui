@@ -93,7 +93,7 @@ defineProps({
   /* Base styling */
   background-color: var(--adv-bg, #0f1218);
   color: var(--adv-color, #00d4d4);
-  border: 1px solid var(--adv-border, rgba(0, 212, 212, 0.3));
+  border: 0.0625rem solid var(--adv-border, rgba(0, 212, 212, 0.3));
 
   /* Transitions */
   transition:
@@ -108,21 +108,21 @@ defineProps({
    -------------------------------------------- */
 
 .g-btn-adv--small {
-  padding: 8px 20px;
-  font-size: 10px;
-  min-width: 100px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.625rem;
+  min-width: 6.25rem;
 }
 
 .g-btn-adv--medium {
-  padding: 12px 28px;
-  font-size: 12px;
-  min-width: 140px;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.75rem;
+  min-width: 8.75rem;
 }
 
 .g-btn-adv--large {
-  padding: 16px 40px;
-  font-size: 14px;
-  min-width: 180px;
+  padding: 1rem 2.5rem;
+  font-size: 0.875rem;
+  min-width: 11.25rem;
 }
 
 /* --------------------------------------------
@@ -131,8 +131,8 @@ defineProps({
 
 .g-btn-adv__corner {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   pointer-events: none;
   transition: all 0.3s ease;
 }
@@ -146,90 +146,90 @@ defineProps({
 }
 
 .g-btn-adv__corner--tl {
-  top: -1px;
-  left: -1px;
+  top: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-btn-adv__corner--tl::before {
   top: 0;
   left: 0;
-  width: 12px;
-  height: 2px;
+  width: 0.75rem;
+  height: 0.125rem;
 }
 .g-btn-adv__corner--tl::after {
   top: 0;
   left: 0;
-  width: 2px;
-  height: 12px;
+  width: 0.125rem;
+  height: 0.75rem;
 }
 
 .g-btn-adv__corner--tr {
-  top: -1px;
-  right: -1px;
+  top: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-btn-adv__corner--tr::before {
   top: 0;
   right: 0;
-  width: 12px;
-  height: 2px;
+  width: 0.75rem;
+  height: 0.125rem;
 }
 .g-btn-adv__corner--tr::after {
   top: 0;
   right: 0;
-  width: 2px;
-  height: 12px;
+  width: 0.125rem;
+  height: 0.75rem;
 }
 
 .g-btn-adv__corner--bl {
-  bottom: -1px;
-  left: -1px;
+  bottom: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-btn-adv__corner--bl::before {
   bottom: 0;
   left: 0;
-  width: 12px;
-  height: 2px;
+  width: 0.75rem;
+  height: 0.125rem;
 }
 .g-btn-adv__corner--bl::after {
   bottom: 0;
   left: 0;
-  width: 2px;
-  height: 12px;
+  width: 0.125rem;
+  height: 0.75rem;
 }
 
 .g-btn-adv__corner--br {
-  bottom: -1px;
-  right: -1px;
+  bottom: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-btn-adv__corner--br::before {
   bottom: 0;
   right: 0;
-  width: 12px;
-  height: 2px;
+  width: 0.75rem;
+  height: 0.125rem;
 }
 .g-btn-adv__corner--br::after {
   bottom: 0;
   right: 0;
-  width: 2px;
-  height: 12px;
+  width: 0.125rem;
+  height: 0.75rem;
 }
 
 /* Corner hover animation */
 .g-btn-adv:hover .g-btn-adv__corner--tl,
 .g-btn-adv:hover .g-btn-adv__corner--br {
-  transform: translate(-2px, -2px);
+  transform: translate(-0.125rem, -0.125rem);
 }
 
 .g-btn-adv:hover .g-btn-adv__corner--tr,
 .g-btn-adv:hover .g-btn-adv__corner--bl {
-  transform: translate(2px, 2px);
+  transform: translate(0.125rem, 0.125rem);
 }
 
 .g-btn-adv:hover .g-btn-adv__corner--tr {
-  transform: translate(2px, -2px);
+  transform: translate(0.125rem, -0.125rem);
 }
 
 .g-btn-adv:hover .g-btn-adv__corner--bl {
-  transform: translate(-2px, 2px);
+  transform: translate(-0.125rem, 0.125rem);
 }
 
 /* --------------------------------------------
@@ -257,8 +257,8 @@ defineProps({
 /* Pulse ring effect */
 .g-btn-adv__pulse {
   position: absolute;
-  inset: -4px;
-  border: 1px solid var(--adv-accent, #00d4d4);
+  inset: -0.25rem;
+  border: 0.0625rem solid var(--adv-accent, #00d4d4);
   opacity: 0;
   pointer-events: none;
 }
@@ -270,11 +270,11 @@ defineProps({
 @keyframes g-btn-adv-pulse {
   0% {
     opacity: 0.6;
-    inset: -4px;
+    inset: -0.25rem;
   }
   100% {
     opacity: 0;
-    inset: -16px;
+    inset: -1rem;
   }
 }
 
@@ -287,7 +287,7 @@ defineProps({
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .g-btn-adv__icon-left,
@@ -318,19 +318,19 @@ defineProps({
   }
   20% {
     opacity: 0.8;
-    transform: translateX(-2px);
+    transform: translateX(-0.125rem);
   }
   40% {
     opacity: 1;
-    transform: translateX(2px);
+    transform: translateX(0.125rem);
   }
   60% {
     opacity: 0.9;
-    transform: translateX(-1px);
+    transform: translateX(-0.0625rem);
   }
   80% {
     opacity: 1;
-    transform: translateX(1px);
+    transform: translateX(0.0625rem);
   }
   100% {
     opacity: 1;
@@ -344,11 +344,11 @@ defineProps({
 
 .g-btn-adv__stream {
   position: absolute;
-  bottom: 4px;
+  bottom: 0.25rem;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
-  height: 1px;
+  height: 0.0625rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -396,8 +396,8 @@ defineProps({
 .g-btn-adv:hover {
   border-color: var(--adv-border-hover, rgba(0, 212, 212, 0.6));
   box-shadow:
-    0 0 30px var(--adv-glow, rgba(0, 212, 212, 0.15)),
-    inset 0 0 30px var(--adv-glow, rgba(0, 212, 212, 0.05));
+    0 0 1.875rem var(--adv-glow, rgba(0, 212, 212, 0.15)),
+    inset 0 0 1.875rem var(--adv-glow, rgba(0, 212, 212, 0.05));
 }
 
 .g-btn-adv:active {
@@ -408,8 +408,8 @@ defineProps({
 .g-btn-adv:focus-visible {
   border-color: var(--adv-accent, #00d4d4);
   box-shadow:
-    0 0 0 2px var(--adv-bg, #0f1218),
-    0 0 0 4px var(--adv-accent, #00d4d4);
+    0 0 0 0.125rem var(--adv-bg, #0f1218),
+    0 0 0 0.25rem var(--adv-accent, #00d4d4);
 }
 
 /* --------------------------------------------

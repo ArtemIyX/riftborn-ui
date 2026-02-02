@@ -71,8 +71,8 @@ defineProps({
   /* Base styling */
   background-color: var(--common-bg, #1c232e);
   color: var(--common-color, #e0e4ea);
-  border: 1px solid var(--common-border, #2a3444);
-  border-radius: 2px;
+  border: 0.0625rem solid var(--common-border, #2a3444);
+  border-radius: 0.125rem;
 
   /* Transitions */
   transition:
@@ -88,21 +88,21 @@ defineProps({
    -------------------------------------------- */
 
 .g-btn-common--small {
-  padding: 4px 10px;
-  font-size: 11px;
-  min-width: 50px;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  min-width: 3.125rem;
 }
 
 .g-btn-common--medium {
-  padding: 6px 14px;
-  font-size: 12px;
-  min-width: 70px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.75rem;
+  min-width: 4.375rem;
 }
 
 .g-btn-common--large {
-  padding: 8px 20px;
-  font-size: 13px;
-  min-width: 90px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8125rem;
+  min-width: 5.625rem;
 }
 
 /* --------------------------------------------
@@ -114,7 +114,7 @@ defineProps({
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 /* --------------------------------------------
@@ -133,7 +133,7 @@ defineProps({
 
 .g-btn-common:focus-visible {
   border-color: var(--common-focus, #00d4d4);
-  box-shadow: 0 0 0 1px var(--common-focus, #00d4d4);
+  box-shadow: 0 0 0 0.0625rem var(--common-focus, #00d4d4);
 }
 
 /* --------------------------------------------

@@ -79,11 +79,11 @@ defineProps({
   /* Clip path for angled corners */
   clip-path: polygon(
     0 0,
-    calc(100% - 8px) 0,
-    100% 8px,
+    calc(100% - 0.5rem) 0,
+    100% 0.5rem,
     100% 100%,
-    8px 100%,
-    0 calc(100% - 8px)
+    0.5rem 100%,
+    0 calc(100% - 0.5rem)
   );
 
   /* Transitions */
@@ -99,21 +99,21 @@ defineProps({
    -------------------------------------------- */
 
 .g-btn--small {
-  padding: 6px 16px;
-  font-size: 11px;
-  min-width: 80px;
+  padding: 0.375rem 1rem;
+  font-size: 0.6875rem;
+  min-width: 5rem;
 }
 
 .g-btn--medium {
-  padding: 10px 24px;
-  font-size: 13px;
-  min-width: 120px;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.8125rem;
+  min-width: 7.5rem;
 }
 
 .g-btn--large {
-  padding: 14px 32px;
-  font-size: 15px;
-  min-width: 160px;
+  padding: 0.875rem 2rem;
+  font-size: 0.9375rem;
+  min-width: 10rem;
 }
 
 /* --------------------------------------------
@@ -144,7 +144,7 @@ defineProps({
 .g-btn__border {
   position: absolute;
   inset: 0;
-  border: 1px solid var(--btn-border, rgba(0, 212, 212, 0.4));
+  border: 0.0625rem solid var(--btn-border, rgba(0, 212, 212, 0.4));
   clip-path: inherit;
   pointer-events: none;
   transition: border-color 0.2s ease;
@@ -157,8 +157,8 @@ defineProps({
 .g-btn:focus-visible .g-btn__border {
   border-color: var(--btn-color, #00d4d4);
   box-shadow:
-    inset 0 0 8px var(--btn-glow, rgba(0, 212, 212, 0.3)),
-    0 0 12px var(--btn-glow, rgba(0, 212, 212, 0.2));
+    inset 0 0 0.5rem var(--btn-glow, rgba(0, 212, 212, 0.3)),
+    0 0 0.75rem var(--btn-glow, rgba(0, 212, 212, 0.2));
 }
 
 /* --------------------------------------------
@@ -170,7 +170,7 @@ defineProps({
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 /* --------------------------------------------
@@ -182,7 +182,7 @@ defineProps({
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -211,7 +211,7 @@ defineProps({
     opacity: 0.6;
   }
   100% {
-    transform: translateY(calc(100% + 50px));
+    transform: translateY(calc(100% + 3.125rem));
     opacity: 0;
   }
 }
@@ -223,8 +223,8 @@ defineProps({
 .g-btn:hover {
   background-color: var(--btn-bg-hover, rgba(0, 212, 212, 0.15));
   box-shadow:
-    0 0 20px var(--btn-glow, rgba(0, 212, 212, 0.2)),
-    inset 0 0 20px var(--btn-glow, rgba(0, 212, 212, 0.05));
+    0 0 1.25rem var(--btn-glow, rgba(0, 212, 212, 0.2)),
+    inset 0 0 1.25rem var(--btn-glow, rgba(0, 212, 212, 0.05));
 }
 
 .g-btn:active {
