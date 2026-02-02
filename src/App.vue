@@ -1,28 +1,38 @@
 <template>
+  <GToastContainer/>
 
-  <g-button variant="primary" text="Hello world" @click="hello"/>
-  <g-button-adv variant="success" text="Hello world" @click="hello"/>
-  <g-button-common variant="danger" text="Hello world" @click="hello"/>
+  <GButton variant="primary" text="Hello world" @click="hello"/>
+  <GButtonAdv variant="success" text="Hello world" @click="hello"/>
+  <GButtonCommon variant="danger" text="Hello world" @click="hello"/>
 
-  <g-divider/>
+  <GDivider/>
 
-  <g-combobox
+  <GCombobox
     v-model="selectedSystem"
     :options="systems"
     placeholder="Select system..."
     searchable
   />
 
-  <g-combobox
+  <GCombobox
     v-model="selectedSystem"
     :options="systems"
     variant="primary"
     placeholder="OVERRIDE TARGET"
   />
 
-  <g-divider/>
+  <GDivider/>
 
-  <g-input
+  <GInputNumber
+    v-model="power2"
+    :min="0"
+    :max="100"
+    unit="%"
+    label="POWER ALLOCATION"
+    size="small"
+  />
+
+  <GInput
     variant="default"
     v-model="shipName"
     label="Vessel Designation"
@@ -31,7 +41,7 @@
     required
   />
 
-  <g-input
+  <GInput
     v-model="frequency"
     variant="primary"
     label="Frequency"
@@ -39,16 +49,16 @@
     type="number"
   />
 
-  <g-input
+  <GInput
     v-model="coordinates"
     variant="ghost"
     placeholder="Search coordinates..."
     error="Invalid format"
   />
 
-  <g-divider/>
+  <GDivider/>
 
-  <g-textarea
+  <GTextarea
     v-model="logEntry"
     label="Captain's Log"
     placeholder="Enter log entry..."
@@ -57,9 +67,9 @@
     :maxlength="500"
   />
 
-  <g-divider/>
+  <GDivider/>
 
-  <g-textarea
+  <GTextarea
     v-model="distressSignal"
     variant="primary"
     label="Distress Message"
@@ -67,46 +77,46 @@
     required
   />
 
-  <g-textarea
+  <GTextarea
     v-model="notes"
     variant="ghost"
     placeholder="Quick notes..."
     resize
   />
 
-  <g-divider/>
+  <GDivider/>
 
   <!-- Single -->
-  <g-checkbox v-model="autoSave" label="Auto-save enabled"/>
+  <GCheckbox v-model="autoSave" label="Auto-save enabled"/>
 
   <!-- Variants -->
-  <g-checkbox v-model="confirmed" variant="success" label="Systems nominal"/>
-  <g-checkbox v-model="override" variant="danger" label="Override safety"/>
+  <GCheckbox v-model="confirmed" variant="success" label="Systems nominal"/>
+  <GCheckbox v-model="override" variant="danger" label="Override safety"/>
 
-  <g-divider/>
+  <GDivider/>
 
-  <g-toggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot"/>
-  <g-toggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields"/>
-  <g-toggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')"
+  <GToggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot"/>
+  <GToggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields"/>
+  <GToggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')"
             label="Self Destruct"/>
 
-  <g-divider/>
+  <GDivider/>
   <!-- Radio group - all share same v-model -->
-  <g-radio v-model="selectedSystem_radio" value="navigation" label="Navigation"/>
-  <g-radio v-model="selectedSystem_radio" value="weapons" label="Weapons"/>
-  <g-radio v-model="selectedSystem_radio" value="shields" label="Shields"/>
-  <g-radio v-model="selectedSystem_radio" value="engines" label="Engines"/>
+  <GRadio v-model="selectedSystem_radio" value="navigation" label="Navigation"/>
+  <GRadio v-model="selectedSystem_radio" value="weapons" label="Weapons"/>
+  <GRadio v-model="selectedSystem_radio" value="shields" label="Shields"/>
+  <GRadio v-model="selectedSystem_radio" value="engines" label="Engines"/>
 
   <!-- With variants -->
-  <g-radio v-model="priority" value="low" variant="success" label="Low"/>
-  <g-radio v-model="priority" value="medium" variant="primary" label="Medium"/>
-  <g-radio v-model="priority" value="critical" variant="danger" label="Critical"/>
+  <GRadio v-model="priority" value="low" variant="success" label="Low"/>
+  <GRadio v-model="priority" value="medium" variant="primary" label="Medium"/>
+  <GRadio v-model="priority" value="critical" variant="danger" label="Critical"/>
 
-  <g-divider/>
+  <GDivider/>
 
-  <g-slider v-model="power" label="Reactor Power" suffix="%"/>
+  <GSlider v-model="power" label="Reactor Power" suffix="%"/>
 
-  <g-slider
+  <GSlider
     v-model="throttle"
     label="Throttle"
     :min="0"
@@ -116,7 +126,7 @@
     variant="primary"
   />
 
-  <g-slider
+  <GSlider
     v-model="temperature"
     label="Core Temp"
     suffix="°C"
@@ -126,7 +136,7 @@
     show-min-max
   />
 
-  <g-slider
+  <GSlider
     v-model="oxygen"
     label="O₂ Level"
     suffix="%"
@@ -134,12 +144,12 @@
     size="large"
   />
 
-  <g-divider/>
+  <GDivider/>
 
-  <g-progress :value="75" label="Hull Integrity"/>
+  <GProgress :value="75" label="Hull Integrity"/>
 
   <!-- With threshold warning -->
-  <g-progress
+  <GProgress
     :value="23"
     label="Oxygen"
     variant="danger"
@@ -148,14 +158,14 @@
   />
 
   <!-- Loading state -->
-  <g-progress
+  <GProgress
     indeterminate
     label="Scanning..."
     variant="info"
   />
 
   <!-- Segmented (like power cells) -->
-  <g-progress
+  <GProgress
     :value="60"
     label="Power Cells"
     :segments="10"
@@ -163,7 +173,7 @@
   />
 
   <!-- Animated striped -->
-  <g-progress
+  <GProgress
     :value="45"
     label="Download"
     striped
@@ -172,35 +182,35 @@
     :max="200"
   />
 
-  <g-divider/>
+  <GDivider/>
 
   <!-- Simple text tooltip -->
-  <g-tooltip text="Emergency systems activated">
-    <g-button>Status</g-button>
-  </g-tooltip>
+  <GTooltip text="Emergency systems activated">
+    <GButton>Status</GButton>
+  </GTooltip>
 
   <!-- With title and hotkey -->
-  <g-tooltip
+  <GTooltip
     title="Fire Torpedoes"
     text="Launch forward torpedo array"
     hotkey="Ctrl + F"
     variant="danger"
   >
-    <g-button>🚀</g-button>
-  </g-tooltip>
+    <GButton>🚀</GButton>
+  </GTooltip>
 
   <!-- With icon -->
-  <g-tooltip
+  <GTooltip
     icon="warning"
     text="Hull integrity critical"
     variant="warning"
     placement="right"
   >
     <span>⚠️</span>
-  </g-tooltip>
+  </GTooltip>
 
-  <g-tooltip title="Reactor Status" text="Core temperature nominal">
-    <g-button>⚛️ Reactor</g-button>
+  <GTooltip title="Reactor Status" text="Core temperature nominal">
+    <GButton>⚛️ Reactor</GButton>
 
     <template #widget>
       <GProgress
@@ -210,7 +220,7 @@
         size="small"
       />
     </template>
-  </g-tooltip>
+  </GTooltip>
 
 
   <GButton
@@ -246,7 +256,7 @@
 
   <div class="card-grid">
     <!-- Basic Card -->
-    <g-card
+    <GCard
       title="Hull Integrity"
       subtitle="Sector 7-G"
       variant="success"
@@ -254,10 +264,10 @@
     >
       <p>All compartments sealed. No breaches detected.</p>
       <p>Last inspection: 2 hours ago</p>
-    </g-card>
+    </GCard>
 
     <!-- Danger Card with Footer -->
-    <g-card
+    <GCard
       title="Oxygen Levels"
       subtitle="Critical System"
       variant="danger"
@@ -269,10 +279,10 @@
         <GButtonCommon text="DETAILS" variant="ghost" size="small"/>
         <GButton text="RESUPPLY" variant="danger" size="small"/>
       </template>
-    </g-card>
+    </GCard>
 
     <!-- Collapsible Card -->
-    <g-card
+    <GCard
       title="Navigation Log"
       subtitle="Last 24 hours"
       variant="primary"
@@ -284,10 +294,10 @@
       <p>• 12:30 - Entered asteroid field</p>
       <p>• 18:45 - Exited asteroid field</p>
       <p>• 22:00 - Autopilot engaged</p>
-    </g-card>
+    </GCard>
 
     <!-- Warning Card -->
-    <g-card
+    <GCard
       title="Power Grid"
       variant="warning"
       :show-status="true"
@@ -300,10 +310,10 @@
       </template>
 
       <p>Reactor output fluctuating. Non-critical systems on standby.</p>
-    </g-card>
+    </GCard>
 
     <!-- Creep/Anomaly Card -->
-    <g-card
+    <GCard
       title="Unknown Signal"
       subtitle="Origin: Unidentified"
       variant="creep"
@@ -316,10 +326,10 @@
       <template #footer>
         <GButton text="INVESTIGATE" variant="warning" size="small"/>
       </template>
-    </g-card>
+    </GCard>
 
     <!-- Loading Card -->
-    <g-card
+    <GCard
       title="Scanning..."
       variant="primary"
       :loading="isLoading"
@@ -336,19 +346,19 @@
           @click="startScan"
         />
       </template>
-    </g-card>
+    </GCard>
 
     <!-- Ghost Card -->
-    <g-card
+    <GCard
       title="System Notes"
       variant="ghost"
       size="compact"
     >
       <p>Minimal styling for secondary information panels.</p>
-    </g-card>
+    </GCard>
 
     <!-- Card with Header Actions -->
-    <g-card
+    <GCard
       title="Crew Status"
       subtitle="5 Active Members"
       variant="default"
@@ -358,50 +368,27 @@
       </template>
 
       <p>All crew members accounted for. Morale: Stable.</p>
-    </g-card>
+    </GCard>
   </div>
 
-  <g-divider/>
-  <g-toast-container/>
+  <GDivider/>
 
-  <g-button-common @click="pushToast">
+
+  <GButtonCommon @click="pushToast">
     Push toast
-  </g-button-common>
-  <g-divider/>
+  </GButtonCommon>
+  <GDivider/>
 
-  <g-input-number
-    v-model="power2"
-    :min="0"
-    :max="100"
-    unit="%"
-    label="POWER ALLOCATION"
-    size="small"
-  />
+
 
 </template>
 
 <script setup>
+
+
 import {ref} from 'vue'
 import {useToast} from "@/components/shared/useToast.js";
-import {
-  GButton,
-  GButtonAdv,
-  GButtonCommon,
-  GCombobox,
-  GCard,
-  GCheckbox,
-  GDivider,
-  GInput,
-  GInputNumber,
-  GModal,
-  GProgress,
-  GRadio,
-  GSlider,
-  GTextarea,
-  GToastContainer,
-  GToggle,
-  GTooltip
-} from "@/components/shared"
+
 
 const toast = useToast()
 
