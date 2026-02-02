@@ -5,7 +5,7 @@
 
 .g-toast-container {
   position: fixed;
-  padding: 20px;
+  padding: 1.25rem;
   pointer-events: none;
 }
 
@@ -131,9 +131,9 @@
    RESPONSIVE
    -------------------------------------------- */
 
-@media (max-width: 400px) {
+@media (max-width: 25rem) {
   .g-toast-container {
-    padding: 12px;
+    padding: 0.75rem;
     left: 0;
     right: 0;
   }
