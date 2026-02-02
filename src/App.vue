@@ -402,6 +402,46 @@
     PENDING REPAIRS
   </GHeading>
 
+  <!-- Standard body text -->
+  <GText>System status nominal</GText>
+
+  <!-- Technical monospace -->
+  <GText family="mono" variant="success">
+    [OK] All systems operational
+  </GText>
+
+  <!-- Critical alert -->
+  <GText variant="danger" size="large" glow flicker>
+
+    HULL BREACH DETECTED
+  </GText>
+
+  <!-- Horror element -->
+  <GText variant="creep" glitch scanline>
+    Unknown signal detected...
+  </GText>
+
+  <!-- Status with badge -->
+  <GText variant="warning" badge="3">
+    Pending repairs
+  </GText>
+
+  <!-- Truncated long text -->
+  <GText truncate style="max-width: 200px">
+    This very long text will be truncated...
+  </GText>
+
+  <!-- Gradient title -->
+  <GText
+    size="xl"
+    weight="bold"
+    gradient="primary"
+    family="title"
+    interactive
+    @click="console.log('gradient clicked')"
+  >
+    USS NAUTILUS
+  </GText>
 
 </template>
 
