@@ -548,6 +548,82 @@
     <!-- Actual content here -->
   </div>
 
+  <GDivider text="Spinners"/>
+  <section class="demo-section">
+    <h2>Spinner Variants</h2>
+    <div class="spinner-grid">
+      <div class="spinner-item">
+        <GSpinner variant="ring" label="Ring" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="sonar" label="Sonar" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="orbital" label="Orbital" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="dots" label="Dots" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="pulse" label="Pulse" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="bars" label="Bars" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="scan" label="Scan" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="helix" label="Helix" />
+      </div>
+      <div class="spinner-item">
+        <GSpinner variant="glitch" label="Glitch" />
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Sizes</h2>
+    <div class="size-demo">
+      <div class="size-item">
+        <span>Tiny</span>
+        <GSpinner variant="sonar" size="tiny" />
+      </div>
+      <div class="size-item">
+        <span>Small</span>
+        <GSpinner variant="sonar" size="small" />
+      </div>
+      <div class="size-item">
+        <span>Medium</span>
+        <GSpinner variant="sonar" size="medium" />
+      </div>
+      <div class="size-item">
+        <span>Large</span>
+        <GSpinner variant="sonar" size="large" />
+      </div>
+      <div class="size-item">
+        <span>Huge</span>
+        <GSpinner variant="sonar" size="huge" />
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Inline Spinners</h2>
+    <div class="inline-examples">
+      <p>
+        <GSpinner variant="dots" size="tiny" inline /> Loading data...
+      </p>
+      <p>
+        <GSpinner variant="ring" size="small" inline /> Processing mission briefing...
+      </p>
+      <p>
+        <GSpinner variant="bars" size="small" inline /> Analyzing sonar readings...
+      </p>
+    </div>
+  </section>
+
+  
 
 </template>
 
@@ -557,15 +633,9 @@
 import {ref} from 'vue'
 import {useToast} from "@/components/shared/useToast.js";
 
-
 const toast = useToast()
-
 const showModal = ref(false)
-
 const power2 = ref(50.0)
-
-
-
 
 const pushToast = () => {
   toast.show({

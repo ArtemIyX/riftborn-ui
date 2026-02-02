@@ -1,0 +1,655 @@
+﻿/* ============================================
+   G-SPINNER
+   Space Horror UI Component - Loading Indicator
+   ============================================ */
+
+.g-spinner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.g-spinner--inline {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------
+   LABEL
+   -------------------------------------------- */
+
+.g-spinner__label {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--spinner-label, #8892a2);
+}
+
+/* --------------------------------------------
+   VARIANT: RING (Default)
+   -------------------------------------------- */
+
+.g-spinner__ring {
+  width: 100%;
+  height: 100%;
+  animation: g-spinner-rotate 1.5s linear infinite;
+}
+
+.g-spinner__ring-track {
+  fill: none;
+  stroke: var(--spinner-track, #2a3444);
+  stroke-width: 4;
+}
+
+.g-spinner__ring-progress {
+  fill: none;
+  stroke: var(--spinner-color, #00d4d4);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 50;
+  filter: drop-shadow(0 0 0.375rem var(--spinner-glow, rgba(0, 212, 212, 0.6)));
+  animation: g-spinner-ring-progress 1.5s ease-in-out infinite;
+}
+
+@keyframes g-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes g-spinner-ring-progress {
+  0%, 100% {
+    stroke-dashoffset: 200;
+  }
+  50% {
+    stroke-dashoffset: 50;
+  }
+}
+
+/* --------------------------------------------
+   VARIANT: SONAR
+   -------------------------------------------- */
+
+.g-spinner__sonar {
+  width: 100%;
+  height: 100%;
+  animation: g-spinner-rotate 3s linear infinite;
+}
+
+.g-spinner__sonar-ring {
+  fill: none;
+  stroke: var(--spinner-color, #00d4d4);
+  stroke-width: 1;
+  opacity: 0;
+}
+
+.g-spinner__sonar-ring--1 {
+  animation: g-spinner-sonar-pulse 2s ease-out infinite;
+  animation-delay: 0s;
+}
+
+.g-spinner__sonar-ring--2 {
+  animation: g-spinner-sonar-pulse 2s ease-out infinite;
+  animation-delay: 0.4s;
+}
+
+.g-spinner__sonar-ring--3 {
+  animation: g-spinner-sonar-pulse 2s ease-out infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes g-spinner-sonar-pulse {
+  0% {
+    r: 10%;
+    opacity: 1;
+    stroke-width: 3;
+  }
+  100% {
+    r: 45%;
+    opacity: 0;
+    stroke-width: 0.5;
+  }
+}
+
+.g-spinner__sonar-sweep {
+  stroke: var(--spinner-color, #00d4d4);
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 0.375rem var(--spinner-glow, rgba(0, 212, 212, 0.8)));
+  transform-origin: 50% 50%;
+}
+
+/* --------------------------------------------
+   VARIANT: ORBITAL
+   -------------------------------------------- */
+
+.g-spinner__orbital {
+  width: 100%;
+  height: 100%;
+  animation: g-spinner-rotate 2s linear infinite;
+}
+
+.g-spinner__orbital-track {
+  fill: none;
+  stroke: var(--spinner-track, #2a3444);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.g-spinner__orbital-dot {
+  fill: var(--spinner-color, #00d4d4);
+  filter: drop-shadow(0 0 0.25rem var(--spinner-glow, rgba(0, 212, 212, 0.8)));
+}
+
+.g-spinner__orbital-dot--1 {
+  animation: g-spinner-orbital-pulse 1s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.g-spinner__orbital-dot--2 {
+  animation: g-spinner-orbital-pulse 1s ease-in-out infinite;
+  animation-delay: 0.2s;
+  transform-origin: 50px 50px;
+  animation-name: g-spinner-orbital-pulse, g-spinner-orbital-rotate;
+  animation-duration: 1s, 2s;
+}
+
+.g-spinner__orbital-dot--3 {
+  animation: g-spinner-orbital-pulse 1s ease-in-out infinite;
+  animation-delay: 0.4s;
+  transform-origin: 50px 50px;
+  animation-name: g-spinner-orbital-pulse, g-spinner-orbital-rotate-reverse;
+  animation-duration: 1s, 1.5s;
+}
+
+@keyframes g-spinner-orbital-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes g-spinner-orbital-rotate {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+  100% {
+    transform: rotate(360deg) translateX(0);
+  }
+}
+
+@keyframes g-spinner-orbital-rotate-reverse {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+  100% {
+    transform: rotate(-360deg) translateX(0);
+  }
+}
+
+/* --------------------------------------------
+   VARIANT: DOTS
+   -------------------------------------------- */
+
+.g-spinner__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.g-spinner__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: var(--spinner-color, #00d4d4);
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem var(--spinner-glow, rgba(0, 212, 212, 0.6));
+  animation: g-spinner-dot-bounce 1.4s ease-in-out infinite;
+}
+
+.g-spinner__dot--1 {
+  animation-delay: 0s;
+}
+
+.g-spinner__dot--2 {
+  animation-delay: 0.2s;
+}
+
+.g-spinner__dot--3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes g-spinner-dot-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(-0.75rem);
+    opacity: 0.7;
+  }
+}
+
+/* --------------------------------------------
+   VARIANT: PULSE
+   -------------------------------------------- */
+
+.g-spinner__pulse {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.g-spinner__pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0.125rem solid var(--spinner-color, #00d4d4);
+  border-radius: 50%;
+  opacity: 0;
+  animation: g-spinner-pulse-expand 2s ease-out infinite;
+}
+
+.g-spinner__pulse-ring--1 {
+  animation-delay: 0s;
+}
+
+.g-spinner__pulse-ring--2 {
+  animation-delay: 0.6s;
+}
+
+.g-spinner__pulse-ring--3 {
+  animation-delay: 1.2s;
+}
+
+@keyframes g-spinner-pulse-expand {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------
+   VARIANT: BARS
+   -------------------------------------------- */
+
+.g-spinner__bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  height: 100%;
+}
+
+.g-spinner__bar {
+  width: 0.25rem;
+  height: 50%;
+  background-color: var(--spinner-color, #00d4d4);
+  box-shadow: 0 0 0.375rem var(--spinner-glow, rgba(0, 212, 212, 0.6));
+  animation: g-spinner-bar-scale 1.2s ease-in-out infinite;
+}
+
+.g-spinner__bar--1 {
+  animation-delay: 0s;
+}
+
+.g-spinner__bar--2 {
+  animation-delay: 0.1s;
+}
+
+.g-spinner__bar--3 {
+  animation-delay: 0.2s;
+}
+
+.g-spinner__bar--4 {
+  animation-delay: 0.3s;
+}
+
+.g-spinner__bar--5 {
+  animation-delay: 0.4s;
+}
+
+@keyframes g-spinner-bar-scale {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    opacity: 0.7;
+  }
+  20% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   VARIANT: SCAN
+   -------------------------------------------- */
+
+.g-spinner__scan {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--spinner-scan-bg, rgba(0, 212, 212, 0.05));
+  border: 0.0625rem solid var(--spinner-track, #2a3444);
+  overflow: hidden;
+}
+
+.g-spinner__scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.125rem;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--spinner-color, #00d4d4),
+    var(--spinner-scan-dim, rgba(0, 212, 212, 0.3)),
+    transparent
+  );
+  box-shadow: 0 0 0.75rem var(--spinner-glow, rgba(0, 212, 212, 0.8));
+  animation: g-spinner-scan-move 2s linear infinite;
+}
+
+@keyframes g-spinner-scan-move {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
+/* --------------------------------------------
+   VARIANT: HELIX
+   -------------------------------------------- */
+
+.g-spinner__helix {
+  width: 100%;
+  height: 100%;
+}
+
+.g-spinner__helix-dot {
+  fill: var(--spinner-color, #00d4d4);
+  filter: drop-shadow(0 0 0.25rem var(--spinner-glow, rgba(0, 212, 212, 0.8)));
+}
+
+.g-spinner__helix-dot--1 {
+  animation: g-spinner-helix-wave 1.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.g-spinner__helix-dot--2 {
+  animation: g-spinner-helix-wave 1.5s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.g-spinner__helix-dot--3 {
+  animation: g-spinner-helix-wave 1.5s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+@keyframes g-spinner-helix-wave {
+  0%, 100% {
+    cy: 50%;
+    opacity: 0.4;
+  }
+  50% {
+    cy: 30%;
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   VARIANT: GLITCH
+   -------------------------------------------- */
+
+.g-spinner__glitch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.125rem;
+}
+
+.g-spinner__glitch-block {
+  background-color: var(--spinner-color, #00d4d4);
+  opacity: 0.3;
+  animation: g-spinner-glitch-flicker 0.8s steps(1) infinite;
+}
+
+.g-spinner__glitch-block--1 {
+  animation-delay: 0s;
+}
+
+.g-spinner__glitch-block--2 {
+  animation-delay: 0.1s;
+}
+
+.g-spinner__glitch-block--3 {
+  animation-delay: 0.2s;
+}
+
+.g-spinner__glitch-block--4 {
+  animation-delay: 0.3s;
+}
+
+@keyframes g-spinner-glitch-flicker {
+  0%, 49%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50%, 99% {
+    opacity: 0.8;
+    transform: scale(0.9);
+    box-shadow: 0 0 0.5rem var(--spinner-glow, rgba(0, 212, 212, 0.6));
+  }
+}
+
+/* --------------------------------------------
+   SIZES
+   -------------------------------------------- */
+
+/* Tiny */
+.g-spinner--tiny .g-spinner__ring,
+.g-spinner--tiny .g-spinner__sonar,
+.g-spinner--tiny .g-spinner__orbital,
+.g-spinner--tiny .g-spinner__pulse,
+.g-spinner--tiny .g-spinner__helix {
+  width: 1rem;
+  height: 1rem;
+}
+
+.g-spinner--tiny .g-spinner__scan {
+  width: 1.5rem;
+  height: 1rem;
+}
+
+.g-spinner--tiny .g-spinner__bars {
+  height: 1rem;
+}
+
+.g-spinner--tiny .g-spinner__glitch {
+  width: 1rem;
+  height: 1rem;
+}
+
+.g-spinner--tiny .g-spinner__label {
+  font-size: 0.625rem;
+}
+
+/* Small */
+.g-spinner--small .g-spinner__ring,
+.g-spinner--small .g-spinner__sonar,
+.g-spinner--small .g-spinner__orbital,
+.g-spinner--small .g-spinner__pulse,
+.g-spinner--small .g-spinner__helix {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.g-spinner--small .g-spinner__scan {
+  width: 2rem;
+  height: 1.5rem;
+}
+
+.g-spinner--small .g-spinner__bars {
+  height: 1.5rem;
+}
+
+.g-spinner--small .g-spinner__glitch {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.g-spinner--small .g-spinner__label {
+  font-size: 0.6875rem;
+}
+
+/* Medium (default) */
+.g-spinner--medium .g-spinner__ring,
+.g-spinner--medium .g-spinner__sonar,
+.g-spinner--medium .g-spinner__orbital,
+.g-spinner--medium .g-spinner__pulse,
+.g-spinner--medium .g-spinner__helix {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.g-spinner--medium .g-spinner__scan {
+  width: 3.5rem;
+  height: 2.5rem;
+}
+
+.g-spinner--medium .g-spinner__bars {
+  height: 2.5rem;
+}
+
+.g-spinner--medium .g-spinner__glitch {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.g-spinner--medium .g-spinner__label {
+  font-size: 0.75rem;
+}
+
+/* Large */
+.g-spinner--large .g-spinner__ring,
+.g-spinner--large .g-spinner__sonar,
+.g-spinner--large .g-spinner__orbital,
+.g-spinner--large .g-spinner__pulse,
+.g-spinner--large .g-spinner__helix {
+  width: 4rem;
+  height: 4rem;
+}
+
+.g-spinner--large .g-spinner__scan {
+  width: 5rem;
+  height: 4rem;
+}
+
+.g-spinner--large .g-spinner__bars {
+  height: 4rem;
+}
+
+.g-spinner--large .g-spinner__glitch {
+  width: 4rem;
+  height: 4rem;
+}
+
+.g-spinner--large .g-spinner__label {
+  font-size: 0.875rem;
+}
+
+/* Huge */
+.g-spinner--huge .g-spinner__ring,
+.g-spinner--huge .g-spinner__sonar,
+.g-spinner--huge .g-spinner__orbital,
+.g-spinner--huge .g-spinner__pulse,
+.g-spinner--huge .g-spinner__helix {
+  width: 6rem;
+  height: 6rem;
+}
+
+.g-spinner--huge .g-spinner__scan {
+  width: 8rem;
+  height: 6rem;
+}
+
+.g-spinner--huge .g-spinner__bars {
+  height: 6rem;
+}
+
+.g-spinner--huge .g-spinner__glitch {
+  width: 6rem;
+  height: 6rem;
+}
+
+.g-spinner--huge .g-spinner__label {
+  font-size: 1rem;
+}
+
+/* --------------------------------------------
+   ACCESSIBILITY
+   -------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .g-spinner__ring,
+  .g-spinner__sonar,
+  .g-spinner__orbital,
+  .g-spinner__sonar-ring,
+  .g-spinner__sonar-sweep,
+  .g-spinner__orbital-dot,
+  .g-spinner__dot,
+  .g-spinner__pulse-ring,
+  .g-spinner__bar,
+  .g-spinner__scan-line,
+  .g-spinner__helix-dot,
+  .g-spinner__glitch-block {
+    animation: none;
+  }
+
+  .g-spinner__ring-progress,
+  .g-spinner__sonar-ring,
+  .g-spinner__orbital-dot,
+  .g-spinner__dot,
+  .g-spinner__pulse-ring,
+  .g-spinner__bar,
+  .g-spinner__helix-dot,
+  .g-spinner__glitch-block {
+    opacity: 0.7;
+  }
+}
+
+/* --------------------------------------------
+   THEME (Default - Cyan)
+   -------------------------------------------- */
+
+.g-spinner {
+  --spinner-color: #00d4d4;
+  --spinner-glow: rgba(0, 212, 212, 0.6);
+  --spinner-track: #2a3444;
+  --spinner-label: #8892a2;
+  --spinner-scan-bg: rgba(0, 212, 212, 0.05);
+  --spinner-scan-dim: rgba(0, 212, 212, 0.3);
+}

@@ -29,6 +29,7 @@ declare module 'vue' {
     GRadio: typeof import('./components/shared/g-radio/GRadio.vue')['default']
     GSkeleton: typeof import('./components/shared/g-skeleton/GSkeleton.vue')['default']
     GSlider: typeof import('./components/shared/g-slider/GSlider.vue')['default']
+    GSpinner: typeof import('./components/shared/g-spinner/GSpinner.vue')['default']
     GText: typeof import('./components/shared/text/g-text/GText.vue')['default']
     GTextarea: typeof import('./components/shared/g-textarea/GTextarea.vue')['default']
     GToast: typeof import('./components/shared/g-toast/GToast.vue')['default']
