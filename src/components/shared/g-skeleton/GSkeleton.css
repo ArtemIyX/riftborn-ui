@@ -1,0 +1,405 @@
+﻿/* ============================================
+   G-SKELETON
+   Space Horror UI Component - Loading Placeholder
+   ============================================ */
+
+.g-skeleton {
+  position: relative;
+  display: block;
+  background-color: var(--skeleton-bg, #161b24);
+  border: 0.0625rem solid var(--skeleton-border, #2a3444);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* --------------------------------------------
+   BASE VARIANTS
+   -------------------------------------------- */
+
+/* Text lines */
+.g-skeleton--text {
+  width: 100%;
+  height: 0.875rem;
+  border-radius: 0.125rem;
+}
+
+/* Circle */
+.g-skeleton--circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+/* Rectangle */
+.g-skeleton--rect {
+  width: 100%;
+  height: 6.25rem;
+  border-radius: 0.25rem;
+}
+
+/* Avatar */
+.g-skeleton--avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.25rem;
+}
+
+/* Button */
+.g-skeleton--button {
+  width: 8rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Card */
+.g-skeleton--card {
+  width: 100%;
+  height: 12.5rem;
+  border-radius: 0.375rem;
+}
+
+/* Image */
+.g-skeleton--image {
+  width: 100%;
+  height: 15rem;
+  border-radius: 0.25rem;
+}
+
+/* --------------------------------------------
+   ROUNDED MODIFIER
+   -------------------------------------------- */
+
+.g-skeleton--rounded {
+  border-radius: 0.5rem;
+}
+
+.g-skeleton--rounded.g-skeleton--text {
+  border-radius: 0.25rem;
+}
+
+.g-skeleton--rounded.g-skeleton--button {
+  border-radius: 0.375rem;
+}
+
+/* --------------------------------------------
+   CORNER ACCENTS
+   -------------------------------------------- */
+
+.g-skeleton__corner {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.0625rem solid var(--skeleton-corner, rgba(0, 212, 212, 0.3));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.g-skeleton__corner--tl {
+  top: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0.0625rem 0 0 0.0625rem;
+}
+
+.g-skeleton__corner--tr {
+  top: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0.0625rem 0.0625rem 0 0;
+}
+
+.g-skeleton__corner--bl {
+  bottom: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0 0 0.0625rem 0.0625rem;
+}
+
+.g-skeleton__corner--br {
+  bottom: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0 0.0625rem 0.0625rem 0;
+}
+
+/* --------------------------------------------
+   ANIMATION: PULSE
+   -------------------------------------------- */
+
+.g-skeleton--pulse {
+  animation: g-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes g-skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+    background-color: var(--skeleton-bg, #161b24);
+  }
+  50% {
+    opacity: 0.7;
+    background-color: var(--skeleton-bg-pulse, #1c232e);
+  }
+}
+
+.g-skeleton--pulse .g-skeleton__scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--skeleton-scan, rgba(0, 212, 212, 0.15)),
+    transparent
+  );
+  opacity: 0;
+  animation: g-skeleton-pulse-scan 2s ease-in-out infinite;
+}
+
+@keyframes g-skeleton-pulse-scan {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   ANIMATION: WAVE
+   -------------------------------------------- */
+
+.g-skeleton--wave .g-skeleton__wave {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--skeleton-wave-start, rgba(0, 212, 212, 0.1)),
+    var(--skeleton-wave-mid, rgba(0, 212, 212, 0.3)),
+    var(--skeleton-wave-end, rgba(0, 212, 212, 0.1)),
+    transparent
+  );
+  animation: g-skeleton-wave 2s ease-in-out infinite;
+}
+
+@keyframes g-skeleton-wave {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* --------------------------------------------
+   ANIMATION: SHIMMER
+   -------------------------------------------- */
+
+.g-skeleton--shimmer .g-skeleton__shimmer {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 25%,
+    var(--skeleton-shimmer-start, rgba(0, 212, 212, 0.08)) 40%,
+    var(--skeleton-shimmer-mid, rgba(0, 212, 212, 0.2)) 50%,
+    var(--skeleton-shimmer-end, rgba(0, 212, 212, 0.08)) 60%,
+    transparent 75%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: g-skeleton-shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes g-skeleton-shimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* --------------------------------------------
+   ANIMATION: SCAN
+   -------------------------------------------- */
+
+.g-skeleton--scan .g-skeleton__scan {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  height: 0.125rem;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--skeleton-scan-bright, rgba(0, 212, 212, 0.8)),
+    var(--skeleton-scan-dim, rgba(0, 212, 212, 0.2)),
+    transparent
+  );
+  box-shadow: 0 0 0.625rem var(--skeleton-scan-glow, rgba(0, 212, 212, 0.6));
+  animation: g-skeleton-scan 2s linear infinite;
+}
+
+@keyframes g-skeleton-scan {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* --------------------------------------------
+   ANIMATION: GLITCH
+   -------------------------------------------- */
+
+.g-skeleton--glitch {
+  animation: g-skeleton-glitch-bg 3s steps(1) infinite;
+}
+
+@keyframes g-skeleton-glitch-bg {
+  0%, 90%, 100% {
+    background-color: var(--skeleton-bg, #161b24);
+  }
+  91%, 93% {
+    background-color: var(--skeleton-glitch-1, #1c232e);
+  }
+  92%, 94% {
+    background-color: var(--skeleton-glitch-2, #242d3a);
+  }
+}
+
+.g-skeleton--glitch .g-skeleton__glitch {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--skeleton-glitch-line, rgba(0, 212, 212, 0.2)),
+    transparent
+  );
+  opacity: 0;
+  animation: g-skeleton-glitch 3s steps(1) infinite;
+}
+
+@keyframes g-skeleton-glitch {
+  0%, 89%, 100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-0.125rem);
+  }
+  91% {
+    opacity: 1;
+    transform: translateX(0.25rem);
+  }
+  92% {
+    opacity: 1;
+    transform: translateX(-0.0625rem);
+  }
+  93% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------
+   LOADING STATE
+   -------------------------------------------- */
+
+.g-skeleton--loading {
+  cursor: wait;
+}
+
+/* Add slight glow when actively loading */
+.g-skeleton--loading::after {
+  content: '';
+  position: absolute;
+  inset: -0.0625rem;
+  border: 0.0625rem solid var(--skeleton-loading-glow, rgba(0, 212, 212, 0.1));
+  border-radius: inherit;
+  opacity: 0;
+  animation: g-skeleton-loading-glow 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes g-skeleton-loading-glow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   NO ANIMATION
+   -------------------------------------------- */
+
+.g-skeleton--none {
+  animation: none;
+}
+
+.g-skeleton--none .g-skeleton__scan,
+.g-skeleton--none .g-skeleton__wave,
+.g-skeleton--none .g-skeleton__shimmer,
+.g-skeleton--none .g-skeleton__glitch {
+  display: none;
+}
+
+/* --------------------------------------------
+   ASPECT RATIO SUPPORT
+   -------------------------------------------- */
+
+.g-skeleton[style*="aspect-ratio"] {
+  height: auto;
+}
+
+/* --------------------------------------------
+   ACCESSIBILITY
+   -------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .g-skeleton,
+  .g-skeleton__scan,
+  .g-skeleton__wave,
+  .g-skeleton__shimmer,
+  .g-skeleton__glitch {
+    animation: none;
+  }
+
+  .g-skeleton {
+    opacity: 0.7;
+  }
+}
+
+/* --------------------------------------------
+   THEME VARIATIONS (optional CSS vars)
+   -------------------------------------------- */
+
+/* Default (Cyan) */
+.g-skeleton {
+  --skeleton-bg: #161b24;
+  --skeleton-bg-pulse: #1c232e;
+  --skeleton-border: #2a3444;
+  --skeleton-corner: rgba(0, 212, 212, 0.3);
+  --skeleton-scan: rgba(0, 212, 212, 0.15);
+  --skeleton-wave-start: rgba(0, 212, 212, 0.1);
+  --skeleton-wave-mid: rgba(0, 212, 212, 0.3);
+  --skeleton-wave-end: rgba(0, 212, 212, 0.1);
+  --skeleton-shimmer-start: rgba(0, 212, 212, 0.08);
+  --skeleton-shimmer-mid: rgba(0, 212, 212, 0.2);
+  --skeleton-shimmer-end: rgba(0, 212, 212, 0.08);
+  --skeleton-scan-bright: rgba(0, 212, 212, 0.8);
+  --skeleton-scan-dim: rgba(0, 212, 212, 0.2);
+  --skeleton-scan-glow: rgba(0, 212, 212, 0.6);
+  --skeleton-glitch-1: #1c232e;
+  --skeleton-glitch-2: #242d3a;
+  --skeleton-glitch-line: rgba(0, 212, 212, 0.2);
+  --skeleton-loading-glow: rgba(0, 212, 212, 0.1);
+}

@@ -520,7 +520,34 @@
     View Details →
   </GLink>
 
-  <GDivider/>
+  <GDivider text="Skeleton"/>
+
+  <div v-if="true" class="mission-briefing-loading">
+    <!-- Header -->
+    <div class="header-skeleton">
+      <GSkeleton variant="text" width="300px" height="32px" animation="scan" />
+      <GSkeleton variant="text" width="200px" animation="scan" />
+    </div>
+
+    <!-- Main card -->
+    <GSkeleton
+      variant="card"
+      :show-corners="true"
+      animation="pulse"
+      height="400px"
+    />
+
+    <!-- Action buttons -->
+    <div class="actions-skeleton">
+      <GSkeleton variant="button" animation="wave" />
+      <GSkeleton variant="button" animation="wave" />
+    </div>
+  </div>
+
+  <div v-else class="mission-briefing">
+    <!-- Actual content here -->
+  </div>
+
 
 </template>
 
@@ -536,6 +563,9 @@ const toast = useToast()
 const showModal = ref(false)
 
 const power2 = ref(50.0)
+
+
+
 
 const pushToast = () => {
   toast.show({
