@@ -18,6 +18,7 @@ declare module 'vue' {
     GCheckbox: typeof import('./components/shared/g-checkbox/GCheckbox.vue')['default']
     GCode: typeof import('./components/shared/text/g-code/GCode.vue')['default']
     GCombobox: typeof import('./components/shared/g-combobox/GCombobox.vue')['default']
+    GContainer: typeof import('./components/shared/layout/GContainer/GContainer.vue')['default']
     GDivider: typeof import('./components/shared/g-divider/GDivider.vue')['default']
     GHeading: typeof import('./components/shared/text/g-heading/GHeading.vue')['default']
     GIcon: typeof import('./components/shared/g-icon/GIcon.vue')['default']

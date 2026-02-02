@@ -1,0 +1,62 @@
+﻿.g-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* Fluid container takes full width */
+.g-container--fluid {
+  max-width: 100% !important;
+}
+
+/* Non-fluid container has responsive max-widths */
+.g-container:not(.g-container--fluid) {
+  /* Default max-widths based on breakpoint */
+  max-width: 1280px; /* lg default */
+}
+
+/* Breakpoint-specific max-widths */
+@media (max-width: 599px) {
+  .g-container:not(.g-container--fluid) {
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  .g-container:not(.g-container--fluid) {
+    max-width: 600px; /* sm */
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1279px) {
+  .g-container:not(.g-container--fluid) {
+    max-width: 960px; /* md */
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .g-container:not(.g-container--fluid) {
+    max-width: 1280px; /* lg */
+  }
+}
+
+@media (min-width: 1920px) {
+  .g-container:not(.g-container--fluid) {
+    max-width: 1920px; /* xl */
+  }
+}
+
+/* Fill height utility */
+.g-container--fill-height {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* No padding utility */
+.g-container--no-padding {
+  padding: 0 !important;
+}
