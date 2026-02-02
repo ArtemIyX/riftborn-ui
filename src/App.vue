@@ -379,6 +379,28 @@
   </GButtonCommon>
   <GDivider/>
 
+  <!-- Simple -->
+  <GHeading level="h1">SYSTEM STATUS</GHeading>
+
+  <!-- Critical alert -->
+  <GHeading level="h2" variant="danger" show-status glow scanline>
+    HULL BREACH DETECTED
+  </GHeading>
+
+  <!-- Section header with line -->
+  <GHeading level="h3" variant="primary" decorative-line="right">
+    CREW ROSTER
+  </GHeading>
+
+  <!-- Horror element -->
+  <GHeading level="h2" variant="creep" glow scanline brackets>
+    UNKNOWN SIGNAL
+  </GHeading>
+
+  <!-- With badge -->
+  <GHeading level="h4" variant="warning" badge="3">
+    PENDING REPAIRS
+  </GHeading>
 
 
 </template>

@@ -18,6 +18,7 @@ declare module 'vue' {
     GCheckbox: typeof import('./components/shared/g-checkbox/GCheckbox.vue')['default']
     GCombobox: typeof import('./components/shared/g-combobox/GCombobox.vue')['default']
     GDivider: typeof import('./components/shared/g-divider/GDivider.vue')['default']
+    GHeading: typeof import('./components/shared/text/g-heading/GHeading.vue')['default']
     GInput: typeof import('./components/shared/g-input/GInput.vue')['default']
     GInputNumber: typeof import('./components/shared/g-input-number/GInputNumber.vue')['default']
     GModal: typeof import('./components/shared/g-modal/GModal.vue')['default']

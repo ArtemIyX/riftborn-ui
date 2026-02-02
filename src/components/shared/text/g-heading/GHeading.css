@@ -1,0 +1,499 @@
+﻿/* ============================================
+   G-HEADING
+   Space Horror UI Component
+   ============================================ */
+
+.g-heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  color: var(--heading-color, #e0e4ea);
+
+  transition: color 0.2s ease;
+}
+
+/* --------------------------------------------
+   LEVELS (h1-h6)
+   -------------------------------------------- */
+
+.g-heading--h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0.12em;
+}
+
+.g-heading--h2 {
+  font-size: 2rem;
+  letter-spacing: 0.11em;
+}
+
+.g-heading--h3 {
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.g-heading--h4 {
+  font-size: 1.25rem;
+  letter-spacing: 0.09em;
+}
+
+.g-heading--h5 {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.g-heading--h6 {
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------
+   CONTENT WRAPPER
+   -------------------------------------------- */
+
+.g-heading__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+/* --------------------------------------------
+   STATUS INDICATOR
+   -------------------------------------------- */
+
+.g-heading__status {
+  flex-shrink: 0;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: var(--heading-accent, #00d4d4);
+  box-shadow: 0 0 0.5rem var(--heading-accent, #00d4d4);
+  animation: g-heading-pulse 2s ease-in-out infinite;
+}
+
+@keyframes g-heading-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.g-heading--danger .g-heading__status {
+  animation: g-heading-pulse-danger 0.5s ease-in-out infinite;
+}
+
+@keyframes g-heading-pulse-danger {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* --------------------------------------------
+   ICON
+   -------------------------------------------- */
+
+.g-heading__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--heading-accent, #00d4d4);
+}
+
+.g-heading__icon svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* --------------------------------------------
+   TEXT
+   -------------------------------------------- */
+
+.g-heading__text {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.g-heading--truncate .g-heading__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Text glow effect */
+.g-heading__text-glow {
+  position: absolute;
+  inset: 0;
+  color: var(--heading-accent, #00d4d4);
+  opacity: 0;
+  filter: blur(0.5rem);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.g-heading--glow .g-heading__text-glow {
+  opacity: 0.4;
+}
+
+/* Glitch effect for creep variant */
+.g-heading--creep .g-heading__text {
+  animation: g-heading-glitch 5s ease-in-out infinite;
+}
+
+@keyframes g-heading-glitch {
+  0%, 90%, 100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  92% {
+    transform: translateX(-0.125rem);
+    opacity: 0.8;
+  }
+  94% {
+    transform: translateX(0.125rem);
+    opacity: 1;
+  }
+  96% {
+    transform: translateX(-0.0625rem);
+    opacity: 0.9;
+  }
+  98% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   DECORATIVE LINE
+   -------------------------------------------- */
+
+.g-heading__line {
+  position: relative;
+  flex: 1;
+  height: 0.0625rem;
+  min-width: 2rem;
+  background: linear-gradient(
+    90deg,
+    var(--heading-accent, #00d4d4) 0%,
+    var(--heading-line, #2a3444) 30%,
+    transparent 100%
+  );
+}
+
+.g-heading__line-glow {
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  width: 3rem;
+  height: 0.3125rem;
+  background: linear-gradient(
+    90deg,
+    var(--heading-accent, #00d4d4),
+    transparent
+  );
+  opacity: 0.5;
+  filter: blur(0.125rem);
+}
+
+/* Line position variants */
+.g-heading--line-left {
+  flex-direction: row-reverse;
+}
+
+.g-heading--line-left .g-heading__line {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--heading-line, #2a3444) 70%,
+    var(--heading-accent, #00d4d4) 100%
+  );
+}
+
+.g-heading--line-left .g-heading__line-glow {
+  left: auto;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--heading-accent, #00d4d4)
+  );
+}
+
+.g-heading--line-both .g-heading__line {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--heading-line, #2a3444) 30%,
+    var(--heading-line, #2a3444) 70%,
+    transparent 100%
+  );
+}
+
+/* --------------------------------------------
+   CORNER BRACKETS
+   -------------------------------------------- */
+
+.g-heading__bracket {
+  position: relative;
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 100%;
+  min-height: 1.25rem;
+}
+
+.g-heading__bracket::before,
+.g-heading__bracket::after {
+  content: '';
+  position: absolute;
+  background-color: var(--heading-accent, #00d4d4);
+  transition: all 0.2s ease;
+}
+
+.g-heading__bracket--left::before {
+  top: 0;
+  left: 0;
+  width: 0.75rem;
+  height: 0.125rem;
+}
+
+.g-heading__bracket--left::after {
+  top: 0;
+  left: 0;
+  width: 0.125rem;
+  height: 100%;
+}
+
+.g-heading__bracket--right::before {
+  top: 0;
+  right: 0;
+  width: 0.75rem;
+  height: 0.125rem;
+}
+
+.g-heading__bracket--right::after {
+  top: 0;
+  right: 0;
+  width: 0.125rem;
+  height: 100%;
+}
+
+/* Bracket animation */
+.g-heading:hover .g-heading__bracket::before,
+.g-heading:hover .g-heading__bracket::after {
+  box-shadow: 0 0 0.5rem var(--heading-accent, #00d4d4);
+}
+
+/* --------------------------------------------
+   BADGE/TAG
+   -------------------------------------------- */
+
+.g-heading__badge {
+  flex-shrink: 0;
+  padding: 0.125rem 0.5rem;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  background-color: var(--heading-badge-bg, rgba(0, 212, 212, 0.1));
+  border: 0.0625rem solid var(--heading-accent, #00d4d4);
+  color: var(--heading-accent, #00d4d4);
+}
+
+/* --------------------------------------------
+   SCANLINE EFFECT
+   -------------------------------------------- */
+
+.g-heading__scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.125rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--heading-accent, #00d4d4),
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+.g-heading--scanline .g-heading__scanline {
+  animation: g-heading-scanline 3s ease-in-out infinite;
+}
+
+@keyframes g-heading-scanline {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(3rem);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------
+   UNDERLINE
+   -------------------------------------------- */
+
+.g-heading--underline {
+  padding-bottom: 0.5rem;
+  border-bottom: 0.0625rem solid var(--heading-line, #2a3444);
+}
+
+.g-heading--underline::after {
+  content: '';
+  position: absolute;
+  bottom: -0.0625rem;
+  left: 0;
+  width: 3rem;
+  height: 0.0625rem;
+  background-color: var(--heading-accent, #00d4d4);
+  box-shadow: 0 0 0.5rem var(--heading-accent, #00d4d4);
+}
+
+/* --------------------------------------------
+   ALIGNMENT
+   -------------------------------------------- */
+
+.g-heading--left {
+  justify-content: flex-start;
+}
+
+.g-heading--center {
+  justify-content: center;
+  text-align: center;
+}
+
+.g-heading--right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* --------------------------------------------
+   VARIANTS
+   -------------------------------------------- */
+
+/* Default */
+.g-heading--default {
+  --heading-color: #e0e4ea;
+  --heading-accent: #00d4d4;
+  --heading-line: #2a3444;
+  --heading-badge-bg: rgba(0, 212, 212, 0.1);
+}
+
+/* Primary (Cyan) */
+.g-heading--primary {
+  --heading-color: #00d4d4;
+  --heading-accent: #00d4d4;
+  --heading-line: rgba(0, 212, 212, 0.3);
+  --heading-badge-bg: rgba(0, 212, 212, 0.15);
+}
+
+/* Secondary (Blue) */
+.g-heading--secondary {
+  --heading-color: #4488ff;
+  --heading-accent: #4488ff;
+  --heading-line: rgba(68, 136, 255, 0.3);
+  --heading-badge-bg: rgba(68, 136, 255, 0.15);
+}
+
+/* Danger (Red) */
+.g-heading--danger {
+  --heading-color: #ff3344;
+  --heading-accent: #ff3344;
+  --heading-line: rgba(255, 51, 68, 0.3);
+  --heading-badge-bg: rgba(255, 51, 68, 0.15);
+}
+
+/* Warning (Orange) */
+.g-heading--warning {
+  --heading-color: #ff9922;
+  --heading-accent: #ff9922;
+  --heading-line: rgba(255, 153, 34, 0.3);
+  --heading-badge-bg: rgba(255, 153, 34, 0.15);
+}
+
+/* Success (Green) */
+.g-heading--success {
+  --heading-color: #00cc66;
+  --heading-accent: #00cc66;
+  --heading-line: rgba(0, 204, 102, 0.3);
+  --heading-badge-bg: rgba(0, 204, 102, 0.15);
+}
+
+/* Info (Blue) */
+.g-heading--info {
+  --heading-color: #6688cc;
+  --heading-accent: #6688cc;
+  --heading-line: rgba(102, 136, 204, 0.3);
+  --heading-badge-bg: rgba(102, 136, 204, 0.15);
+}
+
+/* Creep (Purple - Horror) */
+.g-heading--creep {
+  --heading-color: #8844aa;
+  --heading-accent: #8844aa;
+  --heading-line: rgba(136, 68, 170, 0.3);
+  --heading-badge-bg: rgba(136, 68, 170, 0.15);
+}
+
+/* Muted (Subtle) */
+.g-heading--muted {
+  --heading-color: #8892a2;
+  --heading-accent: #8892a2;
+  --heading-line: #2a3444;
+  --heading-badge-bg: rgba(136, 146, 162, 0.1);
+}
+
+/* --------------------------------------------
+   RESPONSIVE
+   -------------------------------------------- */
+
+@media (max-width: 600px) {
+  .g-heading--h1 {
+    font-size: 2rem;
+  }
+
+  .g-heading--h2 {
+    font-size: 1.75rem;
+  }
+
+  .g-heading--h3 {
+    font-size: 1.375rem;
+  }
+
+  .g-heading--h4 {
+    font-size: 1.125rem;
+  }
+
+  .g-heading--h5 {
+    font-size: 0.9375rem;
+  }
+
+  .g-heading--h6 {
+    font-size: 0.8125rem;
+  }
+
+  .g-heading__line {
+    min-width: 1rem;
+  }
+
+  .g-heading__bracket {
+    width: 0.5rem;
+  }
+}
