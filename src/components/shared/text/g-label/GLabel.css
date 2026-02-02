@@ -1,0 +1,503 @@
+﻿/* ============================================
+   G-LABEL
+   Space Horror UI Component
+   ============================================ */
+
+.g-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--label-color, #8892a2);
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.g-label:hover {
+  color: var(--label-hover-color, #e0e4ea);
+}
+
+/* --------------------------------------------
+   SIZES
+   -------------------------------------------- */
+
+.g-label--xs {
+  font-size: 0.5625rem;
+}
+
+.g-label--small {
+  font-size: 0.625rem;
+}
+
+.g-label--medium {
+  font-size: 0.6875rem;
+}
+
+.g-label--large {
+  font-size: 0.75rem;
+}
+
+.g-label--xl {
+  font-size: 0.875rem;
+}
+
+/* --------------------------------------------
+   WEIGHTS
+   -------------------------------------------- */
+
+.g-label--light {
+  font-weight: 300;
+}
+
+.g-label--regular {
+  font-weight: 500;
+}
+
+.g-label--medium {
+  font-weight: 600;
+}
+
+.g-label--semibold {
+  font-weight: 600;
+}
+
+.g-label--bold {
+  font-weight: 700;
+}
+
+/* --------------------------------------------
+   ICON
+   -------------------------------------------- */
+
+.g-label__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.875rem;
+  height: 0.875rem;
+  color: var(--label-icon-color, currentColor);
+}
+
+.g-label__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------
+   TEXT
+   -------------------------------------------- */
+
+.g-label__text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* --------------------------------------------
+   REQUIRED INDICATOR
+   -------------------------------------------- */
+
+.g-label__required {
+  color: var(--label-required-color, #ff3344);
+  font-weight: 700;
+  margin-left: 0.125rem;
+}
+
+.g-label__required--pulsing {
+  animation: g-label-required-pulse 2s ease-in-out infinite;
+}
+
+@keyframes g-label-required-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* --------------------------------------------
+   OPTIONAL INDICATOR
+   -------------------------------------------- */
+
+.g-label__optional {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 0.75em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--label-optional-color, #505868);
+  margin-left: 0.25rem;
+  text-transform: lowercase;
+}
+
+/* --------------------------------------------
+   HINT/HELP TEXT
+   -------------------------------------------- */
+
+.g-label__hint {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--label-hint-color, #505868);
+  line-height: 1.4;
+}
+
+.g-label__hint-icon {
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  color: var(--label-hint-icon-color, #505868);
+}
+
+.g-label__hint-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------
+   TOOLTIP ICON
+   -------------------------------------------- */
+
+.g-label__tooltip {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-left: 0.125rem;
+
+  color: var(--label-tooltip-color, #505868);
+  cursor: help;
+
+  transition: color 0.15s ease;
+}
+
+.g-label__tooltip:hover {
+  color: var(--label-tooltip-hover-color, #00d4d4);
+}
+
+.g-label__tooltip svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------
+   BADGE/TAG
+   -------------------------------------------- */
+
+.g-label__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.0625rem 0.375rem;
+  margin-left: 0.375rem;
+
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+
+  background-color: var(--label-badge-bg, rgba(0, 212, 212, 0.1));
+  border: 0.0625rem solid var(--label-badge-border, rgba(0, 212, 212, 0.3));
+  border-radius: 0.125rem;
+  color: var(--label-badge-color, #00d4d4);
+}
+
+/* --------------------------------------------
+   STATUS INDICATOR
+   -------------------------------------------- */
+
+.g-label__status {
+  flex-shrink: 0;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: var(--label-status-color, #00d4d4);
+  box-shadow: 0 0 0.375rem var(--label-status-color, #00d4d4);
+  animation: g-label-status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes g-label-status-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.g-label--danger .g-label__status {
+  animation: g-label-status-danger 0.5s ease-in-out infinite;
+}
+
+@keyframes g-label-status-danger {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* --------------------------------------------
+   LAYOUT VARIANTS
+   -------------------------------------------- */
+
+.g-label--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.g-label--inline {
+  display: inline-flex;
+}
+
+.g-label--block {
+  display: flex;
+  width: 100%;
+}
+
+/* --------------------------------------------
+   WRAPPER (for stacking)
+   -------------------------------------------- */
+
+.g-label-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* --------------------------------------------
+   GLOW EFFECT
+   -------------------------------------------- */
+
+.g-label--glow {
+  text-shadow: 0 0 0.5rem currentColor;
+}
+
+/* --------------------------------------------
+   FLICKER EFFECT
+   -------------------------------------------- */
+
+.g-label--flicker {
+  animation: g-label-flicker 4s ease-in-out infinite;
+}
+
+@keyframes g-label-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  41%, 43% {
+    opacity: 0.7;
+  }
+  42% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   VARIANTS
+   -------------------------------------------- */
+
+/* Default */
+.g-label--default {
+  --label-color: #8892a2;
+  --label-hover-color: #e0e4ea;
+  --label-icon-color: #8892a2;
+  --label-required-color: #ff3344;
+  --label-optional-color: #505868;
+  --label-hint-color: #505868;
+  --label-hint-icon-color: #505868;
+  --label-tooltip-color: #505868;
+  --label-tooltip-hover-color: #00d4d4;
+  --label-badge-bg: rgba(0, 212, 212, 0.1);
+  --label-badge-border: rgba(0, 212, 212, 0.3);
+  --label-badge-color: #00d4d4;
+  --label-status-color: #00d4d4;
+}
+
+/* Primary (Cyan) */
+.g-label--primary {
+  --label-color: #00d4d4;
+  --label-hover-color: #00ffff;
+  --label-icon-color: #00d4d4;
+  --label-required-color: #ff3344;
+  --label-optional-color: #007070;
+  --label-hint-color: #007070;
+  --label-hint-icon-color: #00a0a0;
+  --label-tooltip-color: #00a0a0;
+  --label-tooltip-hover-color: #00ffff;
+  --label-badge-bg: rgba(0, 212, 212, 0.15);
+  --label-badge-border: rgba(0, 212, 212, 0.4);
+  --label-badge-color: #00d4d4;
+  --label-status-color: #00d4d4;
+}
+
+/* Secondary (Blue) */
+.g-label--secondary {
+  --label-color: #4488ff;
+  --label-hover-color: #66aaff;
+  --label-icon-color: #4488ff;
+  --label-required-color: #ff3344;
+  --label-optional-color: #3366cc;
+  --label-hint-color: #3366cc;
+  --label-hint-icon-color: #4488ff;
+  --label-tooltip-color: #4488ff;
+  --label-tooltip-hover-color: #66aaff;
+  --label-badge-bg: rgba(68, 136, 255, 0.15);
+  --label-badge-border: rgba(68, 136, 255, 0.4);
+  --label-badge-color: #4488ff;
+  --label-status-color: #4488ff;
+}
+
+/* Danger (Red) */
+.g-label--danger {
+  --label-color: #ff3344;
+  --label-hover-color: #ff6677;
+  --label-icon-color: #ff3344;
+  --label-required-color: #ff3344;
+  --label-optional-color: #992233;
+  --label-hint-color: #992233;
+  --label-hint-icon-color: #cc2936;
+  --label-tooltip-color: #cc2936;
+  --label-tooltip-hover-color: #ff6677;
+  --label-badge-bg: rgba(255, 51, 68, 0.15);
+  --label-badge-border: rgba(255, 51, 68, 0.4);
+  --label-badge-color: #ff3344;
+  --label-status-color: #ff3344;
+}
+
+/* Warning (Orange) */
+.g-label--warning {
+  --label-color: #ff9922;
+  --label-hover-color: #ffaa44;
+  --label-icon-color: #ff9922;
+  --label-required-color: #ff3344;
+  --label-optional-color: #996611;
+  --label-hint-color: #996611;
+  --label-hint-icon-color: #cc7a1b;
+  --label-tooltip-color: #cc7a1b;
+  --label-tooltip-hover-color: #ffaa44;
+  --label-badge-bg: rgba(255, 153, 34, 0.15);
+  --label-badge-border: rgba(255, 153, 34, 0.4);
+  --label-badge-color: #ff9922;
+  --label-status-color: #ff9922;
+}
+
+/* Success (Green) */
+.g-label--success {
+  --label-color: #00cc66;
+  --label-hover-color: #00ff7f;
+  --label-icon-color: #00cc66;
+  --label-required-color: #ff3344;
+  --label-optional-color: #007744;
+  --label-hint-color: #007744;
+  --label-hint-icon-color: #00994d;
+  --label-tooltip-color: #00994d;
+  --label-tooltip-hover-color: #00ff7f;
+  --label-badge-bg: rgba(0, 204, 102, 0.15);
+  --label-badge-border: rgba(0, 204, 102, 0.4);
+  --label-badge-color: #00cc66;
+  --label-status-color: #00cc66;
+}
+
+/* Info (Blue) */
+.g-label--info {
+  --label-color: #6688cc;
+  --label-hover-color: #8899dd;
+  --label-icon-color: #6688cc;
+  --label-required-color: #ff3344;
+  --label-optional-color: #4466aa;
+  --label-hint-color: #4466aa;
+  --label-hint-icon-color: #5577bb;
+  --label-tooltip-color: #5577bb;
+  --label-tooltip-hover-color: #8899dd;
+  --label-badge-bg: rgba(102, 136, 204, 0.15);
+  --label-badge-border: rgba(102, 136, 204, 0.4);
+  --label-badge-color: #6688cc;
+  --label-status-color: #6688cc;
+}
+
+/* Muted (Gray) */
+.g-label--muted {
+  --label-color: #505868;
+  --label-hover-color: #8892a2;
+  --label-icon-color: #505868;
+  --label-required-color: #ff3344;
+  --label-optional-color: #3a4a5e;
+  --label-hint-color: #3a4a5e;
+  --label-hint-icon-color: #505868;
+  --label-tooltip-color: #505868;
+  --label-tooltip-hover-color: #8892a2;
+  --label-badge-bg: rgba(80, 88, 104, 0.15);
+  --label-badge-border: rgba(80, 88, 104, 0.4);
+  --label-badge-color: #8892a2;
+  --label-status-color: #8892a2;
+}
+
+/* --------------------------------------------
+   DISABLED STATE
+   -------------------------------------------- */
+
+.g-label--disabled {
+  --label-color: #505868;
+  --label-hover-color: #505868;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.g-label--disabled .g-label__status {
+  animation: none;
+  opacity: 0.3;
+}
+
+/* --------------------------------------------
+   NO UPPERCASE
+   -------------------------------------------- */
+
+.g-label--no-uppercase {
+  text-transform: none;
+}
+
+/* --------------------------------------------
+   RESPONSIVE
+   -------------------------------------------- */
+
+@media (max-width: 600px) {
+  .g-label--xs {
+    font-size: 0.5rem;
+  }
+
+  .g-label--small {
+    font-size: 0.5625rem;
+  }
+
+  .g-label--medium {
+    font-size: 0.625rem;
+  }
+
+  .g-label--large {
+    font-size: 0.6875rem;
+  }
+
+  .g-label--xl {
+    font-size: 0.8125rem;
+  }
+}

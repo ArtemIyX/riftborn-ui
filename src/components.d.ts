@@ -21,6 +21,7 @@ declare module 'vue' {
     GHeading: typeof import('./components/shared/text/g-heading/GHeading.vue')['default']
     GInput: typeof import('./components/shared/g-input/GInput.vue')['default']
     GInputNumber: typeof import('./components/shared/g-input-number/GInputNumber.vue')['default']
+    GLabel: typeof import('./components/shared/text/g-label/GLabel.vue')['default']
     GModal: typeof import('./components/shared/g-modal/GModal.vue')['default']
     GProgress: typeof import('./components/shared/g-progress/GProgress.vue')['default']
     GRadio: typeof import('./components/shared/g-radio/GRadio.vue')['default']

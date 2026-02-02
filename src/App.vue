@@ -373,7 +373,6 @@
 
   <GDivider/>
 
-
   <GButtonCommon @click="pushToast">
     Push toast
   </GButtonCommon>
@@ -401,6 +400,8 @@
   <GHeading level="h4" variant="warning" badge="3">
     PENDING REPAIRS
   </GHeading>
+
+  <GDivider/>
 
   <!-- Standard body text -->
   <GText>System status nominal</GText>
@@ -442,6 +443,42 @@
   >
     USS NAUTILUS
   </GText>
+
+  <GDivider/>
+
+  <!-- Simple required field -->
+  <GLabel for="password" required>Password</GLabel>
+
+  <!-- With hint -->
+  <GLabel for="depth" hint="Enter depth in meters" hint-icon required>
+    Target Depth
+  </GLabel>
+
+  <!-- Critical field -->
+  <GLabel
+    variant="danger"
+    show-status
+    required
+    required-pulse
+    flicker
+  >
+    Hull Integrity
+  </GLabel>
+
+  <!-- With tooltip -->
+  <GLabel tooltip="This field is required for navigation">
+    Target Location
+  </GLabel>
+
+  <!-- With badge -->
+  <GLabel badge="NEW" variant="primary">
+    Advanced Sonar
+  </GLabel>
+
+  <!-- Status label -->
+  <GLabel variant="success" show-status badge="OK">
+    Life Support System
+  </GLabel>
 
 </template>
 
