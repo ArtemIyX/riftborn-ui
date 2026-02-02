@@ -20,6 +20,7 @@ declare module 'vue' {
     GCombobox: typeof import('./components/shared/g-combobox/GCombobox.vue')['default']
     GDivider: typeof import('./components/shared/g-divider/GDivider.vue')['default']
     GHeading: typeof import('./components/shared/text/g-heading/GHeading.vue')['default']
+    GIcon: typeof import('./components/shared/g-icon/GIcon.vue')['default']
     GInput: typeof import('./components/shared/g-input/GInput.vue')['default']
     GInputNumber: typeof import('./components/shared/g-input-number/GInputNumber.vue')['default']
     GLabel: typeof import('./components/shared/text/g-label/GLabel.vue')['default']

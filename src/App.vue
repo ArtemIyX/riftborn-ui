@@ -2,7 +2,6 @@
   <GToastContainer/>
 
 
-
   <GButton variant="primary" text="Hello world" @click="hello"/>
   <GButtonAdv variant="success" text="Hello world" @click="hello"/>
   <GButtonCommon variant="danger" text="Hello world" @click="hello"/>
@@ -100,7 +99,7 @@
   <GToggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot"/>
   <GToggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields"/>
   <GToggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')"
-            label="Self Destruct"/>
+           label="Self Destruct"/>
 
   <GDivider text="Radio"/>
   <!-- Radio group - all share same v-model -->
@@ -525,8 +524,8 @@
   <div v-if="true" class="mission-briefing-loading">
     <!-- Header -->
     <div class="header-skeleton">
-      <GSkeleton variant="text" width="300px" height="32px" animation="scan" />
-      <GSkeleton variant="text" width="200px" animation="scan" />
+      <GSkeleton variant="text" width="300px" height="32px" animation="scan"/>
+      <GSkeleton variant="text" width="200px" animation="scan"/>
     </div>
 
     <!-- Main card -->
@@ -539,8 +538,8 @@
 
     <!-- Action buttons -->
     <div class="actions-skeleton">
-      <GSkeleton variant="button" animation="wave" />
-      <GSkeleton variant="button" animation="wave" />
+      <GSkeleton variant="button" animation="wave"/>
+      <GSkeleton variant="button" animation="wave"/>
     </div>
   </div>
 
@@ -553,31 +552,31 @@
     <h2>Spinner Variants</h2>
     <div class="spinner-grid">
       <div class="spinner-item">
-        <GSpinner variant="ring" label="Ring" />
+        <GSpinner variant="ring" label="Ring"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="sonar" label="Sonar" />
+        <GSpinner variant="sonar" label="Sonar"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="orbital" label="Orbital" />
+        <GSpinner variant="orbital" label="Orbital"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="dots" label="Dots" />
+        <GSpinner variant="dots" label="Dots"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="pulse" label="Pulse" />
+        <GSpinner variant="pulse" label="Pulse"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="bars" label="Bars" />
+        <GSpinner variant="bars" label="Bars"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="scan" label="Scan" />
+        <GSpinner variant="scan" label="Scan"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="helix" label="Helix" />
+        <GSpinner variant="helix" label="Helix"/>
       </div>
       <div class="spinner-item">
-        <GSpinner variant="glitch" label="Glitch" />
+        <GSpinner variant="glitch" label="Glitch"/>
       </div>
     </div>
   </section>
@@ -587,23 +586,23 @@
     <div class="size-demo">
       <div class="size-item">
         <span>Tiny</span>
-        <GSpinner variant="sonar" size="tiny" />
+        <GSpinner variant="sonar" size="tiny"/>
       </div>
       <div class="size-item">
         <span>Small</span>
-        <GSpinner variant="sonar" size="small" />
+        <GSpinner variant="sonar" size="small"/>
       </div>
       <div class="size-item">
         <span>Medium</span>
-        <GSpinner variant="sonar" size="medium" />
+        <GSpinner variant="sonar" size="medium"/>
       </div>
       <div class="size-item">
         <span>Large</span>
-        <GSpinner variant="sonar" size="large" />
+        <GSpinner variant="sonar" size="large"/>
       </div>
       <div class="size-item">
         <span>Huge</span>
-        <GSpinner variant="sonar" size="huge" />
+        <GSpinner variant="sonar" size="huge"/>
       </div>
     </div>
   </section>
@@ -612,26 +611,95 @@
     <h2>Inline Spinners</h2>
     <div class="inline-examples">
       <p>
-        <GSpinner variant="dots" size="tiny" inline /> Loading data...
+        <GSpinner variant="dots" size="tiny" inline/>
+        Loading data...
       </p>
       <p>
-        <GSpinner variant="ring" size="small" inline /> Processing mission briefing...
+        <GSpinner variant="ring" size="small" inline/>
+        Processing mission briefing...
       </p>
       <p>
-        <GSpinner variant="bars" size="small" inline /> Analyzing sonar readings...
+        <GSpinner variant="bars" size="small" inline/>
+        Analyzing sonar readings...
       </p>
     </div>
   </section>
 
-  
+  <GDivider text="SVG-Icons"/>
+  <section class="demo-section">
+    <h2>Basic Icons</h2>
+    <div class="icon-grid">
+      <div class="icon-item">
+        <GIcon :path="icons.close"/>
+        <span>Close</span>
+      </div>
+      <div class="icon-item">
+        <GIcon :path="icons.check"/>
+        <span>Check</span>
+      </div>
+      <div class="icon-item">
+        <GIcon :path="icons.alert"/>
+        <span>Alert</span>
+      </div>
+      <div class="icon-item">
+        <GIcon :path="icons.settings"/>
+        <span>Settings</span>
+      </div>
+      <div class="icon-item">
+        <GIcon :path="icons.user"/>
+        <span>User</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- In Context: Status Indicators -->
+  <section class="demo-section">
+    <h2>Status Indicators</h2>
+    <div class="status-list">
+      <div class="status-item success">
+        <GIcon :path="icons.check" size="small" variant="success" />
+        <span>All systems operational</span>
+      </div>
+      <div class="status-item warning">
+        <GIcon :path="icons.warning" size="small" variant="warning" />
+        <span>Hull pressure warning</span>
+      </div>
+      <div class="status-item danger">
+        <GIcon :path="icons.alert" size="small" variant="danger" pulse />
+        <span>Critical: Oxygen leak detected</span>
+      </div>
+      <div class="status-item info">
+        <GIcon :path="icons.info" size="small" variant="info" />
+        <span>Mission briefing available</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Navigation</h2>
+    <div class="nav-example">
+      <GButtonCommon size="small">
+        <GIcon :path="icons.chevronLeft" size="small" />
+      </GButtonCommon>
+      <GText size="large">Page 1 of 10</GText>
+      <GButtonCommon size="small">
+        <GIcon :path="icons.chevronRight" size="small" />
+      </GButtonCommon>
+    </div>
+  </section>
+
 
 </template>
 
 <script setup>
 
-
 import {ref} from 'vue'
 import {useToast} from "@/components/shared/useToast.js";
+
+import { ICON_PATHS, MULTI_PATH_ICONS } from '@/components/iconLibary.js'
+
+const icons = ICON_PATHS
+const multiIcons = MULTI_PATH_ICONS
 
 const toast = useToast()
 const showModal = ref(false)

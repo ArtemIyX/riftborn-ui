@@ -1,0 +1,366 @@
+﻿/* ============================================
+   G-ICON
+   Space Horror UI Component - SVG Icon Wrapper
+   ============================================ */
+
+.g-icon {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  flex-shrink: 0;
+  color: var(--icon-color, currentColor);
+  fill: currentColor;
+  transition: all 0.2s ease;
+}
+
+/* --------------------------------------------
+   SIZES
+   -------------------------------------------- */
+
+/* Tiny - 12px */
+.g-icon--tiny {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Small - 16px */
+.g-icon--small {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Medium - 24px (default) */
+.g-icon--medium {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Large - 32px */
+.g-icon--large {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Huge - 48px */
+.g-icon--huge {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Custom - uses width/height props */
+.g-icon--custom {
+  width: auto;
+  height: auto;
+}
+
+/* --------------------------------------------
+   VARIANTS (Colors)
+   -------------------------------------------- */
+
+/* Default - inherits from parent */
+.g-icon--default {
+  --icon-color: currentColor;
+}
+
+/* Primary - Cyan */
+.g-icon--primary {
+  --icon-color: #00d4d4;
+}
+
+/* Secondary - Blue */
+.g-icon--secondary {
+  --icon-color: #4488ff;
+}
+
+/* Danger - Red */
+.g-icon--danger {
+  --icon-color: #ff3344;
+}
+
+/* Warning - Orange */
+.g-icon--warning {
+  --icon-color: #ff9922;
+}
+
+/* Success - Green */
+.g-icon--success {
+  --icon-color: #00cc66;
+}
+
+/* Info - Light Blue */
+.g-icon--info {
+  --icon-color: #6688cc;
+}
+
+/* Muted - Gray */
+.g-icon--muted {
+  --icon-color: #8892a2;
+}
+
+/* Inverse - Dark on light */
+.g-icon--inverse {
+  --icon-color: #0a0c10;
+}
+
+/* --------------------------------------------
+   EFFECTS
+   -------------------------------------------- */
+
+/* Spinning animation */
+.g-icon--spinning {
+  animation: g-icon-spin 1.5s linear infinite;
+}
+
+@keyframes g-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pulse animation */
+.g-icon--pulse {
+  animation: g-icon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes g-icon-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+}
+
+/* Glow effect */
+.g-icon--glow {
+  filter: drop-shadow(0 0 0.375rem var(--icon-color, currentColor));
+}
+
+.g-icon--glow.g-icon--primary {
+  filter: drop-shadow(0 0 0.375rem rgba(0, 212, 212, 0.8));
+}
+
+.g-icon--glow.g-icon--secondary {
+  filter: drop-shadow(0 0 0.375rem rgba(68, 136, 255, 0.8));
+}
+
+.g-icon--glow.g-icon--danger {
+  filter: drop-shadow(0 0 0.375rem rgba(255, 51, 68, 0.8));
+}
+
+.g-icon--glow.g-icon--warning {
+  filter: drop-shadow(0 0 0.375rem rgba(255, 153, 34, 0.8));
+}
+
+.g-icon--glow.g-icon--success {
+  filter: drop-shadow(0 0 0.375rem rgba(0, 204, 102, 0.8));
+}
+
+/* Flip horizontally */
+.g-icon--flip-h {
+  transform: scaleX(-1);
+}
+
+/* Flip vertically */
+.g-icon--flip-v {
+  transform: scaleY(-1);
+}
+
+/* Both flips */
+.g-icon--flip-h.g-icon--flip-v {
+  transform: scale(-1, -1);
+}
+
+/* Interactive - responds to hover */
+.g-icon--interactive {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.g-icon--interactive:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.g-icon--interactive:active {
+  transform: scale(0.95);
+}
+
+/* Interactive + glow on hover */
+.g-icon--interactive.g-icon--glow:hover {
+  filter: drop-shadow(0 0 0.625rem var(--icon-color, currentColor));
+}
+
+.g-icon--interactive.g-icon--glow.g-icon--primary:hover {
+  filter: drop-shadow(0 0 0.625rem rgba(0, 212, 212, 1));
+}
+
+.g-icon--interactive.g-icon--glow.g-icon--danger:hover {
+  filter: drop-shadow(0 0 0.625rem rgba(255, 51, 68, 1));
+}
+
+/* Interactive + spin on hover */
+.g-icon--interactive:hover.g-icon--spinning {
+  animation-duration: 0.8s;
+}
+
+/* --------------------------------------------
+   SPECIAL COMBINATIONS
+   -------------------------------------------- */
+
+/* Spinning + glow for loading indicators */
+.g-icon--spinning.g-icon--glow {
+  animation: g-icon-spin 1.5s linear infinite;
+}
+
+/* Pulse + glow for attention */
+.g-icon--pulse.g-icon--glow {
+  animation: g-icon-pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes g-icon-pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 0.375rem var(--icon-color, currentColor));
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.95);
+    filter: drop-shadow(0 0 0.75rem var(--icon-color, currentColor));
+  }
+}
+
+/* --------------------------------------------
+   ACCESSIBILITY
+   -------------------------------------------- */
+
+/* Hide from screen readers when decorative */
+.g-icon[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .g-icon--spinning,
+  .g-icon--pulse {
+    animation: none;
+  }
+
+  .g-icon--interactive {
+    transition: none;
+  }
+
+  .g-icon--interactive:hover {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------
+   BUTTON/LINK INTEGRATION
+   -------------------------------------------- */
+
+/* Icon inside buttons */
+button .g-icon,
+a .g-icon {
+  vertical-align: middle;
+}
+
+/* Icon with text spacing */
+button .g-icon + span,
+a .g-icon + span,
+span + .g-icon {
+  margin-left: 0.5rem;
+}
+
+button span + .g-icon,
+a span + .g-icon {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Icon-only buttons */
+button.icon-only .g-icon,
+a.icon-only .g-icon {
+  margin: 0;
+}
+
+/* --------------------------------------------
+   DISABLED STATE
+   -------------------------------------------- */
+
+button:disabled .g-icon,
+.g-icon--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:disabled .g-icon.g-icon--spinning,
+.g-icon--disabled.g-icon--spinning {
+  animation: none;
+}
+
+/* --------------------------------------------
+   CONTAINER ALIGNMENT
+   -------------------------------------------- */
+
+/* Center icon in flex containers */
+.icon-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon with vertical alignment in text */
+.icon-inline {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+/* --------------------------------------------
+   STROKE VARIANTS
+   -------------------------------------------- */
+
+/* For icons with stroke instead of fill */
+.g-icon--stroke path {
+  fill: none;
+  stroke: currentColor;
+}
+
+.g-icon--stroke.g-icon--primary path {
+  stroke: #00d4d4;
+}
+
+.g-icon--stroke.g-icon--danger path {
+  stroke: #ff3344;
+}
+
+/* --------------------------------------------
+   ROTATION WITH FLIPS
+   -------------------------------------------- */
+
+/* Note: When using rotate prop with flip props, flip takes precedence.
+   If you need both, apply rotation via CSS or combine in a wrapper element. */
+
+/* --------------------------------------------
+   RESPONSIVE SIZING
+   -------------------------------------------- */
+
+@media (max-width: 768px) {
+  /* Slightly smaller on mobile */
+  .g-icon--large {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .g-icon--huge {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
