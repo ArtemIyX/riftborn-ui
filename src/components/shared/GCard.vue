@@ -264,10 +264,10 @@ defineExpose({
   flex-direction: column;
 
   background-color: var(--card-bg, #0f1218);
-  border: 1px solid var(--card-border, #2a3444);
+  border: 0.0625rem solid var(--card-border, #2a3444);
   box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    0 0.25rem 1.25rem rgba(0, 0, 0, 0.3),
+    inset 0 0.0625rem 0 rgba(255, 255, 255, 0.02);
 
   transition:
     background-color 0.2s ease,
@@ -282,8 +282,8 @@ defineExpose({
 
 .g-card__corner {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   pointer-events: none;
   z-index: 5;
   transition: all 0.2s ease;
@@ -298,71 +298,71 @@ defineExpose({
 }
 
 .g-card__corner--tl {
-  top: -1px;
-  left: -1px;
+  top: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-card__corner--tl::before {
   top: 0;
   left: 0;
-  width: 12px;
-  height: 1px;
+  width: 0.75rem;
+  height: 0.0625rem;
 }
 .g-card__corner--tl::after {
   top: 0;
   left: 0;
-  width: 1px;
-  height: 12px;
+  width: 0.0625rem;
+  height: 0.75rem;
 }
 
 .g-card__corner--tr {
-  top: -1px;
-  right: -1px;
+  top: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-card__corner--tr::before {
   top: 0;
   right: 0;
-  width: 12px;
-  height: 1px;
+  width: 0.75rem;
+  height: 0.0625rem;
 }
 .g-card__corner--tr::after {
   top: 0;
   right: 0;
-  width: 1px;
-  height: 12px;
+  width: 0.0625rem;
+  height: 0.75rem;
 }
 
 .g-card__corner--bl {
-  bottom: -1px;
-  left: -1px;
+  bottom: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-card__corner--bl::before {
   bottom: 0;
   left: 0;
-  width: 12px;
-  height: 1px;
+  width: 0.75rem;
+  height: 0.0625rem;
 }
 .g-card__corner--bl::after {
   bottom: 0;
   left: 0;
-  width: 1px;
-  height: 12px;
+  width: 0.0625rem;
+  height: 0.75rem;
 }
 
 .g-card__corner--br {
-  bottom: -1px;
-  right: -1px;
+  bottom: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-card__corner--br::before {
   bottom: 0;
   right: 0;
-  width: 12px;
-  height: 1px;
+  width: 0.75rem;
+  height: 0.0625rem;
 }
 .g-card__corner--br::after {
   bottom: 0;
   right: 0;
-  width: 1px;
-  height: 12px;
+  width: 0.0625rem;
+  height: 0.75rem;
 }
 
 /* --------------------------------------------
@@ -412,7 +412,7 @@ defineExpose({
 .g-card__header-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 /* Status indicator */
@@ -424,10 +424,10 @@ defineExpose({
 }
 
 .g-card__status-dot {
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   background-color: var(--card-accent, #00d4d4);
-  box-shadow: 0 0 6px var(--card-accent, #00d4d4);
+  box-shadow: 0 0 0.375rem var(--card-accent, #00d4d4);
   animation: g-card-status-pulse 2s ease-in-out infinite;
 }
 
@@ -442,8 +442,8 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--card-accent, #00d4d4);
 }
 
@@ -462,7 +462,7 @@ defineExpose({
   margin: 0;
 
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -476,10 +476,10 @@ defineExpose({
 }
 
 .g-card__subtitle {
-  margin: 2px 0 0 0;
+  margin: 0.125rem 0 0 0;
 
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--card-text-muted, #505868);
@@ -494,7 +494,7 @@ defineExpose({
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 /* Collapse button */
@@ -502,12 +502,12 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   padding: 0;
 
   background: transparent;
-  border: 1px solid var(--card-border, #2a3444);
+  border: 0.0625rem solid var(--card-border, #2a3444);
   color: var(--card-text-muted, #505868);
   cursor: pointer;
 
@@ -522,12 +522,12 @@ defineExpose({
 .g-card__collapse-btn:focus-visible {
   outline: none;
   border-color: var(--card-accent, #00d4d4);
-  box-shadow: 0 0 0 1px var(--card-accent, #00d4d4);
+  box-shadow: 0 0 0 0.0625rem var(--card-accent, #00d4d4);
 }
 
 .g-card__collapse-icon {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
   transition: transform 0.2s ease;
 }
 
@@ -538,8 +538,8 @@ defineExpose({
 /* Header divider */
 .g-card__header-divider {
   position: relative;
-  height: 1px;
-  margin-top: 12px;
+  height: 0.0625rem;
+  margin-top: 0.75rem;
   background: linear-gradient(
     90deg,
     var(--card-accent, #00d4d4),
@@ -551,17 +551,17 @@ defineExpose({
 
 .g-card__header-divider-glow {
   position: absolute;
-  top: -2px;
+  top: -0.125rem;
   left: 0;
-  width: 40px;
-  height: 5px;
+  width: 2.5rem;
+  height: 0.3125rem;
   background: linear-gradient(
     90deg,
     var(--card-accent, #00d4d4),
     transparent
   );
   opacity: 0.4;
-  filter: blur(2px);
+  filter: blur(0.125rem);
 }
 
 /* --------------------------------------------
@@ -579,7 +579,7 @@ defineExpose({
   flex: 1;
 
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.5;
   color: var(--card-text, #e0e4ea);
@@ -595,8 +595,8 @@ defineExpose({
 
 .g-card__footer-divider {
   position: relative;
-  height: 1px;
-  margin-bottom: 12px;
+  height: 0.0625rem;
+  margin-bottom: 0.75rem;
   background: linear-gradient(
     90deg,
     var(--card-accent, #00d4d4),
@@ -608,23 +608,23 @@ defineExpose({
 
 .g-card__footer-divider-glow {
   position: absolute;
-  top: -2px;
+  top: -0.125rem;
   right: 0;
-  width: 40px;
-  height: 5px;
+  width: 2.5rem;
+  height: 0.3125rem;
   background: linear-gradient(
     90deg,
     transparent,
     var(--card-accent, #00d4d4)
   );
   opacity: 0.4;
-  filter: blur(2px);
+  filter: blur(0.125rem);
 }
 
 .g-card__footer-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 /* --------------------------------------------
@@ -638,16 +638,16 @@ defineExpose({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 0.75rem;
 
   background-color: rgba(10, 12, 16, 0.9);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(0.125rem);
   z-index: 10;
 }
 
 .g-card__loading-bar {
-  width: 60px;
-  height: 3px;
+  width: 3.75rem;
+  height: 0.1875rem;
   background-color: var(--card-border, #2a3444);
   overflow: hidden;
   position: relative;
@@ -657,22 +657,22 @@ defineExpose({
   content: '';
   position: absolute;
   top: 0;
-  left: -30px;
-  width: 30px;
+  left: -1.875rem;
+  width: 1.875rem;
   height: 100%;
   background-color: var(--card-accent, #00d4d4);
-  box-shadow: 0 0 10px var(--card-accent, #00d4d4);
+  box-shadow: 0 0 0.625rem var(--card-accent, #00d4d4);
   animation: g-card-loading-bar 1s ease-in-out infinite;
 }
 
 @keyframes g-card-loading-bar {
-  0% { left: -30px; }
-  100% { left: 60px; }
+  0% { left: -1.875rem; }
+  100% { left: 3.75rem; }
 }
 
 .g-card__loading-text {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--card-accent, #00d4d4);
@@ -693,7 +693,7 @@ defineExpose({
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -709,7 +709,7 @@ defineExpose({
   0% { top: 0; opacity: 0; }
   5% { opacity: 0.6; }
   95% { opacity: 0.6; }
-  100% { top: calc(100% - 2px); opacity: 0; }
+  100% { top: calc(100% - 0.125rem); opacity: 0; }
 }
 
 /* --------------------------------------------
@@ -718,73 +718,73 @@ defineExpose({
 
 /* Compact */
 .g-card--compact .g-card__header {
-  padding: 10px 12px 0 12px;
+  padding: 0.625rem 0.75rem 0 0.75rem;
 }
 
 .g-card--compact .g-card__header-divider {
-  margin-top: 8px;
+  margin-top: 0.5rem;
 }
 
 .g-card--compact .g-card__content {
-  padding: 10px 12px;
+  padding: 0.625rem 0.75rem;
 }
 
 .g-card--compact .g-card__footer {
-  padding: 0 12px 10px 12px;
+  padding: 0 0.75rem 0.625rem 0.75rem;
 }
 
 .g-card--compact .g-card__footer-divider {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .g-card--compact .g-card__title {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .g-card--compact .g-card__content {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 /* Default */
 .g-card--default .g-card__header {
-  padding: 14px 16px 0 16px;
+  padding: 0.875rem 1rem 0 1rem;
 }
 
 .g-card--default .g-card__content {
-  padding: 14px 16px;
+  padding: 0.875rem 1rem;
 }
 
 .g-card--default .g-card__footer {
-  padding: 0 16px 14px 16px;
+  padding: 0 1rem 0.875rem 1rem;
 }
 
 /* Relaxed */
 .g-card--relaxed .g-card__header {
-  padding: 20px 24px 0 24px;
+  padding: 1.25rem 1.5rem 0 1.5rem;
 }
 
 .g-card--relaxed .g-card__header-divider {
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .g-card--relaxed .g-card__content {
-  padding: 20px 24px;
+  padding: 1.25rem 1.5rem;
 }
 
 .g-card--relaxed .g-card__footer {
-  padding: 0 24px 20px 24px;
+  padding: 0 1.5rem 1.25rem 1.5rem;
 }
 
 .g-card--relaxed .g-card__footer-divider {
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .g-card--relaxed .g-card__title {
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .g-card--relaxed .g-card__content {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* --------------------------------------------
@@ -796,6 +796,7 @@ defineExpose({
   --card-bg: #0f1218;
   --card-border: #2a3444;
   --card-accent: #00d4d4;
+  --card-glow: rgba(0, 212, 212, 0.15);
   --card-title: #e0e4ea;
   --card-text: #e0e4ea;
   --card-text-muted: #505868;
@@ -806,6 +807,7 @@ defineExpose({
   --card-bg: rgba(0, 212, 212, 0.03);
   --card-border: rgba(0, 212, 212, 0.25);
   --card-accent: #00d4d4;
+  --card-glow: rgba(0, 212, 212, 0.15);
   --card-title: #00d4d4;
   --card-text: #e0e4ea;
   --card-text-muted: #007070;
@@ -816,6 +818,7 @@ defineExpose({
   --card-bg: rgba(255, 51, 68, 0.03);
   --card-border: rgba(255, 51, 68, 0.25);
   --card-accent: #ff3344;
+  --card-glow: rgba(255, 51, 68, 0.2);
   --card-title: #ff3344;
   --card-text: #e0e4ea;
   --card-text-muted: #992233;
@@ -835,6 +838,7 @@ defineExpose({
   --card-bg: rgba(255, 153, 34, 0.03);
   --card-border: rgba(255, 153, 34, 0.25);
   --card-accent: #ff9922;
+  --card-glow: rgba(255, 153, 34, 0.15);
   --card-title: #ff9922;
   --card-text: #e0e4ea;
   --card-text-muted: #996611;
@@ -845,6 +849,7 @@ defineExpose({
   --card-bg: rgba(0, 204, 102, 0.03);
   --card-border: rgba(0, 204, 102, 0.25);
   --card-accent: #00cc66;
+  --card-glow: rgba(0, 204, 102, 0.15);
   --card-title: #00cc66;
   --card-text: #e0e4ea;
   --card-text-muted: #007744;
@@ -855,6 +860,7 @@ defineExpose({
   --card-bg: rgba(136, 68, 170, 0.03);
   --card-border: rgba(136, 68, 170, 0.25);
   --card-accent: #8844aa;
+  --card-glow: rgba(136, 68, 170, 0.2);
   --card-title: #8844aa;
   --card-text: #e0e4ea;
   --card-text-muted: #553366;
@@ -869,7 +875,7 @@ defineExpose({
   5% { opacity: 0.8; }
   50% { opacity: 0.3; }
   95% { opacity: 0.8; }
-  100% { top: calc(100% - 2px); opacity: 0; }
+  100% { top: calc(100% - 0.125rem); opacity: 0; }
 }
 
 /* Ghost */
@@ -877,6 +883,7 @@ defineExpose({
   --card-bg: transparent;
   --card-border: rgba(42, 52, 68, 0.5);
   --card-accent: #8892a2;
+  --card-glow: rgba(136, 146, 162, 0.1);
   --card-title: #8892a2;
   --card-text: #e0e4ea;
   --card-text-muted: #505868;
@@ -901,16 +908,16 @@ defineExpose({
 .g-card--hoverable:hover {
   border-color: var(--card-accent, #00d4d4);
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.4),
-    0 0 20px var(--card-glow, rgba(0, 212, 212, 0.1)),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  transform: translateY(-2px);
+    0 0.5rem 1.875rem rgba(0, 0, 0, 0.4),
+    0 0 1.25rem var(--card-glow, rgba(0, 212, 212, 0.1)),
+    inset 0 0.0625rem 0 rgba(255, 255, 255, 0.03);
+  transform: translateY(-0.125rem);
 }
 
 .g-card--hoverable:hover .g-card__corner::before,
 .g-card--hoverable:hover .g-card__corner::after {
   background-color: var(--card-accent, #00d4d4);
-  box-shadow: 0 0 4px var(--card-accent, #00d4d4);
+  box-shadow: 0 0 0.25rem var(--card-accent, #00d4d4);
 }
 
 /* Flat */
@@ -938,9 +945,9 @@ defineExpose({
 .g-card--active {
   border-color: var(--card-accent, #00d4d4);
   box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 15px var(--card-glow, rgba(0, 212, 212, 0.15)),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    0 0.25rem 1.25rem rgba(0, 0, 0, 0.3),
+    0 0 0.9375rem var(--card-glow, rgba(0, 212, 212, 0.15)),
+    inset 0 0.0625rem 0 rgba(255, 255, 255, 0.02);
 }
 
 /* --------------------------------------------
@@ -962,7 +969,7 @@ defineExpose({
 
 .g-card-collapse-enter-to,
 .g-card-collapse-leave-from {
-  max-height: 500px;
+  max-height: 31.25rem;
 }
 
 /* Fade transition */

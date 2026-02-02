@@ -381,14 +381,16 @@
 </template>
 
 <script setup>
+import {ref} from 'vue'
+
 import GButton from "@/components/shared/buttons/GButton.vue";
 import GButtonAdv from "@/components/shared/buttons/GButtonAdv.vue";
 import GButtonCommon from "@/components/shared/buttons/GButtonCommon.vue";
 import GCombobox from "@/components/shared/GCombobox.vue";
 
 import GInput from "@/components/shared/GInput.vue";
+import GInputNumber from "@/components/shared/GInputNumber.vue";
 
-import {ref} from 'vue'
 import GTextarea from "@/components/shared/GTextarea.vue";
 import GCheckbox from "@/components/shared/GCheckbox.vue";
 import GToggle from "@/components/shared/GToggle.vue";
@@ -401,7 +403,7 @@ import GModal from "@/components/shared/GModal.vue";
 import GCard from "@/components/shared/GCard.vue";
 import GToastContainer from "@/components/shared/GToastContainer.vue";
 import {useToast} from "@/components/shared/useToast.js";
-import GInputNumber from "@/components/shared/GInputNumber.vue";
+
 
 const toast = useToast()
 

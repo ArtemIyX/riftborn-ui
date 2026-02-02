@@ -357,9 +357,9 @@ defineExpose({
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.375rem;
   width: 100%;
-  max-width: 200px;
+  max-width: 12.5rem;
 }
 
 /* --------------------------------------------
@@ -368,7 +368,7 @@ defineExpose({
 
 .g-input-number__label {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -378,7 +378,7 @@ defineExpose({
 
 .g-input-number__required {
   color: #ff3344;
-  margin-left: 2px;
+  margin-left: 0.125rem;
 }
 
 /* --------------------------------------------
@@ -391,7 +391,7 @@ defineExpose({
   align-items: stretch;
 
   background-color: var(--num-bg, #0f1218);
-  border: 1px solid var(--num-border, #2a3444);
+  border: 0.0625rem solid var(--num-border, #2a3444);
 
   transition:
     background-color 0.15s ease,
@@ -406,12 +406,12 @@ defineExpose({
 
 .g-input-number--focused .g-input-number__wrapper {
   border-color: var(--num-accent, #00d4d4);
-  box-shadow: 0 0 12px var(--num-glow, rgba(0, 212, 212, 0.15));
+  box-shadow: 0 0 0.75rem var(--num-glow, rgba(0, 212, 212, 0.15));
 }
 
 .g-input-number--error .g-input-number__wrapper {
   border-color: #ff3344;
-  box-shadow: 0 0 12px rgba(255, 51, 68, 0.15);
+  box-shadow: 0 0 0.75rem rgba(255, 51, 68, 0.15);
 }
 
 /* --------------------------------------------
@@ -420,8 +420,8 @@ defineExpose({
 
 .g-input-number__corner {
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   pointer-events: none;
   z-index: 2;
   opacity: 0;
@@ -436,37 +436,37 @@ defineExpose({
 }
 
 .g-input-number__corner--tl {
-  top: -1px;
-  left: -1px;
+  top: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-input-number__corner--tl::before {
   top: 0;
   left: 0;
-  width: 6px;
-  height: 1px;
+  width: 0.375rem;
+  height: 0.0625rem;
 }
 .g-input-number__corner--tl::after {
   top: 0;
   left: 0;
-  width: 1px;
-  height: 6px;
+  width: 0.0625rem;
+  height: 0.375rem;
 }
 
 .g-input-number__corner--br {
-  bottom: -1px;
-  right: -1px;
+  bottom: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-input-number__corner--br::before {
   bottom: 0;
   right: 0;
-  width: 6px;
-  height: 1px;
+  width: 0.375rem;
+  height: 0.0625rem;
 }
 .g-input-number__corner--br::after {
   bottom: 0;
   right: 0;
-  width: 1px;
-  height: 6px;
+  width: 0.0625rem;
+  height: 0.375rem;
 }
 
 .g-input-number--focused .g-input-number__corner {
@@ -534,12 +534,12 @@ defineExpose({
 
 /* Decrement button */
 .g-input-number__btn--decrement {
-  border-right: 1px solid var(--num-border, #2a3444);
+  border-right: 0.0625rem solid var(--num-border, #2a3444);
 }
 
 /* Increment button */
 .g-input-number__btn--increment {
-  border-left: 1px solid var(--num-border, #2a3444);
+  border-left: 0.0625rem solid var(--num-border, #2a3444);
 }
 
 /* --------------------------------------------
@@ -595,9 +595,9 @@ defineExpose({
 
 .g-input-number__unit {
   position: absolute;
-  right: 8px;
+  right: 0.5rem;
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--num-unit, #505868);
   pointer-events: none;
   text-transform: uppercase;
@@ -612,7 +612,7 @@ defineExpose({
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -641,7 +641,7 @@ defineExpose({
     opacity: 0.5;
   }
   100% {
-    transform: translateY(calc(100% + 40px));
+    transform: translateY(calc(100% + 2.5rem));
     opacity: 0;
   }
 }
@@ -652,7 +652,7 @@ defineExpose({
 
 .g-input-number__helper {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
 }
 
@@ -671,9 +671,9 @@ defineExpose({
 .g-input-number__bounds {
   display: flex;
   justify-content: center;
-  gap: 4px;
+  gap: 0.25rem;
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 9px;
+  font-size: 0.5625rem;
   color: var(--num-bounds, #505868);
 }
 
@@ -692,67 +692,67 @@ defineExpose({
 
 /* Small */
 .g-input-number--small .g-input-number__wrapper {
-  height: 28px;
+  height: 1.75rem;
 }
 
 .g-input-number--small .g-input-number__btn {
-  width: 28px;
+  width: 1.75rem;
 }
 
 .g-input-number--small .g-input-number__btn svg {
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
 .g-input-number--small .g-input-number__field {
-  padding: 4px 8px;
-  font-size: 11px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.6875rem;
 }
 
 .g-input-number--small .g-input-number__unit {
-  font-size: 9px;
+  font-size: 0.5625rem;
 }
 
 /* Medium */
 .g-input-number--medium .g-input-number__wrapper {
-  height: 36px;
+  height: 2.25rem;
 }
 
 .g-input-number--medium .g-input-number__btn {
-  width: 36px;
+  width: 2.25rem;
 }
 
 .g-input-number--medium .g-input-number__btn svg {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .g-input-number--medium .g-input-number__field {
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
 }
 
 /* Large */
 .g-input-number--large .g-input-number__wrapper {
-  height: 44px;
+  height: 2.75rem;
 }
 
 .g-input-number--large .g-input-number__btn {
-  width: 44px;
+  width: 2.75rem;
 }
 
 .g-input-number--large .g-input-number__btn svg {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .g-input-number--large .g-input-number__field {
-  padding: 8px 14px;
-  font-size: 16px;
+  padding: 0.5rem 0.875rem;
+  font-size: 1rem;
 }
 
 .g-input-number--large .g-input-number__unit {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 /* --------------------------------------------

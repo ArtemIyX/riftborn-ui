@@ -438,7 +438,7 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 1.5rem;
 }
 
 /* --------------------------------------------
@@ -454,7 +454,7 @@ defineExpose({
     rgba(15, 18, 24, 0.9) 50%,
     rgba(10, 12, 16, 0.95) 100%
   );
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(0.25rem);
 }
 
 /* Scanlines on overlay */
@@ -464,9 +464,9 @@ defineExpose({
   background: repeating-linear-gradient(
     0deg,
     transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.15) 2px,
-    rgba(0, 0, 0, 0.15) 4px
+    transparent 0.125rem,
+    rgba(0, 0, 0, 0.15) 0.125rem,
+    rgba(0, 0, 0, 0.15) 0.25rem
   );
   pointer-events: none;
   opacity: 0.5;
@@ -494,14 +494,14 @@ defineExpose({
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 48px);
+  max-height: calc(100vh - 3rem);
 
   background-color: var(--modal-bg, #0a0c10);
-  border: 1px solid var(--modal-border, #2a3444);
+  border: 0.0625rem solid var(--modal-border, #2a3444);
   box-shadow:
-    0 0 60px var(--modal-glow, rgba(0, 212, 212, 0.1)),
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    0 0 3.75rem var(--modal-glow, rgba(0, 212, 212, 0.1)),
+    0 1.5625rem 3.125rem rgba(0, 0, 0, 0.5),
+    inset 0 0.0625rem 0 rgba(255, 255, 255, 0.02);
 
   pointer-events: auto;
   outline: none;
@@ -514,10 +514,10 @@ defineExpose({
 
 @keyframes g-modal-shake {
   0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-8px); }
-  40% { transform: translateX(8px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
+  20% { transform: translateX(-0.5rem); }
+  40% { transform: translateX(0.5rem); }
+  60% { transform: translateX(-0.25rem); }
+  80% { transform: translateX(0.25rem); }
 }
 
 /* --------------------------------------------
@@ -526,8 +526,8 @@ defineExpose({
 
 .g-modal__corner {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   pointer-events: none;
   z-index: 10;
 }
@@ -541,71 +541,71 @@ defineExpose({
 }
 
 .g-modal__corner--tl {
-  top: -1px;
-  left: -1px;
+  top: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-modal__corner--tl::before {
   top: 0;
   left: 0;
-  width: 20px;
-  height: 2px;
+  width: 1.25rem;
+  height: 0.125rem;
 }
 .g-modal__corner--tl::after {
   top: 0;
   left: 0;
-  width: 2px;
-  height: 20px;
+  width: 0.125rem;
+  height: 1.25rem;
 }
 
 .g-modal__corner--tr {
-  top: -1px;
-  right: -1px;
+  top: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-modal__corner--tr::before {
   top: 0;
   right: 0;
-  width: 20px;
-  height: 2px;
+  width: 1.25rem;
+  height: 0.125rem;
 }
 .g-modal__corner--tr::after {
   top: 0;
   right: 0;
-  width: 2px;
-  height: 20px;
+  width: 0.125rem;
+  height: 1.25rem;
 }
 
 .g-modal__corner--bl {
-  bottom: -1px;
-  left: -1px;
+  bottom: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-modal__corner--bl::before {
   bottom: 0;
   left: 0;
-  width: 20px;
-  height: 2px;
+  width: 1.25rem;
+  height: 0.125rem;
 }
 .g-modal__corner--bl::after {
   bottom: 0;
   left: 0;
-  width: 2px;
-  height: 20px;
+  width: 0.125rem;
+  height: 1.25rem;
 }
 
 .g-modal__corner--br {
-  bottom: -1px;
-  right: -1px;
+  bottom: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-modal__corner--br::before {
   bottom: 0;
   right: 0;
-  width: 20px;
-  height: 2px;
+  width: 1.25rem;
+  height: 0.125rem;
 }
 .g-modal__corner--br::after {
   bottom: 0;
   right: 0;
-  width: 2px;
-  height: 20px;
+  width: 0.125rem;
+  height: 1.25rem;
 }
 
 /* --------------------------------------------
@@ -614,8 +614,8 @@ defineExpose({
 
 .g-modal__border-glow {
   position: absolute;
-  inset: -1px;
-  border: 1px solid transparent;
+  inset: -0.0625rem;
+  border: 0.0625rem solid transparent;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -623,7 +623,7 @@ defineExpose({
 
 .g-modal__dialog:hover .g-modal__border-glow {
   opacity: 1;
-  box-shadow: 0 0 20px var(--modal-glow, rgba(0, 212, 212, 0.2));
+  box-shadow: 0 0 1.25rem var(--modal-glow, rgba(0, 212, 212, 0.2));
 }
 
 /* --------------------------------------------
@@ -632,20 +632,20 @@ defineExpose({
 
 .g-modal__header {
   flex-shrink: 0;
-  padding: 16px 20px 0 20px;
+  padding: 1rem 1.25rem 0 1.25rem;
 }
 
 .g-modal__header-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .g-modal__status-indicator {
-  width: 8px;
-  height: 8px;
+  width: 0.5rem;
+  height: 0.5rem;
   background-color: var(--modal-accent, #00d4d4);
-  box-shadow: 0 0 8px var(--modal-accent, #00d4d4);
+  box-shadow: 0 0 0.5rem var(--modal-accent, #00d4d4);
   animation: g-modal-pulse 2s ease-in-out infinite;
 }
 
@@ -659,7 +659,7 @@ defineExpose({
   margin: 0;
 
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -669,7 +669,7 @@ defineExpose({
 .g-modal__header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 /* Close button */
@@ -677,12 +677,12 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   padding: 0;
 
   background: transparent;
-  border: 1px solid var(--modal-border, #2a3444);
+  border: 0.0625rem solid var(--modal-border, #2a3444);
   color: var(--modal-text-muted, #505868);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -697,19 +697,19 @@ defineExpose({
 .g-modal__close:focus-visible {
   outline: none;
   border-color: var(--modal-accent, #00d4d4);
-  box-shadow: 0 0 0 1px var(--modal-accent, #00d4d4);
+  box-shadow: 0 0 0 0.0625rem var(--modal-accent, #00d4d4);
 }
 
 .g-modal__close svg {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 /* Header decoration line */
 .g-modal__header-line {
   position: relative;
-  height: 1px;
-  margin-top: 16px;
+  height: 0.0625rem;
+  margin-top: 1rem;
   background: linear-gradient(
     90deg,
     var(--modal-accent, #00d4d4),
@@ -721,17 +721,17 @@ defineExpose({
 
 .g-modal__header-line-glow {
   position: absolute;
-  top: -2px;
+  top: -0.125rem;
   left: 0;
-  width: 60px;
-  height: 5px;
+  width: 3.75rem;
+  height: 0.3125rem;
   background: linear-gradient(
     90deg,
     var(--modal-accent, #00d4d4),
     transparent
   );
   opacity: 0.5;
-  filter: blur(2px);
+  filter: blur(0.125rem);
 }
 
 /* --------------------------------------------
@@ -740,22 +740,22 @@ defineExpose({
 
 .g-modal__content {
   flex: 1;
-  padding: 20px;
+  padding: 1.25rem;
   overflow-y: auto;
 
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.6;
   color: var(--modal-text, #e0e4ea);
 }
 
 .g-modal__content--no-header {
-  padding-top: 24px;
+  padding-top: 1.5rem;
 }
 
 .g-modal__content--no-footer {
-  padding-bottom: 24px;
+  padding-bottom: 1.5rem;
 }
 
 .g-modal--scrollable .g-modal__content {
@@ -764,7 +764,7 @@ defineExpose({
 
 /* Scrollbar */
 .g-modal__content::-webkit-scrollbar {
-  width: 6px;
+  width: 0.375rem;
 }
 
 .g-modal__content::-webkit-scrollbar-track {
@@ -773,7 +773,7 @@ defineExpose({
 
 .g-modal__content::-webkit-scrollbar-thumb {
   background: var(--modal-border, #2a3444);
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 
 .g-modal__content::-webkit-scrollbar-thumb:hover {
@@ -786,14 +786,14 @@ defineExpose({
 
 .g-modal__footer {
   flex-shrink: 0;
-  padding: 0 20px 16px 20px;
+  padding: 0 1.25rem 1rem 1.25rem;
 }
 
 /* Footer decoration line */
 .g-modal__footer-line {
   position: relative;
-  height: 1px;
-  margin-bottom: 16px;
+  height: 0.0625rem;
+  margin-bottom: 1rem;
   background: linear-gradient(
     90deg,
     var(--modal-accent, #00d4d4),
@@ -805,23 +805,23 @@ defineExpose({
 
 .g-modal__footer-line-glow {
   position: absolute;
-  top: -2px;
+  top: -0.125rem;
   right: 0;
-  width: 60px;
-  height: 5px;
+  width: 3.75rem;
+  height: 0.3125rem;
   background: linear-gradient(
     90deg,
     transparent,
     var(--modal-accent, #00d4d4)
   );
   opacity: 0.5;
-  filter: blur(2px);
+  filter: blur(0.125rem);
 }
 
 .g-modal__footer-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .g-modal__footer-content--left {
@@ -849,7 +849,7 @@ defineExpose({
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -883,24 +883,24 @@ defineExpose({
    -------------------------------------------- */
 
 .g-modal--small .g-modal__dialog {
-  width: 360px;
+  width: 22.5rem;
 }
 
 .g-modal--medium .g-modal__dialog {
-  width: 500px;
+  width: 31.25rem;
 }
 
 .g-modal--large .g-modal__dialog {
-  width: 700px;
+  width: 43.75rem;
 }
 
 .g-modal--xlarge .g-modal__dialog {
-  width: 900px;
+  width: 56.25rem;
 }
 
 .g-modal--fullscreen .g-modal__dialog {
-  width: calc(100vw - 48px);
-  height: calc(100vh - 48px);
+  width: calc(100vw - 3rem);
+  height: calc(100vh - 3rem);
   max-height: none;
 }
 
@@ -1053,12 +1053,12 @@ defineExpose({
 
 .g-modal-dialog-enter-from {
   opacity: 0;
-  transform: scale(0.95) translateY(-20px);
+  transform: scale(0.95) translateY(-1.25rem);
 }
 
 .g-modal-dialog-leave-to {
   opacity: 0;
-  transform: scale(0.95) translateY(10px);
+  transform: scale(0.95) translateY(0.625rem);
 }
 
 /* --------------------------------------------
@@ -1067,7 +1067,7 @@ defineExpose({
 
 @media (max-width: 600px) {
   .g-modal {
-    padding: 16px;
+    padding: 1rem;
   }
 
   .g-modal--small .g-modal__dialog,
@@ -1079,11 +1079,11 @@ defineExpose({
   }
 
   .g-modal__title {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .g-modal__content {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }
 </style>

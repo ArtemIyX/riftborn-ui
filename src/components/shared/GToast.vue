@@ -241,16 +241,16 @@ onBeforeUnmount(() => {
   position: relative;
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  width: 340px;
-  padding: 14px 16px;
+  gap: 0.75rem;
+  width: 21.25rem;
+  padding: 0.875rem 1rem;
 
   background-color: var(--toast-bg, #0f1218);
-  border: 1px solid var(--toast-border, #2a3444);
+  border: 0.0625rem solid var(--toast-border, #2a3444);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 20px var(--toast-glow, rgba(0, 212, 212, 0.1)),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    0 0.5rem 2rem rgba(0, 0, 0, 0.5),
+    0 0 1.25rem var(--toast-glow, rgba(0, 212, 212, 0.1)),
+    inset 0 0.0625rem 0 rgba(255, 255, 255, 0.02);
 
   overflow: hidden;
 }
@@ -261,8 +261,8 @@ onBeforeUnmount(() => {
 
 .g-toast__corner {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   pointer-events: none;
   z-index: 2;
 }
@@ -275,37 +275,37 @@ onBeforeUnmount(() => {
 }
 
 .g-toast__corner--tl {
-  top: -1px;
-  left: -1px;
+  top: -0.0625rem;
+  left: -0.0625rem;
 }
 .g-toast__corner--tl::before {
   top: 0;
   left: 0;
-  width: 10px;
-  height: 1px;
+  width: 0.625rem;
+  height: 0.0625rem;
 }
 .g-toast__corner--tl::after {
   top: 0;
   left: 0;
-  width: 1px;
-  height: 10px;
+  width: 0.0625rem;
+  height: 0.625rem;
 }
 
 .g-toast__corner--br {
-  bottom: -1px;
-  right: -1px;
+  bottom: -0.0625rem;
+  right: -0.0625rem;
 }
 .g-toast__corner--br::before {
   bottom: 0;
   right: 0;
-  width: 10px;
-  height: 1px;
+  width: 0.625rem;
+  height: 0.0625rem;
 }
 .g-toast__corner--br::after {
   bottom: 0;
   right: 0;
-  width: 1px;
-  height: 10px;
+  width: 0.0625rem;
+  height: 0.625rem;
 }
 
 /* --------------------------------------------
@@ -317,18 +317,18 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  margin-top: 2px;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-top: 0.125rem;
 
   background-color: var(--toast-icon-bg, rgba(0, 212, 212, 0.1));
-  border: 1px solid var(--toast-accent, #00d4d4);
+  border: 0.0625rem solid var(--toast-accent, #00d4d4);
   color: var(--toast-accent, #00d4d4);
 }
 
 .g-toast__icon svg {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 /* --------------------------------------------
@@ -342,12 +342,12 @@ onBeforeUnmount(() => {
 
 .g-toast__title {
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--toast-accent, #00d4d4);
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 
   animation: g-toast-title-flicker 0.1s ease 2;
 }
@@ -359,7 +359,7 @@ onBeforeUnmount(() => {
 
 .g-toast__message {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.4;
   color: var(--toast-text, #e0e4ea);
@@ -368,16 +368,16 @@ onBeforeUnmount(() => {
 /* Action button */
 .g-toast__action {
   display: inline-block;
-  margin-top: 10px;
-  padding: 4px 12px;
+  margin-top: 0.625rem;
+  padding: 0.25rem 0.75rem;
 
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 
   background-color: transparent;
-  border: 1px solid var(--toast-accent, #00d4d4);
+  border: 0.0625rem solid var(--toast-accent, #00d4d4);
   color: var(--toast-accent, #00d4d4);
   cursor: pointer;
 
@@ -391,7 +391,7 @@ onBeforeUnmount(() => {
 
 .g-toast__action:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 1px var(--toast-accent, #00d4d4);
+  box-shadow: 0 0 0 0.0625rem var(--toast-accent, #00d4d4);
 }
 
 /* --------------------------------------------
@@ -403,10 +403,10 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   padding: 0;
-  margin: -2px -4px 0 0;
+  margin: -0.125rem -0.25rem 0 0;
 
   background: transparent;
   border: none;
@@ -426,8 +426,8 @@ onBeforeUnmount(() => {
 }
 
 .g-toast__close svg {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 /* --------------------------------------------
@@ -439,7 +439,7 @@ onBeforeUnmount(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 0.125rem;
   background-color: var(--toast-progress-bg, rgba(42, 52, 68, 0.5));
   overflow: hidden;
 }
@@ -447,7 +447,7 @@ onBeforeUnmount(() => {
 .g-toast__progress-bar {
   height: 100%;
   background-color: var(--toast-accent, #00d4d4);
-  box-shadow: 0 0 8px var(--toast-accent, #00d4d4);
+  box-shadow: 0 0 0.5rem var(--toast-accent, #00d4d4);
   transition: width 100ms linear;
 }
 
@@ -624,15 +624,15 @@ onBeforeUnmount(() => {
   }
   92% {
     opacity: 0.8;
-    transform: translateX(-2px);
+    transform: translateX(-0.125rem);
   }
   94% {
     opacity: 1;
-    transform: translateX(2px);
+    transform: translateX(0.125rem);
   }
   96% {
     opacity: 0.9;
-    transform: translateX(-1px);
+    transform: translateX(-0.0625rem);
   }
   98% {
     opacity: 1;

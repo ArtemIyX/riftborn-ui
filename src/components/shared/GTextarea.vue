@@ -180,9 +180,9 @@ defineExpose({
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.375rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 25rem;
 }
 
 /* --------------------------------------------
@@ -191,7 +191,7 @@ defineExpose({
 
 .g-textarea__label {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -201,7 +201,7 @@ defineExpose({
 
 .g-textarea__required {
   color: #ff3344;
-  margin-left: 2px;
+  margin-left: 0.125rem;
 }
 
 /* --------------------------------------------
@@ -213,7 +213,7 @@ defineExpose({
   overflow: hidden;
 
   background-color: var(--textarea-bg, #0f1218);
-  border: 1px solid var(--textarea-border, #2a3444);
+  border: 0.0625rem solid var(--textarea-border, #2a3444);
 
   transition:
     background-color 0.15s ease,
@@ -228,12 +228,12 @@ defineExpose({
 
 .g-textarea--focused .g-textarea__wrapper {
   border-color: var(--textarea-accent, #00d4d4);
-  box-shadow: 0 0 12px var(--textarea-glow, rgba(0, 212, 212, 0.15));
+  box-shadow: 0 0 0.75rem var(--textarea-glow, rgba(0, 212, 212, 0.15));
 }
 
 .g-textarea--error .g-textarea__wrapper {
   border-color: #ff3344;
-  box-shadow: 0 0 12px rgba(255, 51, 68, 0.15);
+  box-shadow: 0 0 0.75rem rgba(255, 51, 68, 0.15);
 }
 
 /* --------------------------------------------
@@ -267,7 +267,7 @@ defineExpose({
 
 /* Scrollbar */
 .g-textarea__field::-webkit-scrollbar {
-  width: 6px;
+  width: 0.375rem;
 }
 
 .g-textarea__field::-webkit-scrollbar-track {
@@ -276,7 +276,7 @@ defineExpose({
 
 .g-textarea__field::-webkit-scrollbar-thumb {
   background: #2a3444;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 
 .g-textarea__field::-webkit-scrollbar-thumb:hover {
@@ -292,7 +292,7 @@ defineExpose({
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -334,8 +334,8 @@ defineExpose({
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
-  min-height: 16px;
+  gap: 0.75rem;
+  min-height: 1rem;
 }
 
 /* --------------------------------------------
@@ -344,7 +344,7 @@ defineExpose({
 
 .g-textarea__helper {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
 }
 
@@ -363,7 +363,7 @@ defineExpose({
 .g-textarea__count {
   flex-shrink: 0;
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #505868;
 }
 
@@ -376,18 +376,18 @@ defineExpose({
    -------------------------------------------- */
 
 .g-textarea--small .g-textarea__field {
-  padding: 8px 10px;
-  font-size: 11px;
+  padding: 0.5rem 0.625rem;
+  font-size: 0.6875rem;
 }
 
 .g-textarea--medium .g-textarea__field {
-  padding: 10px 12px;
-  font-size: 12px;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.75rem;
 }
 
 .g-textarea--large .g-textarea__field {
-  padding: 12px 14px;
-  font-size: 14px;
+  padding: 0.75rem 0.875rem;
+  font-size: 0.875rem;
 }
 
 /* --------------------------------------------
@@ -435,7 +435,7 @@ defineExpose({
 
 .g-textarea--ghost .g-textarea__wrapper {
   border: none;
-  border-bottom: 1px solid #2a3444;
+  border-bottom: 0.0625rem solid #2a3444;
 }
 
 .g-textarea--ghost.g-textarea--focused .g-textarea__wrapper {

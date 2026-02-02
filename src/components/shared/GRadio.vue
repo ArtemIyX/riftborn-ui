@@ -132,7 +132,7 @@ defineExpose({
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   cursor: pointer;
   user-select: none;
 }
@@ -162,7 +162,7 @@ defineExpose({
   border-radius: 50%;
 
   background-color: var(--radio-bg, #0f1218);
-  border: 1px solid var(--radio-border, #2a3444);
+  border: 0.0625rem solid var(--radio-border, #2a3444);
 
   transition:
     background-color 0.15s ease,
@@ -177,7 +177,7 @@ defineExpose({
 
 .g-radio__box--focused {
   border-color: var(--radio-accent, #00d4d4);
-  box-shadow: 0 0 8px var(--radio-glow, rgba(0, 212, 212, 0.2));
+  box-shadow: 0 0 0.5rem var(--radio-glow, rgba(0, 212, 212, 0.2));
 }
 
 .g-radio--checked .g-radio__box {
@@ -191,9 +191,9 @@ defineExpose({
 
 .g-radio__ring {
   position: absolute;
-  inset: 2px;
+  inset: 0.125rem;
   border-radius: 50%;
-  border: 1px solid transparent;
+  border: 0.0625rem solid transparent;
   transition: border-color 0.15s ease;
 }
 
@@ -230,7 +230,7 @@ defineExpose({
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid var(--radio-accent, #00d4d4);
+  border: 0.0625rem solid var(--radio-accent, #00d4d4);
   opacity: 0;
   pointer-events: none;
 }
@@ -276,47 +276,47 @@ defineExpose({
 
 /* Small */
 .g-radio--small .g-radio__box {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .g-radio--small .g-radio__dot {
-  width: 4px;
-  height: 4px;
+  width: 0.25rem;
+  height: 0.25rem;
 }
 
 .g-radio--small .g-radio__label {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 /* Medium */
 .g-radio--medium .g-radio__box {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .g-radio--medium .g-radio__dot {
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
 }
 
 .g-radio--medium .g-radio__label {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 /* Large */
 .g-radio--large .g-radio__box {
-  width: 22px;
-  height: 22px;
+  width: 1.375rem;
+  height: 1.375rem;
 }
 
 .g-radio--large .g-radio__dot {
-  width: 8px;
-  height: 8px;
+  width: 0.5rem;
+  height: 0.5rem;
 }
 
 .g-radio--large .g-radio__label {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* --------------------------------------------

@@ -64,7 +64,7 @@ const hasText = computed(() => {
 
 .g-divider--horizontal {
   width: 100%;
-  height: 1px;
+  height: 0.0625rem;
   flex-direction: row;
 }
 
@@ -72,16 +72,16 @@ const hasText = computed(() => {
 .g-divider--horizontal::after {
   content: '';
   flex: 1;
-  height: 1px;
+  height: 0.0625rem;
   background: var(--divider-line, #2a3444);
 }
 
 .g-divider--horizontal.g-divider--with-text::before {
-  margin-right: 16px;
+  margin-right: 1rem;
 }
 
 .g-divider--horizontal.g-divider--with-text::after {
-  margin-left: 16px;
+  margin-left: 1rem;
 }
 
 /* Decorative ends */
@@ -111,9 +111,9 @@ const hasText = computed(() => {
    -------------------------------------------- */
 
 .g-divider--vertical {
-  width: 1px;
+  width: 0.0625rem;
   height: 100%;
-  min-height: 20px;
+  min-height: 1.25rem;
   flex-direction: column;
 }
 
@@ -121,16 +121,16 @@ const hasText = computed(() => {
 .g-divider--vertical::after {
   content: '';
   flex: 1;
-  width: 1px;
+  width: 0.0625rem;
   background: var(--divider-line, #2a3444);
 }
 
 .g-divider--vertical.g-divider--with-text::before {
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .g-divider--vertical.g-divider--with-text::after {
-  margin-top: 12px;
+  margin-top: 0.75rem;
 }
 
 /* Decorative ends */
@@ -161,10 +161,10 @@ const hasText = computed(() => {
 
 .g-divider__text {
   flex-shrink: 0;
-  padding: 0 4px;
+  padding: 0 0.25rem;
 
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -175,7 +175,7 @@ const hasText = computed(() => {
 .g-divider--vertical .g-divider__text {
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  padding: 4px 0;
+  padding: 0.25rem 0;
 }
 
 /* --------------------------------------------
@@ -214,10 +214,10 @@ const hasText = computed(() => {
 
 .g-divider--glow::before,
 .g-divider--glow::after {
-  box-shadow: 0 0 8px rgba(0, 212, 212, 0.4);
+  box-shadow: 0 0 0.5rem rgba(0, 212, 212, 0.4);
 }
 
 .g-divider--glow .g-divider__text {
-  text-shadow: 0 0 8px rgba(0, 212, 212, 0.6);
+  text-shadow: 0 0 0.5rem rgba(0, 212, 212, 0.6);
 }
 </style>

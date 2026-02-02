@@ -151,7 +151,7 @@ const fillStyle = computed(() => {
 .g-progress {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 25rem;
 }
 
 /* --------------------------------------------
@@ -162,12 +162,12 @@ const fillStyle = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
 }
 
 .g-progress__label {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -176,7 +176,7 @@ const fillStyle = computed(() => {
 
 .g-progress__value {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--progress-value, #00d4d4);
 }
 
@@ -188,7 +188,7 @@ const fillStyle = computed(() => {
   position: relative;
   width: 100%;
   background-color: var(--progress-track-bg, #161b24);
-  border: 1px solid var(--progress-border, #2a3444);
+  border: 0.0625rem solid var(--progress-border, #2a3444);
   overflow: hidden;
 }
 
@@ -200,15 +200,15 @@ const fillStyle = computed(() => {
   position: absolute;
   inset: 0;
   display: flex;
-  gap: 2px;
-  padding: 0 1px;
+  gap: 0.125rem;
+  padding: 0 0.0625rem;
   pointer-events: none;
   z-index: 2;
 }
 
 .g-progress__segment {
   flex: 1;
-  border-left: 1px solid var(--progress-segment, rgba(10, 12, 16, 0.5));
+  border-left: 0.0625rem solid var(--progress-segment, rgba(10, 12, 16, 0.5));
 }
 
 .g-progress__segment:first-child {
@@ -234,7 +234,7 @@ const fillStyle = computed(() => {
   position: absolute;
   top: 0;
   right: 0;
-  width: 30px;
+  width: 1.875rem;
   height: 100%;
   background: linear-gradient(
     90deg,
@@ -261,7 +261,7 @@ const fillStyle = computed(() => {
     transparent 75%,
     transparent
   );
-  background-size: 20px 20px;
+  background-size: 1.25rem 1.25rem;
 }
 
 .g-progress--animated .g-progress__stripes {
@@ -273,7 +273,7 @@ const fillStyle = computed(() => {
     background-position: 0 0;
   }
   100% {
-    background-position: 20px 0;
+    background-position: 1.25rem 0;
   }
 }
 
@@ -313,9 +313,9 @@ const fillStyle = computed(() => {
 
 .g-progress__threshold {
   position: absolute;
-  top: -2px;
-  bottom: -2px;
-  width: 2px;
+  top: -0.125rem;
+  bottom: -0.125rem;
+  width: 0.125rem;
   transform: translateX(-50%);
   z-index: 3;
 }
@@ -324,7 +324,7 @@ const fillStyle = computed(() => {
   position: absolute;
   inset: 0;
   background-color: var(--progress-threshold, #ff3344);
-  box-shadow: 0 0 6px var(--progress-threshold, #ff3344);
+  box-shadow: 0 0 0.375rem var(--progress-threshold, #ff3344);
 }
 
 .g-progress__threshold::before,
@@ -333,16 +333,16 @@ const fillStyle = computed(() => {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  border: 4px solid transparent;
+  border: 0.25rem solid transparent;
 }
 
 .g-progress__threshold::before {
-  top: -4px;
+  top: -0.25rem;
   border-top-color: var(--progress-threshold, #ff3344);
 }
 
 .g-progress__threshold::after {
-  bottom: -4px;
+  bottom: -0.25rem;
   border-bottom-color: var(--progress-threshold, #ff3344);
 }
 
@@ -351,9 +351,9 @@ const fillStyle = computed(() => {
    -------------------------------------------- */
 
 .g-progress__status {
-  margin-top: 4px;
+  margin-top: 0.25rem;
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--progress-status, #505868);
@@ -365,33 +365,33 @@ const fillStyle = computed(() => {
 
 /* Small */
 .g-progress--small .g-progress__track {
-  height: 8px;
+  height: 0.5rem;
 }
 
 .g-progress--small .g-progress__label {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 .g-progress--small .g-progress__value {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 /* Medium */
 .g-progress--medium .g-progress__track {
-  height: 16px;
+  height: 1rem;
 }
 
 /* Large */
 .g-progress--large .g-progress__track {
-  height: 24px;
+  height: 1.5rem;
 }
 
 .g-progress--large .g-progress__label {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .g-progress--large .g-progress__value {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* --------------------------------------------

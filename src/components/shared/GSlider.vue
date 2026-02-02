@@ -266,7 +266,7 @@ defineExpose({
 .g-slider {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 20rem;
 }
 
 /* --------------------------------------------
@@ -277,12 +277,12 @@ defineExpose({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .g-slider__label {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -291,15 +291,15 @@ defineExpose({
 
 .g-slider__value {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--slider-value, #00d4d4);
-  min-width: 40px;
+  min-width: 2.5rem;
   text-align: right;
 }
 
 .g-slider--dragging .g-slider__value {
   color: var(--slider-accent, #00d4d4);
-  text-shadow: 0 0 8px var(--slider-glow, rgba(0, 212, 212, 0.5));
+  text-shadow: 0 0 0.5rem var(--slider-glow, rgba(0, 212, 212, 0.5));
 }
 
 /* --------------------------------------------
@@ -320,7 +320,7 @@ defineExpose({
   position: relative;
   width: 100%;
   background-color: var(--slider-track-bg, #161b24);
-  border: 1px solid var(--slider-border, #2a3444);
+  border: 0.0625rem solid var(--slider-border, #2a3444);
   overflow: hidden;
 }
 
@@ -330,7 +330,7 @@ defineExpose({
 
 .g-slider--dragging .g-slider__track {
   border-color: var(--slider-accent, #00d4d4);
-  box-shadow: 0 0 12px var(--slider-glow, rgba(0, 212, 212, 0.2));
+  box-shadow: 0 0 0.75rem var(--slider-glow, rgba(0, 212, 212, 0.2));
 }
 
 /* --------------------------------------------
@@ -346,12 +346,12 @@ defineExpose({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 6px;
+  padding: 0 0.375rem;
   pointer-events: none;
 }
 
 .g-slider__tick {
-  width: 1px;
+  width: 0.0625rem;
   height: 40%;
   background-color: var(--slider-tick, #2a3444);
   transition: background-color 0.15s ease;
@@ -382,7 +382,7 @@ defineExpose({
   position: absolute;
   top: 0;
   right: 0;
-  width: 20px;
+  width: 1.25rem;
   height: 100%;
   background: linear-gradient(
     90deg,
@@ -408,10 +408,10 @@ defineExpose({
 }
 
 .g-slider__thumb-inner {
-  width: 12px;
+  width: 0.75rem;
   height: 100%;
   background-color: var(--slider-thumb-bg, #2a3444);
-  border: 1px solid var(--slider-thumb-border, #3a4a5e);
+  border: 0.0625rem solid var(--slider-thumb-border, #3a4a5e);
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease,
@@ -425,13 +425,13 @@ defineExpose({
 .g-slider--dragging .g-slider__thumb-inner {
   background-color: var(--slider-accent, #00d4d4);
   border-color: var(--slider-accent, #00d4d4);
-  box-shadow: 0 0 12px var(--slider-glow, rgba(0, 212, 212, 0.5));
+  box-shadow: 0 0 0.75rem var(--slider-glow, rgba(0, 212, 212, 0.5));
 }
 
 .g-slider__thumb-ring {
   position: absolute;
-  inset: -4px;
-  border: 1px solid var(--slider-accent, #00d4d4);
+  inset: -0.25rem;
+  border: 0.0625rem solid var(--slider-accent, #00d4d4);
   opacity: 0;
   transition: opacity 0.15s ease;
 }
@@ -459,13 +459,13 @@ defineExpose({
 .g-slider__bounds {
   display: flex;
   justify-content: space-between;
-  margin-top: 4px;
+  margin-top: 0.25rem;
 }
 
 .g-slider__min,
 .g-slider__max {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 9px;
+  font-size: 0.5625rem;
   color: var(--slider-bounds, #505868);
 }
 
@@ -475,48 +475,48 @@ defineExpose({
 
 /* Small */
 .g-slider--small .g-slider__track {
-  height: 16px;
+  height: 1rem;
 }
 
 .g-slider--small .g-slider__thumb-inner {
-  width: 8px;
-  height: 22px;
+  width: 0.5rem;
+  height: 1.375rem;
 }
 
 .g-slider--small .g-slider__label {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 .g-slider--small .g-slider__value {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 /* Medium */
 .g-slider--medium .g-slider__track {
-  height: 24px;
+  height: 1.5rem;
 }
 
 .g-slider--medium .g-slider__thumb-inner {
-  width: 12px;
-  height: 32px;
+  width: 0.75rem;
+  height: 2rem;
 }
 
 /* Large */
 .g-slider--large .g-slider__track {
-  height: 32px;
+  height: 2rem;
 }
 
 .g-slider--large .g-slider__thumb-inner {
-  width: 16px;
-  height: 42px;
+  width: 1rem;
+  height: 2.625rem;
 }
 
 .g-slider--large .g-slider__label {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .g-slider--large .g-slider__value {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* --------------------------------------------

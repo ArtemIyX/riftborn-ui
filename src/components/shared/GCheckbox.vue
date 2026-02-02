@@ -18,11 +18,13 @@
       class="g-checkbox__input"
       :checked="isChecked"
       :disabled="disabled"
-      :indeterminate="indeterminate"
+
       v-bind="$attrs"
       @change="onChange"
       @focus="isFocused = true"
       @blur="isFocused = false"
+
+
     />
 
     <!-- Custom checkbox -->
@@ -167,7 +169,7 @@ defineExpose({
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   cursor: pointer;
   user-select: none;
 }
@@ -196,7 +198,7 @@ defineExpose({
   flex-shrink: 0;
 
   background-color: var(--check-bg, #0f1218);
-  border: 1px solid var(--check-border, #2a3444);
+  border: 0.0625rem solid var(--check-border, #2a3444);
 
   transition:
     background-color 0.15s ease,
@@ -211,7 +213,7 @@ defineExpose({
 
 .g-checkbox__box--focused {
   border-color: var(--check-accent, #00d4d4);
-  box-shadow: 0 0 8px var(--check-glow, rgba(0, 212, 212, 0.2));
+  box-shadow: 0 0 0.5rem var(--check-glow, rgba(0, 212, 212, 0.2));
 }
 
 .g-checkbox--checked .g-checkbox__box,
@@ -260,8 +262,8 @@ defineExpose({
 
 .g-checkbox__corner {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 0.25rem;
+  height: 0.25rem;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s ease;
@@ -282,14 +284,14 @@ defineExpose({
 .g-checkbox__corner--tl::before {
   top: 0;
   left: 0;
-  width: 4px;
-  height: 1px;
+  width: 0.25rem;
+  height: 0.0625rem;
 }
 .g-checkbox__corner--tl::after {
   top: 0;
   left: 0;
-  width: 1px;
-  height: 4px;
+  width: 0.0625rem;
+  height: 0.25rem;
 }
 
 .g-checkbox__corner--br {
@@ -299,14 +301,14 @@ defineExpose({
 .g-checkbox__corner--br::before {
   bottom: 0;
   right: 0;
-  width: 4px;
-  height: 1px;
+  width: 0.25rem;
+  height: 0.0625rem;
 }
 .g-checkbox__corner--br::after {
   bottom: 0;
   right: 0;
-  width: 1px;
-  height: 4px;
+  width: 0.0625rem;
+  height: 0.25rem;
 }
 
 .g-checkbox--checked .g-checkbox__corner,
@@ -339,45 +341,45 @@ defineExpose({
    -------------------------------------------- */
 
 .g-checkbox--small .g-checkbox__box {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .g-checkbox--small .g-checkbox__icon {
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
 }
 
 .g-checkbox--small .g-checkbox__label {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 .g-checkbox--medium .g-checkbox__box {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .g-checkbox--medium .g-checkbox__icon {
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
 .g-checkbox--medium .g-checkbox__label {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .g-checkbox--large .g-checkbox__box {
-  width: 22px;
-  height: 22px;
+  width: 1.375rem;
+  height: 1.375rem;
 }
 
 .g-checkbox--large .g-checkbox__icon {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .g-checkbox--large .g-checkbox__label {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* --------------------------------------------

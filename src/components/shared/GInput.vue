@@ -216,9 +216,9 @@ defineExpose({
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.375rem;
   width: 100%;
-  max-width: 320px;
+  max-width: 20rem;
 }
 
 /* --------------------------------------------
@@ -227,7 +227,7 @@ defineExpose({
 
 .g-input__label {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -237,7 +237,7 @@ defineExpose({
 
 .g-input__required {
   color: #ff3344;
-  margin-left: 2px;
+  margin-left: 0.125rem;
 }
 
 /* --------------------------------------------
@@ -250,7 +250,7 @@ defineExpose({
   align-items: center;
 
   background-color: var(--input-bg, #0f1218);
-  border: 1px solid var(--input-border, #2a3444);
+  border: 0.0625rem solid var(--input-border, #2a3444);
 
   transition:
     background-color 0.15s ease,
@@ -265,12 +265,12 @@ defineExpose({
 
 .g-input--focused .g-input__wrapper {
   border-color: var(--input-accent, #00d4d4);
-  box-shadow: 0 0 12px var(--input-glow, rgba(0, 212, 212, 0.15));
+  box-shadow: 0 0 0.75rem var(--input-glow, rgba(0, 212, 212, 0.15));
 }
 
 .g-input--error .g-input__wrapper {
   border-color: #ff3344;
-  box-shadow: 0 0 12px rgba(255, 51, 68, 0.15);
+  box-shadow: 0 0 0.75rem rgba(255, 51, 68, 0.15);
 }
 
 /* --------------------------------------------
@@ -317,18 +317,18 @@ defineExpose({
   align-items: center;
 
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--input-addon, #505868);
 
   user-select: none;
 }
 
 .g-input__prefix {
-  padding-left: 10px;
+  padding-left: 0.625rem;
 }
 
 .g-input__suffix {
-  padding-right: 10px;
+  padding-right: 0.625rem;
 }
 
 /* --------------------------------------------
@@ -340,13 +340,13 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-right: 6px;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.375rem;
 
   background: transparent;
   border: none;
-  border-radius: 2px;
+  border-radius: 0.125rem;
   cursor: pointer;
   color: var(--input-addon, #505868);
 
@@ -359,8 +359,8 @@ defineExpose({
 }
 
 .g-input__clear svg {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 /* --------------------------------------------
@@ -369,7 +369,7 @@ defineExpose({
 
 .g-input__helper {
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
 }
 
@@ -388,10 +388,10 @@ defineExpose({
 .g-input__count {
   position: absolute;
   right: 0;
-  bottom: -18px;
+  bottom: -1.125rem;
 
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #505868;
 }
 
@@ -404,30 +404,30 @@ defineExpose({
    -------------------------------------------- */
 
 .g-input--small .g-input__wrapper {
-  height: 28px;
+  height: 1.75rem;
 }
 
 .g-input--small .g-input__field {
-  padding: 4px 10px;
-  font-size: 11px;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
 }
 
 .g-input--medium .g-input__wrapper {
-  height: 36px;
+  height: 2.25rem;
 }
 
 .g-input--medium .g-input__field {
-  padding: 6px 12px;
-  font-size: 12px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
 }
 
 .g-input--large .g-input__wrapper {
-  height: 44px;
+  height: 2.75rem;
 }
 
 .g-input--large .g-input__field {
-  padding: 8px 14px;
-  font-size: 14px;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
 }
 
 /* --------------------------------------------
@@ -477,7 +477,7 @@ defineExpose({
 }
 
 .g-input--ghost .g-input__wrapper {
-  border-bottom: 1px solid #2a3444;
+  border-bottom: 0.0625rem solid #2a3444;
 }
 
 .g-input--ghost.g-input--focused .g-input__wrapper {
