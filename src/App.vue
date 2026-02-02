@@ -1,11 +1,13 @@
 <template>
   <GToastContainer/>
 
+
+
   <GButton variant="primary" text="Hello world" @click="hello"/>
   <GButtonAdv variant="success" text="Hello world" @click="hello"/>
   <GButtonCommon variant="danger" text="Hello world" @click="hello"/>
 
-  <GDivider/>
+  <GDivider text="Combo boxes"/>
 
   <GCombobox
     v-model="selectedSystem"
@@ -21,7 +23,7 @@
     placeholder="OVERRIDE TARGET"
   />
 
-  <GDivider/>
+  <GDivider text="Inputs"/>
 
   <GInputNumber
     v-model="power2"
@@ -56,7 +58,7 @@
     error="Invalid format"
   />
 
-  <GDivider/>
+  <GDivider text="Text area"/>
 
   <GTextarea
     v-model="logEntry"
@@ -84,7 +86,7 @@
     resize
   />
 
-  <GDivider/>
+  <GDivider text="Checkboxes"/>
 
   <!-- Single -->
   <GCheckbox v-model="autoSave" label="Auto-save enabled"/>
@@ -93,14 +95,14 @@
   <GCheckbox v-model="confirmed" variant="success" label="Systems nominal"/>
   <GCheckbox v-model="override" variant="danger" label="Override safety"/>
 
-  <GDivider/>
+  <GDivider text="Toggles"/>
 
   <GToggle :model-value="isActive('autopilot')" @change="toggle('autopilot')" label="Autopilot"/>
   <GToggle :model-value="isActive('shields')" @change="toggle('shields')" label="Shields"/>
   <GToggle :model-value="isActive('selfDestruct')" @change="toggle('selfDestruct')"
             label="Self Destruct"/>
 
-  <GDivider/>
+  <GDivider text="Radio"/>
   <!-- Radio group - all share same v-model -->
   <GRadio v-model="selectedSystem_radio" value="navigation" label="Navigation"/>
   <GRadio v-model="selectedSystem_radio" value="weapons" label="Weapons"/>
@@ -112,7 +114,7 @@
   <GRadio v-model="priority" value="medium" variant="primary" label="Medium"/>
   <GRadio v-model="priority" value="critical" variant="danger" label="Critical"/>
 
-  <GDivider/>
+  <GDivider text="Slider"/>
 
   <GSlider v-model="power" label="Reactor Power" suffix="%"/>
 
@@ -144,7 +146,7 @@
     size="large"
   />
 
-  <GDivider/>
+  <GDivider text="Progress"/>
 
   <GProgress :value="75" label="Hull Integrity"/>
 
@@ -182,7 +184,7 @@
     :max="200"
   />
 
-  <GDivider/>
+  <GDivider text="Tooltips"/>
 
   <!-- Simple text tooltip -->
   <GTooltip text="Emergency systems activated">
@@ -222,6 +224,7 @@
     </template>
   </GTooltip>
 
+  <GDivider text="Modal"/>
 
   <GButton
     text="OPEN MODAL"
@@ -254,6 +257,7 @@
     </template>
   </GModal>
 
+  <GDivider text="Cards"/>
   <div class="card-grid">
     <!-- Basic Card -->
     <GCard
@@ -371,13 +375,14 @@
     </GCard>
   </div>
 
-  <GDivider/>
+  <GDivider text="Toast"/>
 
   <GButtonCommon @click="pushToast">
     Push toast
   </GButtonCommon>
   <GDivider/>
 
+  <GDivider text="Heading"/>
   <!-- Simple -->
   <GHeading level="h1">SYSTEM STATUS</GHeading>
 
@@ -403,6 +408,7 @@
 
   <GDivider/>
 
+  <GDivider text="Text"/>
   <!-- Standard body text -->
   <GText>System status nominal</GText>
 
@@ -444,7 +450,7 @@
     USS NAUTILUS
   </GText>
 
-  <GDivider/>
+  <GDivider text="Labels"/>
 
   <!-- Simple required field -->
   <GLabel for="password" required>Password</GLabel>

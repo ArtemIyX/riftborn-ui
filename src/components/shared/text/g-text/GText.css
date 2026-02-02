@@ -1,6 +1,4 @@
-﻿
-
-/* ============================================
+﻿/* ============================================
    G-TEXT
    Space Horror UI Component
    ============================================ */
@@ -10,7 +8,7 @@
   margin: 0;
   padding: 0;
 
-  font-family: var(--font-ui, 'Rajdhani', 'Segoe UI', sans-serif), sans-serif;
+  font-family: var(--text-font-family, var(--font-ui)), fantasy;
   font-weight: var(--text-font-weight, 500);
   font-size: var(--text-font-size, 0.875rem);
   line-height: var(--text-line-height, 1.6);
@@ -78,23 +76,23 @@
    -------------------------------------------- */
 
 .g-text--ui {
-  --text-font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  --text-font-family: var(--font-ui);
 }
 
 .g-text--mono {
-  --text-font-family: 'Share Tech Mono', 'Courier New', monospace;
+  --text-font-family: var(--font-tech);
   --text-letter-spacing: 0.05em;
 }
 
 .g-text--title {
-  --text-font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  --text-font-family: var(--font-title);
   --text-font-weight: 400;
   --text-letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .g-text--special {
-  --text-font-family: 'Xanh Mono', monospace;
+  --text-font-family: var(--font-special);
   --text-letter-spacing: 0.03em;
 }
 
@@ -349,7 +347,7 @@
   padding: 0.0625rem 0.375rem;
   margin-left: 0.375rem;
 
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech);
   font-size: 0.65em;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -376,7 +374,7 @@
 
 .g-text__code {
   padding: 0.125rem 0.375rem;
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech);
   font-size: 0.9em;
   background-color: var(--text-code-bg, #161b24);
   border: 0.0625rem solid var(--text-code-border, #2a3444);
@@ -516,7 +514,6 @@
 }
 
 .g-text--interactive:hover {
-  color: var(--text-hover-color, var(--text-color));
   text-shadow: 0 0 0.5rem var(--text-color);
 }
 

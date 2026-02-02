@@ -130,7 +130,7 @@
    -------------------------------------------- */
 
 .g-radio__label {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--radio-label, #e0e4ea);

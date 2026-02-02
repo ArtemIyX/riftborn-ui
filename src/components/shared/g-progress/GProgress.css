@@ -21,7 +21,7 @@
 }
 
 .g-progress__label {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -30,7 +30,7 @@
 }
 
 .g-progress__value {
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-size: 0.75rem;
   color: var(--progress-value, #00d4d4);
 }
@@ -207,7 +207,7 @@
 
 .g-progress__status {
   margin-top: 0.25rem;
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;

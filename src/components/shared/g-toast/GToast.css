@@ -107,7 +107,7 @@
 }
 
 .g-toast__title {
-  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  font-family: var(--font-title), sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -124,7 +124,7 @@
 }
 
 .g-toast__message {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.4;
@@ -137,7 +137,7 @@
   margin-top: 0.625rem;
   padding: 0.25rem 0.75rem;
 
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;

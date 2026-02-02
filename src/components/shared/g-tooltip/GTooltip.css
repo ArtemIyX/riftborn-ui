@@ -178,7 +178,7 @@
    -------------------------------------------- */
 
 .g-tooltip__title {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -191,7 +191,7 @@
    -------------------------------------------- */
 
 .g-tooltip__text {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--tooltip-text, #8892a2);

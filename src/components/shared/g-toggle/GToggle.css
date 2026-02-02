@@ -128,7 +128,7 @@
 
 .g-toggle__status {
   position: absolute;
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-weight: 400;
   color: var(--toggle-status, #505868);
   transition: opacity 0.2s ease, color 0.2s ease;
@@ -157,7 +157,7 @@
    -------------------------------------------- */
 
 .g-toggle__label {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--toggle-label, #e0e4ea);

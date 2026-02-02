@@ -21,7 +21,7 @@
 }
 
 .g-slider__label {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -30,7 +30,7 @@
 }
 
 .g-slider__value {
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-size: 0.75rem;
   color: var(--slider-value, #00d4d4);
   min-width: 2.5rem;
@@ -204,7 +204,7 @@
 
 .g-slider__min,
 .g-slider__max {
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-size: 0.5625rem;
   color: var(--slider-bounds, #505868);
 }

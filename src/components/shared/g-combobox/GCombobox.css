@@ -31,7 +31,7 @@
   gap: 0.5rem;
 
   /* Typography */
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-weight: 500;
   letter-spacing: 0.04em;
 
@@ -160,7 +160,7 @@
   width: 100%;
   padding: 0.375rem 0.625rem 0.375rem 1.875rem;
 
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -214,7 +214,7 @@
   justify-content: space-between;
   padding: 0.5rem 0.75rem;
 
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -258,7 +258,7 @@
   padding: 1rem 0.75rem;
   text-align: center;
 
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
   color: #505868;

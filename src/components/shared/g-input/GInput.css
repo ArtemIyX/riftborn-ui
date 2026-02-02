@@ -17,7 +17,7 @@
    -------------------------------------------- */
 
 .g-input__label {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -75,7 +75,7 @@
   border: none;
   outline: none;
 
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--input-color, #e0e4ea);
@@ -107,7 +107,7 @@
   display: flex;
   align-items: center;
 
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-size: 0.6875rem;
   color: var(--input-addon, #505868);
 
@@ -159,7 +159,7 @@
    -------------------------------------------- */
 
 .g-input__helper {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), sans-serif;
   font-size: 0.6875rem;
   font-weight: 500;
 }
@@ -181,7 +181,7 @@
   right: 0;
   bottom: -1.125rem;
 
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-family: var(--font-tech), monospace;
   font-size: 0.625rem;
   color: #505868;
 }
