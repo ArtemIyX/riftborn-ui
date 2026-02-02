@@ -1,13 +1,31 @@
 <template>
   <GToastContainer/>
 
-  <GStack direction="row" justify="space-between">
-    <GText>Hello world!</GText>
-    <GText>Hello world!</GText>
-    <GText>Hello world!</GText>
-    <GText>Hello world!</GText>
+  <section>
+    <h2>Basic Horizontal Layout</h2>
+    <GFlex gap="1">
+      <div class="box">Item 1</div>
+      <div class="box">Item 2</div>
+      <div class="box">Item 3</div>
+    </GFlex>
+  </section>
 
-  </GStack>
+  <section>
+    <h2>Vertical Layout</h2>
+    <GFlex direction="column" gap="1">
+      <div class="box">Item 1</div>
+      <div class="box">Item 2</div>
+      <div class="box">Item 3</div>
+    </GFlex>
+  </section>
+
+  <section>
+    <h2>Center Alignment</h2>
+    <GFlex justify="center" align="center" height="10rem" gap="1">
+      <div class="box">Centered Item 1</div>
+      <div class="box">Centered Item 2</div>
+    </GFlex>
+  </section>
 
 </template>
 
