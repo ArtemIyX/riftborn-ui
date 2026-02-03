@@ -5,9 +5,9 @@ class ModSystem {
   constructor() {
     this.mods = []
     this.registeredStores = []
+    this.app = null
   }
 
-  // Register a mod
   register(mod) {
     if (!mod.id || !mod.name) {
       throw new Error('Mod must have id and name')
@@ -16,12 +16,23 @@ class ModSystem {
     console.log(`Registered mod: ${mod.name}`)
   }
 
-  // Install all mods into the Vue app and Pinia
   install(app, pinia) {
+    this.app = app // Store app instance
+
     this.mods.forEach(mod => {
       // Install app-level mods (components, directives, etc.)
       if (mod.install) {
         mod.install(app)
+      }
+
+      // Register components globally (optional)
+      if (mod.components) {
+        Object.entries(mod.components).forEach(([name, component]) => {
+          const componentName = mod.config?.componentPrefix
+            ? `${mod.config.componentPrefix}${name}`
+            : name
+          app.component(componentName, component)
+        })
       }
 
       // Install Pinia stores
@@ -38,14 +49,48 @@ class ModSystem {
     })
   }
 
-  // Get all stores from mods
   getStores() {
     return this.registeredStores
   }
 
-  // Get specific mod
   getMod(id) {
     return this.mods.find(mod => mod.id === id)
+  }
+
+  getApp() {
+    return this.app
+  }
+
+  // Get component from any mod
+  getComponent(name, modId = null) {
+    if (modId) {
+      const mod = this.getMod(modId)
+      return mod?.components?.[name] || null
+    }
+
+    for (const mod of this.mods) {
+      if (mod.components?.[name]) {
+        return mod.components[name]
+      }
+    }
+    return null
+  }
+
+  // List all available components
+  listComponents() {
+    const components = []
+    this.mods.forEach(mod => {
+      if (mod.components) {
+        Object.keys(mod.components).forEach(name => {
+          components.push({
+            name,
+            modId: mod.id,
+            modName: mod.name
+          })
+        })
+      }
+    })
+    return components
   }
 }
 
