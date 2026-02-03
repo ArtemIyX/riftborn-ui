@@ -1,21 +1,32 @@
 ﻿<template>
 
-  <MenuButtons class="menu-box">
+  <MenuButtons class="menu-box"/>
 
-  </MenuButtons>
 </template>
 
 <script setup>
-
 import MenuButtons from "@/components/menu/MenuButtons.vue";
 import {ref} from "vue";
+import {emitter} from '@/assets/js/eventBus.js';
 
+emitter.on('menu:button:play', () => {
 
-const handleButtonClick = (button) => {
-  if (button.onClick && typeof button.onClick === 'function') {
-    button.onClick();
-  }
-};
+});
+emitter.on('menu:button:host', () => {
+
+});
+emitter.on('menu:button:settings', () => {
+
+});
+emitter.on('menu:button:credits', () => {
+
+});
+emitter.on('menu:button:social', () => {
+
+});
+emitter.on('menu:button:quit', () => {
+
+});
 
 
 </script>
