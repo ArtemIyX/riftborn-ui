@@ -1,0 +1,377 @@
+﻿/* ============================================
+   G-KEY
+   Space Horror UI Component - Keyboard Input
+   ============================================ */
+
+.g-key {
+  /* Reset */
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+
+  /* Layout */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 3.75rem;
+
+  /* Typography */
+  font-family: var(--font-tech), monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+
+  /* Base styling */
+  background-color: var(--key-bg, rgba(0, 212, 212, 0.05));
+  color: var(--key-color, #00d4d4);
+
+  /* Clip path for angled corners */
+  clip-path: polygon(
+    0.25rem 0,
+    100% 0,
+    100% calc(100% - 0.25rem),
+    calc(100% - 0.25rem) 100%,
+    0 100%,
+    0 0.25rem
+  );
+
+  /* Transitions */
+  transition: background-color 0.2s ease,
+  color 0.15s ease,
+  transform 0.1s ease,
+  box-shadow 0.2s ease;
+}
+
+/* --------------------------------------------
+   SIZES
+   -------------------------------------------- */
+
+.g-key--small {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.625rem;
+  min-width: 3rem;
+}
+
+.g-key--medium {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  min-width: 3.75rem;
+}
+
+.g-key--large {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  min-width: 5rem;
+}
+
+/* --------------------------------------------
+   GLOW LAYER
+   -------------------------------------------- */
+
+.g-key__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    var(--key-glow, rgba(0, 212, 212, 0.15)) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.g-key:hover .g-key__glow {
+  opacity: 0.5;
+}
+
+.g-key--listening .g-key__glow {
+  opacity: 1;
+  animation: g-key-glow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes g-key-glow-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   BORDER LAYER
+   -------------------------------------------- */
+
+.g-key__border {
+  position: absolute;
+  inset: 0;
+  border: 0.0625rem solid var(--key-border, rgba(0, 212, 212, 0.3));
+  clip-path: inherit;
+  pointer-events: none;
+  transition: border-color 0.2s ease, box-shadow 0.3s ease;
+}
+
+.g-key:hover .g-key__border {
+  border-color: var(--key-border-hover, rgba(0, 212, 212, 0.6));
+}
+
+.g-key--listening .g-key__border {
+  border-color: var(--key-color, #00d4d4);
+  box-shadow: inset 0 0 0.625rem var(--key-glow, rgba(0, 212, 212, 0.2)),
+  0 0 1rem var(--key-glow, rgba(0, 212, 212, 0.3));
+  animation: g-key-border-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes g-key-border-pulse {
+  0%, 100% {
+    box-shadow: inset 0 0 0.625rem var(--key-glow, rgba(0, 212, 212, 0.2)),
+    0 0 1rem var(--key-glow, rgba(0, 212, 212, 0.3));
+  }
+  50% {
+    box-shadow: inset 0 0 1rem var(--key-glow, rgba(0, 212, 212, 0.3)),
+    0 0 1.5rem var(--key-glow, rgba(0, 212, 212, 0.5));
+  }
+}
+
+.g-key:focus-visible .g-key__border {
+  border-color: var(--key-color, #00d4d4);
+  box-shadow: inset 0 0 0.5rem var(--key-glow, rgba(0, 212, 212, 0.3)),
+  0 0 0.75rem var(--key-glow, rgba(0, 212, 212, 0.2));
+}
+
+/* --------------------------------------------
+   CONTENT
+   -------------------------------------------- */
+
+.g-key__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.g-key__label {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* --------------------------------------------
+   SCANLINE EFFECT
+   -------------------------------------------- */
+
+.g-key__scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.0625rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--key-color, #00d4d4),
+    transparent
+  );
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.g-key:hover .g-key__scanline {
+  opacity: 0.4;
+  animation: g-key-scanline 1.5s ease-in-out infinite;
+}
+
+.g-key--listening .g-key__scanline {
+  opacity: 0.6;
+  animation: g-key-scanline 1s ease-in-out infinite;
+}
+
+@keyframes g-key-scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(calc(100% + 2rem));
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------
+   PULSE INDICATOR (when listening)
+   -------------------------------------------- */
+
+.g-key__pulse {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  background-color: var(--key-color, #00d4d4);
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem var(--key-color, #00d4d4);
+  animation: g-key-pulse 1s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes g-key-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.3);
+  }
+}
+
+/* --------------------------------------------
+   HOVER & ACTIVE STATES
+   -------------------------------------------- */
+
+.g-key:hover {
+  background-color: var(--key-bg-hover, rgba(0, 212, 212, 0.1));
+  box-shadow: 0 0 0.75rem var(--key-glow, rgba(0, 212, 212, 0.1));
+}
+
+.g-key:active {
+  transform: scale(0.98);
+  background-color: var(--key-bg-active, rgba(0, 212, 212, 0.15));
+}
+
+/* --------------------------------------------
+   LISTENING STATE
+   -------------------------------------------- */
+
+.g-key--listening {
+  background-color: var(--key-bg-listening, rgba(0, 212, 212, 0.2));
+  cursor: wait;
+  box-shadow: 0 0 1.25rem var(--key-glow, rgba(0, 212, 212, 0.3)),
+  inset 0 0 1rem var(--key-glow, rgba(0, 212, 212, 0.1));
+}
+
+.g-key--listening .g-key__label {
+  animation: g-key-dots 1.5s ease-in-out infinite;
+}
+
+@keyframes g-key-dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+/* --------------------------------------------
+   VARIANTS
+   -------------------------------------------- */
+
+/* Primary (Cyan - Terminal) */
+.g-key--primary {
+  --key-color: #00d4d4;
+  --key-bg: rgba(0, 212, 212, 0.05);
+  --key-bg-hover: rgba(0, 212, 212, 0.1);
+  --key-bg-active: rgba(0, 212, 212, 0.15);
+  --key-bg-listening: rgba(0, 212, 212, 0.2);
+  --key-border: rgba(0, 212, 212, 0.3);
+  --key-border-hover: rgba(0, 212, 212, 0.6);
+  --key-glow: rgba(0, 212, 212, 0.15);
+}
+
+/* Secondary (Blue - Sonar) */
+.g-key--secondary {
+  --key-color: #4488ff;
+  --key-bg: rgba(68, 136, 255, 0.05);
+  --key-bg-hover: rgba(68, 136, 255, 0.1);
+  --key-bg-active: rgba(68, 136, 255, 0.15);
+  --key-bg-listening: rgba(68, 136, 255, 0.2);
+  --key-border: rgba(68, 136, 255, 0.3);
+  --key-border-hover: rgba(68, 136, 255, 0.6);
+  --key-glow: rgba(68, 136, 255, 0.15);
+}
+
+/* Danger (Red - Critical Alert) */
+.g-key--danger {
+  --key-color: #ff3344;
+  --key-bg: rgba(255, 51, 68, 0.05);
+  --key-bg-hover: rgba(255, 51, 68, 0.1);
+  --key-bg-active: rgba(255, 51, 68, 0.15);
+  --key-bg-listening: rgba(255, 51, 68, 0.2);
+  --key-border: rgba(255, 51, 68, 0.3);
+  --key-border-hover: rgba(255, 51, 68, 0.6);
+  --key-glow: rgba(255, 51, 68, 0.2);
+}
+
+/* Warning (Orange - Caution) */
+.g-key--warning {
+  --key-color: #ff9922;
+  --key-bg: rgba(255, 153, 34, 0.05);
+  --key-bg-hover: rgba(255, 153, 34, 0.1);
+  --key-bg-active: rgba(255, 153, 34, 0.15);
+  --key-bg-listening: rgba(255, 153, 34, 0.2);
+  --key-border: rgba(255, 153, 34, 0.3);
+  --key-border-hover: rgba(255, 153, 34, 0.6);
+  --key-glow: rgba(255, 153, 34, 0.15);
+}
+
+/* Success (Green - Systems Online) */
+.g-key--success {
+  --key-color: #00cc66;
+  --key-bg: rgba(0, 204, 102, 0.05);
+  --key-bg-hover: rgba(0, 204, 102, 0.1);
+  --key-bg-active: rgba(0, 204, 102, 0.15);
+  --key-bg-listening: rgba(0, 204, 102, 0.2);
+  --key-border: rgba(0, 204, 102, 0.3);
+  --key-border-hover: rgba(0, 204, 102, 0.6);
+  --key-glow: rgba(0, 204, 102, 0.15);
+}
+
+/* --------------------------------------------
+   DISABLED STATE
+   -------------------------------------------- */
+
+.g-key--disabled,
+.g-key:disabled {
+  --key-color: #505868;
+  --key-bg: rgba(80, 88, 104, 0.03);
+  --key-border: rgba(80, 88, 104, 0.2);
+
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.g-key--disabled .g-key__scanline,
+.g-key:disabled .g-key__scanline {
+  display: none;
+}
+
+.g-key--disabled .g-key__glow,
+.g-key:disabled .g-key__glow {
+  display: none;
+}
+
+.g-key--disabled .g-key__pulse,
+.g-key:disabled .g-key__pulse {
+  display: none;
+}

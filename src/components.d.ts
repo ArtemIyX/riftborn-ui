@@ -28,6 +28,7 @@ declare module 'vue' {
     GIcon: typeof import('./components/shared/g-icon/GIcon.vue')['default']
     GInput: typeof import('./components/shared/g-input/GInput.vue')['default']
     GInputNumber: typeof import('./components/shared/g-input-number/GInputNumber.vue')['default']
+    GKey: typeof import('./components/shared/g-key/GKey.vue')['default']
     GLabel: typeof import('./components/shared/text/g-label/GLabel.vue')['default']
     GLink: typeof import('./components/shared/text/g-link/GLink.vue')['default']
     GLocText: typeof import('./components/shared/loc-text/GLocText.vue')['default']
