@@ -11,11 +11,29 @@
     ]"
   >
     <!-- Label -->
-    <div v-if="label || showValue" class="g-slider__header">
-      <label v-if="label" class="g-slider__label">{{ label }}</label>
-      <span v-if="showValue" class="g-slider__value">
+    <div v-if="$slots.label || label || showValue" class="g-slider__header">
+      <label v-if="$slots.label || label" class="g-slider__label">
+        <slot name="label">{{ label }}</slot>
+      </label>
+      <span v-if="showValue && !editable" class="g-slider__value">
         {{ formattedValue }}{{ suffix }}
       </span>
+      <div>
+        <GInput size="small"
+                v-if="showValue && editable"
+                ref="inputRef"
+                v-model="inputValue"
+                type="number"
+                class="g-slider__input"
+                :min="min"
+                :max="max"
+                :step="step"
+                :disabled="disabled"
+                @input="onInputChange"
+                @blur="onInputBlur"
+                @keydown.enter="onInputEnter"/>
+      </div>
+
     </div>
 
     <!-- Track container -->
@@ -72,7 +90,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import {ref, computed, watch, onBeforeUnmount} from 'vue'
 
 defineOptions({
   name: 'GSlider'
@@ -136,6 +154,10 @@ const props = defineProps({
   tickCount: {
     type: Number,
     default: 10
+  },
+  editable: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -143,7 +165,14 @@ const emit = defineEmits(['update:modelValue', 'change', 'dragStart', 'dragEnd']
 
 // Refs
 const trackRef = ref(null)
+const inputRef = ref(null)
 const isDragging = ref(false)
+const inputValue = ref(props.modelValue)
+
+// Watch for external changes to modelValue
+watch(() => props.modelValue, (newValue) => {
+  inputValue.value = newValue
+})
 
 // Computed
 const percent = computed(() => {
@@ -191,6 +220,27 @@ const updateValue = (clientX) => {
   if (newValue !== props.modelValue) {
     emit('update:modelValue', newValue)
   }
+}
+
+// Input events
+const onInputChange = (e) => {
+  const value = parseFloat(e.target.value)
+  if (!isNaN(value)) {
+    const clampedValue = clamp(value, props.min, props.max)
+    const roundedValue = roundToStep(clampedValue)
+    inputValue.value = roundedValue
+    emit('update:modelValue', roundedValue)
+  }
+}
+
+const onInputBlur = () => {
+  // Ensure the input shows the current model value on blur
+  inputValue.value = props.modelValue
+  emit('change', props.modelValue)
+}
+
+const onInputEnter = (e) => {
+  e.target.blur()
 }
 
 // Mouse events
@@ -253,9 +303,9 @@ onBeforeUnmount(() => {
 
 // Expose
 defineExpose({
-  trackRef
+  trackRef,
+  inputRef
 })
 </script>
 
 <style src="./GSlider.css" scoped/>
-

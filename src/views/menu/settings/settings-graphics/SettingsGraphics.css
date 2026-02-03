@@ -1,0 +1,23 @@
+﻿.graphics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+
+}
+
+.graphics-settings-container {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+}
+
+.settings-main {
+  overflow: auto; /* or overflow-y: auto for vertical only */
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+.settings-footer {
+
+
+}
