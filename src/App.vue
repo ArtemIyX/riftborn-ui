@@ -1,15 +1,12 @@
 <template>
-  <div id="app">
-    <GToastContainer/>
-    <router-view/>
-  </div>
+  <GToastContainer/>
+  <router-view/>
+
 </template>
 
 <style>
 #app {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  padding: 1rem;
 }
 </style>
 
