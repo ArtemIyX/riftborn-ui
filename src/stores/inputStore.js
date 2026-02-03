@@ -3,7 +3,7 @@ import {ref} from 'vue'
 
 import {emitter} from '@/assets/js/eventBus.js';
 
-export const useInputStore = defineStore('settings', () => {
+export const useInputStore = defineStore('input', () => {
 
   const inputs = ref([
     {
@@ -12,32 +12,53 @@ export const useInputStore = defineStore('settings', () => {
       table: 'ST_Menu',
       keyBindings: [
         {
-          name: 'Move_Forward',
+          name: 'Move Forward',
           key: '#Move_Forward',
           table: 'ST_Menu',
           defaultKey: 'W',
           currentKey: 'W',
         },
         {
-          name: 'Move_Backward',
+          name: 'Move Backward',
           key: '#Move_Backward',
           table: 'ST_Menu',
           defaultKey: 'S',
           currentKey: 'S',
         },
         {
-          name: 'Move_Right',
+          name: 'Move Right',
           key: '#Move_Right',
           table: 'ST_Menu',
           defaultKey: 'D',
           currentKey: 'D',
         },
         {
-          name: 'Move_Left',
+          name: 'Move Left',
           key: '#Move_Right',
           table: 'ST_Menu',
           defaultKey: 'A',
           currentKey: 'A',
+        }
+      ]
+    },
+    {
+      name: "Action",
+      key: '#Category_Input_Action',
+      table: 'ST_Menu',
+      keyBindings: [
+        {
+          name: 'Interact',
+          key: '#Interact',
+          table: 'ST_Menu',
+          defaultKey: 'E',
+          currentKey: 'E',
+        },
+        {
+          name: 'Jump',
+          key: '#Jump',
+          table: 'ST_Menu',
+          defaultKey: 'Space',
+          currentKey: 'Space',
         }
       ]
     }
