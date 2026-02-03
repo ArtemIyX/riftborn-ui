@@ -3,6 +3,8 @@ import MainMenu from "@/views/menu/main-menu/MainMenu.vue";
 import MenuPlayView from "@/views/menu/menu-play/MenuPlayView.vue";
 import MenuSettingsView from "@/views/menu/menu-settings/MenuSettingsView.vue";
 
+import SettingsGraphicsView from "@/views/menu/settings/settings-graphics/SettingsGraphicsView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -23,7 +25,14 @@ const router = createRouter({
         {
           path: 'settings',
           name: 'menu-settings',
-          component: MenuSettingsView
+          component: MenuSettingsView,
+          children: [
+            {
+              path: 'graphics',
+              name: 'settings-graphics',
+              component: SettingsGraphicsView
+            }
+          ]
         },
       ]
     },

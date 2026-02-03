@@ -27,10 +27,11 @@
       </slot>
     </div>
 
-    <!-- Content -->
+    <slot></slot>
+<!--    &lt;!&ndash; Content &ndash;&gt;
     <div class="g-box__content">
-      <slot></slot>
-    </div>
+
+    </div>-->
 
     <!-- Optional footer -->
     <div v-if="$slots.footer" class="g-box__footer">

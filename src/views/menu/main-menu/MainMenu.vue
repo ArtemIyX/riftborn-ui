@@ -1,21 +1,11 @@
 ﻿<style src="./MainMenu.css" scoped/>
 <template>
-  <!--  <div class=".main-container">
-
-      <GBox class="router-box">
-        <router-view/>
-      </GBox>
-    </div>-->
-
   <GFlex class="main-container" direction="row" align="center">
-    <MenuButtons class="button-box"/>
+    <MenuButtons/>
     <GBox class="router-box">
       <router-view />
     </GBox>
-
   </GFlex>
-
-
 </template>
 
 <script setup>
@@ -37,7 +27,7 @@ onMounted(() => {
   });
 
   emitter.on('menu:button:settings', () => {
-    router.push({name: 'menu-settings'});
+    router.push({name: 'settings-graphics'});
   });
 
   emitter.on('menu:button:credits', () => {

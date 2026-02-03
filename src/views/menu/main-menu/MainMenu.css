@@ -4,26 +4,15 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-
   width: 100%;
-
   padding-left: 2rem;
   padding-right: 2rem;
-
-/*  display: flex;
-  flex-direction: row;
-  align-items: center;*/
 }
-
-
-.button-box {
-
-
-}
-
 
 .router-box {
-  height: 80vh;
+  height: 85vh;
   width: 100%;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
+
+
