@@ -1,32 +1,22 @@
 ﻿<template>
 
   <MenuButtons class="menu-box">
-    <GButton>
-      <GLocText :table="locTable" key="#Play">Play</GLocText>
-    </GButton>
-    <GButton>
-      <GLocText :table="locTable" key="#FindServers">Find servers</GLocText>
-    </GButton>
-    <GButton>
-      <GLocText :table="locTable" key="#Settings">Settings</GLocText>
-    </GButton>
-    <GButton>
-      <GLocText :table="locTable" key="#Credits">Credits</GLocText>
-    </GButton>
-    <GButton>
-      <GLocText :table="locTable" key="#Social">Social</GLocText>
-    </GButton>
-    <GButton>
-      <GLocText :table="locTable" key="#Quit">Quit</GLocText>
-    </GButton>
+
   </MenuButtons>
 </template>
 
 <script setup>
 
 import MenuButtons from "@/components/menu/MenuButtons.vue";
+import {ref} from "vue";
 
-const locTable = 'ST_Menu';
+
+const handleButtonClick = (button) => {
+  if (button.onClick && typeof button.onClick === 'function') {
+    button.onClick();
+  }
+};
+
 
 </script>
 
