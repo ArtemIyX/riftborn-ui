@@ -54,11 +54,11 @@ export const useMenuStore = defineStore('menu', () => {
 
   // Getters
   const getButtonByKey = (key) => {
-    return menuButtons.value.find(button => button.keyToLocalize === key)
+    return menuButtons.value.find(button => button.key === key)
   }
 
   const getButtonsByTable = (table) => {
-    return menuButtons.value.filter(button => button.tableToLocalize === table)
+    return menuButtons.value.filter(button => button.table === table)
   }
 
   // Actions
@@ -67,14 +67,14 @@ export const useMenuStore = defineStore('menu', () => {
   }
 
   const removeButton = (key) => {
-    const index = menuButtons.value.findIndex(button => button.keyToLocalize === key)
+    const index = menuButtons.value.findIndex(button => button.key === key)
     if (index !== -1) {
       menuButtons.value.splice(index, 1)
     }
   }
 
   const updateButton = (key, updatedButton) => {
-    const index = menuButtons.value.findIndex(button => button.keyToLocalize === key)
+    const index = menuButtons.value.findIndex(button => button.key === key)
     if (index !== -1) {
       menuButtons.value[index] = {...menuButtons.value[index], ...updatedButton}
     }

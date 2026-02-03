@@ -4,6 +4,10 @@ import MenuPlayView from "@/views/menu/menu-play/MenuPlayView.vue";
 import MenuSettingsView from "@/views/menu/menu-settings/MenuSettingsView.vue";
 
 import SettingsGraphicsView from "@/views/menu/settings/settings-graphics/SettingsGraphicsView.vue";
+import SettingsAudioView from "@/views/menu/settings/settings-audio/SettingsAudioView.vue";
+import SettingsInputView from "@/views/menu/settings/settings-input/SettingsInputView.vue";
+import SettingsMiscView from "@/views/menu/settings/settings-misc/SettingsMiscView.vue";
+import SettingsModsView from "@/views/menu/settings/settings-mods/SettingsModsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +35,26 @@ const router = createRouter({
               path: 'graphics',
               name: 'settings-graphics',
               component: SettingsGraphicsView
+            },
+            {
+              path: 'audio',
+              name: 'settings-audio',
+              component: SettingsAudioView
+            },
+            {
+              path: 'input',
+              name: 'settings-input',
+              component: SettingsInputView
+            },
+            {
+              path: 'misc',
+              name: 'settings-misc',
+              component: SettingsMiscView
+            },
+            {
+              path: 'mods',
+              name: 'settings-mods',
+              component: SettingsModsView
             }
           ]
         },

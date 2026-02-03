@@ -1,9 +1,11 @@
 ﻿<style src="./SettingsGraphics.css" scoped/>
 
 <template>
-<h2>
-  Graphics
-</h2>
+  <GHeading>
+    <GLocText key="#Graphics" table="ST_Menu">
+      Graphics
+    </GLocText>
+  </GHeading>
 </template>
 
 

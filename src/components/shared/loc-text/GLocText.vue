@@ -40,7 +40,7 @@ const fetchLocalization = async (key) => {
       // resolve(data.text);
 
       resolve(null); // Server did not respond with data
-    }, 50);
+    }, 1);
   });
 };
 
