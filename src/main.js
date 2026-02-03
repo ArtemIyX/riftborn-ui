@@ -7,9 +7,19 @@ import './assets/styles/global.css'
 import './assets/styles/colors.css'
 import './assets/styles/utility-colors.css'
 import {colors} from "@/colors.js";
+import {createPinia} from "pinia";
+import { modSystem } from './assets/mods/modSystem'
 
+import ExampleMod from './assets/mods/ExampleMod.js'
+
+const pinia = createPinia()
 const app = createApp(App)
 
+modSystem.register(ExampleMod)
+
+app.use(pinia)
 app.use(router)
+
+modSystem.install(app, pinia)
 
 app.mount('#app')
