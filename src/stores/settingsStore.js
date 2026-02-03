@@ -43,6 +43,7 @@ export const useSettingsStore = defineStore('settings', () => {
     }
   ]);
 
+
   const addButton = (button) => {
     settingsButtons.value.push(button)
   }
