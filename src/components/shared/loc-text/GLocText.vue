@@ -11,6 +11,7 @@
 
 <script setup>
 import { ref, onMounted, useSlots } from 'vue';
+import {fetchLocalization} from "@/assets/js/localization.js";
 
 const props = defineProps({
   key: {
@@ -29,20 +30,6 @@ const displayText = ref('');
 const fetchedText = ref(null);
 const defaultText = ref('');
 
-const fetchLocalization = async (key) => {
-  // Simulate server fetch with 25ms delay and no response
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Fake server response - returns null (no response)
-      // In real implementation, this would be:
-      // const response = await fetch(`/api/localization?key=${key}`);
-      // const data = await response.json();
-      // resolve(data.text);
-
-      resolve(null); // Server did not respond with data
-    }, 1);
-  });
-};
 
 onMounted(async () => {
   // Store default text from slot content
@@ -53,7 +40,7 @@ onMounted(async () => {
 
   // Fetch localized text from server
   try {
-    const localizedText = await fetchLocalization(props.locKey);
+    const localizedText = await fetchLocalization(props.key, props.table);
 
     if (localizedText) {
       fetchedText.value = localizedText;
