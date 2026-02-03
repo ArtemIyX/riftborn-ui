@@ -97,7 +97,7 @@ const props = defineProps({
   },
   showValue: {
     type: Boolean,
-    default: true
+    default: false
   },
   striped: {
     type: Boolean,
