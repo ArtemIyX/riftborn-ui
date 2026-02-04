@@ -75,8 +75,8 @@
 
       <!-- Min/Max labels -->
       <div v-if="showMinMax" class="g-slider__bounds">
-        <span class="g-slider__min">{{ numMin }}{{ suffix }}</span>
-        <span class="g-slider__max">{{ numMax }}{{ suffix }}</span>
+        <span class="g-slider__min">{{ formatValueByStep(numMin) }}{{ suffix }}</span>
+        <span class="g-slider__max">{{ formatValueByStep(numMax) }}{{ suffix }}</span>
       </div>
     </div>
 
@@ -174,6 +174,14 @@ const numMin = computed(() => Number(props.min))
 const numMax = computed(() => Number(props.max))
 const numStep = computed(() => Number(props.step))
 
+// Calculate decimal places from step
+const decimalPlaces = computed(() => {
+  const stepStr = numStep.value.toString()
+  const decimalIndex = stepStr.indexOf('.')
+  if (decimalIndex === -1) return 0
+  return stepStr.length - decimalIndex - 1
+})
+
 // Watch for external changes to modelValue
 watch(() => props.modelValue, (newValue) => {
   inputValue.value = newValue
@@ -186,12 +194,15 @@ const percent = computed(() => {
   return ((props.modelValue - numMin.value) / range) * 100
 })
 
-const formattedValue = computed(() => {
-  if (Number.isInteger(numStep.value)) {
-    return Math.round(props.modelValue)
+const formatValueByStep = (value) => {
+  if (decimalPlaces.value === 0) {
+    return Math.round(value).toString()
   }
-  const decimals = numStep.value.toString().split('.')[1]?.length || 0
-  return props.modelValue.toFixed(decimals)
+  return value.toFixed(decimalPlaces.value)
+}
+
+const formattedValue = computed(() => {
+  return formatValueByStep(props.modelValue)
 })
 
 // Methods
@@ -205,8 +216,14 @@ const clamp = (value, min, max) => {
 
 const roundToStep = (value) => {
   const steps = Math.round((value - numMin.value) / numStep.value)
-  const roundedValue = numMin.value + (steps * numStep.value)
-  return clamp(roundedValue, numMin.value, numMax.value)
+  const rawValue = numMin.value + (steps * numStep.value)
+  const clampedValue = clamp(rawValue, numMin.value, numMax.value)
+
+  // Fix floating point precision by rounding to the step's decimal places
+  if (decimalPlaces.value > 0) {
+    return parseFloat(clampedValue.toFixed(decimalPlaces.value))
+  }
+  return clampedValue
 }
 
 const getValueFromPosition = (clientX) => {

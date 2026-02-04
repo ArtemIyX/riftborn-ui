@@ -1,0 +1,22 @@
+.misc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.misc-settings-container {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+}
+
+.settings-main {
+  overflow: auto;
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+.settings-footer {
+
+
+}

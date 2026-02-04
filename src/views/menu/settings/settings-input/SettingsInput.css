@@ -12,7 +12,7 @@
 }
 
 .settings-main {
-  overflow: auto; /* or overflow-y: auto for vertical only */
+  overflow: auto;
   flex: 1;
   padding-bottom: 2rem;
 }
