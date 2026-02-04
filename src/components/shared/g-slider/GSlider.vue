@@ -25,9 +25,9 @@
                 v-model="inputValue"
                 type="number"
                 class="g-slider__input"
-                :min="min"
-                :max="max"
-                :step="step"
+                :min="numMin"
+                :max="numMax"
+                :step="numStep"
                 :disabled="disabled"
                 @input="onInputChange"
                 @blur="onInputBlur"
@@ -75,8 +75,8 @@
 
       <!-- Min/Max labels -->
       <div v-if="showMinMax" class="g-slider__bounds">
-        <span class="g-slider__min">{{ min }}{{ suffix }}</span>
-        <span class="g-slider__max">{{ max }}{{ suffix }}</span>
+        <span class="g-slider__min">{{ numMin }}{{ suffix }}</span>
+        <span class="g-slider__max">{{ numMax }}{{ suffix }}</span>
       </div>
     </div>
 
@@ -102,15 +102,15 @@ const props = defineProps({
     default: 0
   },
   min: {
-    type: Number,
+    type: [Number, String],
     default: 0
   },
   max: {
-    type: Number,
+    type: [Number, String],
     default: 100
   },
   step: {
-    type: Number,
+    type: [Number, String],
     default: 1
   },
   label: {
@@ -169,6 +169,11 @@ const inputRef = ref(null)
 const isDragging = ref(false)
 const inputValue = ref(props.modelValue)
 
+// Convert string props to numbers
+const numMin = computed(() => Number(props.min))
+const numMax = computed(() => Number(props.max))
+const numStep = computed(() => Number(props.step))
+
 // Watch for external changes to modelValue
 watch(() => props.modelValue, (newValue) => {
   inputValue.value = newValue
@@ -176,16 +181,16 @@ watch(() => props.modelValue, (newValue) => {
 
 // Computed
 const percent = computed(() => {
-  const range = props.max - props.min
+  const range = numMax.value - numMin.value
   if (range === 0) return 0
-  return ((props.modelValue - props.min) / range) * 100
+  return ((props.modelValue - numMin.value) / range) * 100
 })
 
 const formattedValue = computed(() => {
-  if (Number.isInteger(props.step)) {
+  if (Number.isInteger(numStep.value)) {
     return Math.round(props.modelValue)
   }
-  const decimals = props.step.toString().split('.')[1]?.length || 0
+  const decimals = numStep.value.toString().split('.')[1]?.length || 0
   return props.modelValue.toFixed(decimals)
 })
 
@@ -199,8 +204,9 @@ const clamp = (value, min, max) => {
 }
 
 const roundToStep = (value) => {
-  const steps = Math.round((value - props.min) / props.step)
-  return clamp(props.min + steps * props.step, props.min, props.max)
+  const steps = Math.round((value - numMin.value) / numStep.value)
+  const roundedValue = numMin.value + (steps * numStep.value)
+  return clamp(roundedValue, numMin.value, numMax.value)
 }
 
 const getValueFromPosition = (clientX) => {
@@ -208,7 +214,7 @@ const getValueFromPosition = (clientX) => {
 
   const rect = trackRef.value.getBoundingClientRect()
   const percent = clamp((clientX - rect.left) / rect.width, 0, 1)
-  const rawValue = props.min + percent * (props.max - props.min)
+  const rawValue = numMin.value + (percent * (numMax.value - numMin.value))
 
   return roundToStep(rawValue)
 }
@@ -226,7 +232,7 @@ const updateValue = (clientX) => {
 const onInputChange = (e) => {
   const value = parseFloat(e.target.value)
   if (!isNaN(value)) {
-    const clampedValue = clamp(value, props.min, props.max)
+    const clampedValue = clamp(value, numMin.value, numMax.value)
     const roundedValue = roundToStep(clampedValue)
     inputValue.value = roundedValue
     emit('update:modelValue', roundedValue)

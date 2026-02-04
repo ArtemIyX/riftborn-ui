@@ -26,7 +26,6 @@
           <GCombobox :disabled="displayMode === '#Display_Borderless'" v-model="resolution"
                      :placeholder="placeHolder" :options="resolutionOptions"
                      emptyText="invalid"/>
-
         </div>
 
         <div>
@@ -53,7 +52,6 @@
             VSync
           </GLocText>
         </GCheckbox>
-
       </div>
 
 
@@ -72,7 +70,6 @@
           </GLabel>
           <GCombobox v-model="aaQual" :placeholder="placeHolder" :options="qualOptions"
                      emptyText="invalid"/>
-
         </div>
 
         <div>
@@ -83,7 +80,6 @@
           </GLabel>
           <GCombobox v-model="aaType" :placeholder="placeHolder" :options="aaOptions"
                      emptyText="invalid"/>
-
         </div>
 
       </div>
@@ -195,7 +191,7 @@
               Limit FPS
             </GLocText>
           </GCheckbox>
-          <GSlider :disabled="!limitFpsCheck" editable min="0" step="1" max="480"
+          <GSlider :disabled="!limitFpsCheck" editable :min="1" :step="1" :max="480"
                    v-model="fpsLimit">
             <template #label>
               <GLocText key="#FpsLimit" table="ST_Menu">
@@ -210,7 +206,7 @@
               Custom Render Scale
             </GLocText>
           </GCheckbox>
-          <GSlider :disabled="!renderScaleCheck" editable v-model="renderScale">
+          <GSlider :disabled="!renderScaleCheck" :min="1" :max="300" editable v-model="renderScale">
             <template #label>
               <GLocText key="#RenderScale" table="ST_Menu">
                 Render Scale
@@ -220,6 +216,18 @@
         </div>
       </div>
 
+      <GDivider/>
+
+      <div class="graphics-grid">
+        <GSlider editable :min="75" :max="145"
+                 v-model="fov">
+          <template #label>
+            <GLocText key="#FOV" table="ST_Menu">
+              FOV
+            </GLocText>
+          </template>
+        </GSlider>
+      </div>
 
     </div>
     <div class="settings-footer">
@@ -270,6 +278,7 @@ const renderScaleCheck = ref(false);
 
 const fpsLimit = ref(0.0);
 const renderScale = ref(100.0);
+const fov = ref(90.0);
 
 
 const resolution = ref('1920x1080');

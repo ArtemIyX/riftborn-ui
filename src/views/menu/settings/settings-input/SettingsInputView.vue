@@ -42,7 +42,76 @@
           </div>
         </div>
       </div>
+
+      <GDivider>
+        <GLocText key="#Mouse" table="ST_Menu">
+          Mouse
+        </GLocText>
+      </GDivider>
+
+      <div class="input-grid">
+
+        <GSlider v-model="xSens_look" variant="success" :min="1" :max="1000" editable>
+          <template #label>
+            <GLocText key="#XSens_Look" table="ST_Menu">
+              Look (Horizontal)
+            </GLocText>
+          </template>
+        </GSlider>
+
+        <GSlider v-model="ySens_look" variant="success" :min="1" :max="1000" editable>
+          <template #label>
+            <GLocText key="#XSens_Look" table="ST_Menu">
+              Look (Vertical)
+            </GLocText>
+          </template>
+        </GSlider>
+
+        <GSlider v-model="xSens_aim" :min="1" :max="1000" editable>
+          <template #label>
+            <GLocText key="#XSens_Aim" table="ST_Menu">
+              Aim (Horizontal)
+            </GLocText>
+          </template>
+        </GSlider>
+
+        <GSlider v-model="ySens_aim" :min="1" :max="1000" editable>
+          <template #label>
+            <GLocText key="#XSens_Aim" table="ST_Menu">
+              Aim (Vertical)
+            </GLocText>
+          </template>
+        </GSlider>
+
+        <GCheckbox v-model="invertY">
+          <GLocText key="#InvertY" table="ST_Menu">
+            Invert Y
+          </GLocText>
+        </GCheckbox>
+      </div>
+
+      <GDivider>
+        <GLocText key="#Toggle" table="ST_Menu">
+          Toggles
+        </GLocText>
+      </GDivider>
+
+      <div class="input-grid">
+
+        <GToggle v-model="holdCrouch">
+          <GLocText key="#CrouchHold" table="ST_Menu">
+            Crouch Hold
+          </GLocText>
+        </GToggle>
+
+        <GToggle v-model="holdAim">
+          <GLocText key="#AimHold" table="ST_Menu">
+            Aim Hold
+          </GLocText>
+        </GToggle>
+      </div>
     </div>
+
 
     <!-- Always on bottom of page -->
     <div class="settings-footer">
@@ -61,6 +130,16 @@ import {reactive, ref} from "vue";
 import {useInputStore} from "@/stores/inputStore.js";
 
 const inputStore = useInputStore();
+
+const xSens_look = ref(500.0);
+const ySens_look = ref(500.0);
+
+const xSens_aim = ref(250.0);
+const ySens_aim = ref(250.0);
+const invertY = ref(false);
+
+const holdCrouch = ref(false);
+const holdAim = ref(false);
 
 // Track which key is currently being listened to
 const activeListeningKey = ref(null);

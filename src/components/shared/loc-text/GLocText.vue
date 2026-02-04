@@ -1,6 +1,6 @@
 ﻿<template>
   <span v-if="displayText">{{ displayText }}</span>
-  <g-spinner class="loading-spinner" v-else/>
+  <g-spinner variant="bars" class="loading-spinner" v-else/>
 </template>
 
 <style scoped>
