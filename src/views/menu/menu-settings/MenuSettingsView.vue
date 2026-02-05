@@ -2,11 +2,6 @@
 
 <template>
 
-<!--
-  <GHeading>
-    <GLocText table="ST_Menu" key="#Settings">Settings</GLocText>
-  </GHeading>
--->
 
   <div class="settings-container">
     <SettingsButtons/>

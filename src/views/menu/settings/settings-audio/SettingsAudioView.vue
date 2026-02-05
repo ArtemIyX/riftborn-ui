@@ -3,7 +3,7 @@
 
 <template>
   <GHeading>
-    <GLocText key="#Audio" table="ST_Menu">
+    <GLocText code="#Audio" :table="ST_MENU">
       Audio
     </GLocText>
   </GHeading>
@@ -12,7 +12,7 @@
     <div class="settings-main">
 
       <GDivider>
-        <GLocText key="#AudioDevices" table="ST_Menu">
+        <GLocText code="#AudioDevices" :table="ST_MENU">
           Devices
         </GLocText>
       </GDivider>
@@ -20,7 +20,7 @@
       <div class="audio-grid">
         <div>
           <GLabel>
-            <GLocText key="#Mic" table="ST_Menu">
+            <GLocText code="#Mic" :table="ST_MENU">
               Mic
             </GLocText>
           </GLabel>
@@ -30,7 +30,7 @@
         </div>
         <div>
           <GLabel>
-            <GLocText key="#Speaker" table="ST_Menu">
+            <GLocText code="#Speaker" :table="ST_MENU">
               Speaker
             </GLocText>
           </GLabel>
@@ -41,7 +41,7 @@
 
         <div>
           <GLabel>
-            <GLocText key="#MicInputVolume" table="ST_Menu">
+            <GLocText code="#MicInputVolume" :table="ST_MENU">
               Mic Volume
             </GLocText>
           </GLabel>
@@ -51,14 +51,14 @@
 
 
       <GDivider>
-        <GLocText key="#VolumeControls" table="ST_Menu">
+        <GLocText code="#VolumeControls" :table="ST_MENU">
           Volume Controls
         </GLocText>
       </GDivider>
 
       <GSlider variant="success" v-model="master" editable>
         <template #label>
-          <GLocText key="#MasterVolume" table="ST_Menu">
+          <GLocText code="#MasterVolume" :table="ST_MENU">
             Master Volume
           </GLocText>
         </template>
@@ -69,7 +69,7 @@
       <div class="audio-grid">
         <GSlider v-model="music" editable>
           <template #label>
-            <GLocText key="#MusicVolume" table="ST_Menu">
+            <GLocText code="#MusicVolume" :table="ST_MENU">
               Music Volume
             </GLocText>
           </template>
@@ -77,7 +77,7 @@
 
         <GSlider v-model="sound" editable>
           <template #label>
-            <GLocText key="#SoundVolume" table="ST_Menu">
+            <GLocText code="#SoundVolume" :table="ST_MENU">
               Sound Volume
             </GLocText>
           </template>
@@ -85,7 +85,7 @@
 
         <GSlider v-model="ui" editable>
           <template #label>
-            <GLocText key="#UIVolume" table="ST_Menu">
+            <GLocText code="#UIVolume" :table="ST_MENU">
               UI Volume
             </GLocText>
           </template>
@@ -93,7 +93,7 @@
 
         <GSlider v-model="ambient" editable>
           <template #label>
-            <GLocText key="AmbientVolume" table="ST_Menu">
+            <GLocText code="#AmbientVolume" :table="ST_MENU">
               Ambient Volume
             </GLocText>
           </template>
@@ -101,7 +101,7 @@
 
         <GSlider v-model="voiceIn" editable>
           <template #label>
-            <GLocText key="#VoiceInputVolume" table="ST_Menu">
+            <GLocText code="#VoiceInputVolume" :table="ST_MENU">
               Voice Volume (Input)
             </GLocText>
           </template>
@@ -109,7 +109,7 @@
 
         <GSlider v-model="voiceOut" editable>
           <template #label>
-            <GLocText key="#VoiceOutputVolume" table="ST_Menu">
+            <GLocText code="#VoiceOutputVolume" :table="ST_MENU">
               Voice Volume (Output)
             </GLocText>
           </template>
@@ -121,12 +121,12 @@
     <div class="settings-footer">
       <div class="audio-grid">
         <GButton variant="secondary">
-          <GLocText key="#Cancel" table="ST_Menu">
+          <GLocText code="#Cancel" :table="ST_MENU">
             Cancel
           </GLocText>
         </GButton>
         <GButton variant="primary">
-          <GLocText key="#Apply" table="ST_Menu">
+          <GLocText code="#Apply" :table="ST_MENU">
             Apply
           </GLocText>
         </GButton>
@@ -140,6 +140,8 @@
 
 import {onMounted, ref} from "vue";
 import {getLocText} from "@/assets/js/localization.js";
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
+
 
 const master = ref(100.0);
 const music = ref(100.0);
@@ -200,17 +202,17 @@ const fetchSpeaker = async () => {
   })
 };
 
-onMounted(() => {
-  getLocText("#AudioDevicePlaceHoder", "ST_Menu", "Select device").then((res) => {
-    placeholder.value = res;
-  })
-  fetchSpeaker().then(res => {
-    speakerOptions.value = res;
-  })
+onMounted(async () => {
+  // Fetch all data in parallel
+  const [placeholderResult, speakerResult, micResult] = await Promise.all([
+    getLocText("#AudioDevicePlaceHoder", ST_MENU, "Select device"),
+    fetchSpeaker(),
+    fetchMic()
+  ]);
 
-  fetchMic().then(res => {
-    micOptions.value = res;
-  })
+  // Assign results
+  placeholder.value = placeholderResult.result;
+  speakerOptions.value = speakerResult.result;
+  micOptions.value = micResult;
 });
-
 </script>

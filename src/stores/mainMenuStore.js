@@ -4,47 +4,48 @@ import {ref} from 'vue'
 
 import {emitter} from '@/assets/js/eventBus.js';
 import GButton from "@/components/shared/buttons/GButton.vue";
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
 
 export const useMenuStore = defineStore('menu', () => {
   // State: array of menu button objects
   const menuButtons = ref([
     {
-      table: 'ST_Menu',
+      table: ST_MENU,
       key: '#Play',
       text: 'Find Servers',
       component: GButton,
       click: () => emitter.emit('menu:button:play')
     },
     {
-      table: 'ST_Menu',
+      table: ST_MENU,
       key: '#Host',
       text: 'Host server',
       component: GButton,
       click: () => emitter.emit('menu:button:host')
     },
     {
-      table: 'ST_Menu',
+      table: ST_MENU,
       key: '#Settings',
       text: 'Settings',
       component: GButton,
       click: () => emitter.emit('menu:button:settings')
     },
     {
-      table: 'ST_Menu',
+      table: ST_MENU,
       key: '#Credits',
       text: 'Credits',
       component: GButton,
       click: () => emitter.emit('menu:button:credits')
     },
     {
-      table: 'ST_Menu',
+      table: ST_MENU,
       key: '#Social',
       text: 'Social',
       component: GButton,
       click: () => emitter.emit('menu:button:social')
     },
     {
-      table: 'ST_Menu',
+      table: ST_MENU,
       key: '#Quit',
       text: 'Quit',
       component: GButton,

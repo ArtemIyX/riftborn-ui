@@ -10,11 +10,11 @@
 </style>
 
 <script setup>
-import { ref, onMounted, useSlots } from 'vue';
-import {fetchLocalization} from "@/assets/js/localization.js";
+import {ref, onMounted, useSlots} from 'vue';
+import {getLocText} from "@/assets/js/localization.js";
 
 const props = defineProps({
-  key: {
+  code: {
     type: String,
     required: true
   },
@@ -27,32 +27,33 @@ const props = defineProps({
 const slots = useSlots();
 
 const displayText = ref('');
-const fetchedText = ref(null);
 const defaultText = ref('');
 
+const getDefaultText = () => {
+  return slots.default?.()?.[0]?.children || '';
+};
 
-onMounted(async () => {
-  // Store default text from slot content
-  defaultText.value = slots.default?.()?.[0]?.children || '';
+const fetchLocalizedText = async () => {
+  const defaultText = getDefaultText();
 
-  // Start with empty display (hidden)
-  displayText.value = '';
-
-  // Fetch localized text from server
   try {
-    const localizedText = await fetchLocalization(props.key, props.table);
+    console.log(`GLocText request: ${props.code} (${props.table})`);
 
-    if (localizedText) {
-      fetchedText.value = localizedText;
-      displayText.value = localizedText;
-    } else {
-      // Server returned nothing, use default
-      displayText.value = defaultText.value;
+    const result = await getLocText(props.code, props.table, defaultText);
+
+    // Use localized text if found, otherwise use default
+    displayText.value = result.success ? result.result : defaultText;
+
+    if (!result.success) {
+      //console.log(`Using default text for ${props.code}`);
     }
   } catch (error) {
-    // Error occurred, use default
-    console.error('Failed to fetch localization:', error);
-    displayText.value = defaultText.value;
+    console.error(`GLocText error (${props.code}, ${props.table}):`, error);
+    displayText.value = defaultText;
   }
+};
+
+onMounted(async () => {
+  await fetchLocalizedText();
 });
 </script>

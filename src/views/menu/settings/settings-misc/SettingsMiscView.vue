@@ -3,14 +3,14 @@
 
 <template>
   <GHeading>
-    <GLocText key="#MiscTitle" table="ST_Menu">
+    <GLocText code="#MiscTitle" :table="ST_MENU">
       Miscellaneous
     </GLocText>
   </GHeading>
   <div class="misc-settings-container">
     <div class="settings-main">
       <GDivider>
-        <GLocText key="#MiscTitle" table="ST_Menu">
+        <GLocText code="#MiscTitle" :table="ST_MENU">
           Miscellaneous
         </GLocText>
       </GDivider>
@@ -18,7 +18,7 @@
       <div class="misc-grid">
         <GSlider v-model="uiScale" :min="0.1" :step="0.1" :max="5" editable>
           <template #label>
-            <GLocText key="#UiScale" table="ST_Menu">
+            <GLocText code="#UiScale" :table="ST_MENU">
               UI Scale
             </GLocText>
           </template>
@@ -26,7 +26,7 @@
 
         <div>
           <GLabel>
-            <GLocText key="#Language" table="ST_Menu">
+            <GLocText code="#Language" :table="ST_MENU">
               Language
             </GLocText>
           </GLabel>
@@ -42,12 +42,12 @@
     <div class="settings-footer">
       <div class="misc-grid">
         <GButton variant="secondary">
-          <GLocText key="#Cancel" table="ST_Menu">
+          <GLocText code="#Cancel" :table="ST_MENU">
             Cancel
           </GLocText>
         </GButton>
         <GButton variant="primary">
-          <GLocText key="#Apply" table="ST_Menu">
+          <GLocText code="#Apply" :table="ST_MENU">
             Apply
           </GLocText>
         </GButton>
@@ -61,6 +61,8 @@
 
 import {onMounted, ref} from "vue";
 import {getLocText} from "@/assets/js/localization.js";
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
+
 
 const placeholder = ref('Select');
 const searchPlaceHolder = ref('Search');
@@ -90,21 +92,19 @@ const fetchLanguages = async () => {
   })
 }
 
-onMounted(() => {
-  getLocText('#ComboPlaceHolder', 'ST_Menu', 'Select').then((result) => {
-    placeholder.value = result;
-  });
+onMounted(async () => {
+  // Fetch all localizations and languages in parallel
+  const [placeholderResult, emptyTextResult, searchPlaceHolderResult, languagesResult] = await Promise.all([
+    getLocText('#ComboPlaceHolder', ST_MENU, 'Select'),
+    getLocText('#ComboEmpty', ST_MENU, 'Not found'),
+    getLocText('#ComboSearch', ST_MENU, 'Search...'),
+    fetchLanguages()
+  ]);
 
-  getLocText('#ComboEmpty', 'ST_Menu', 'Not found').then((result) => {
-    emptyText.value = result;
-  });
-
-  getLocText('#ComboSearch', 'ST_Menu', 'Search...').then((result) => {
-    searchPlaceHolder.value = result;
-  });
-
-  fetchLanguages().then((result) => {
-    languages.value = result;
-  })
+  // Assign results
+  placeholder.value = placeholderResult.result;
+  emptyText.value = emptyTextResult.result;
+  searchPlaceHolder.value = searchPlaceHolderResult.result;
+  languages.value = languagesResult;
 });
 </script>

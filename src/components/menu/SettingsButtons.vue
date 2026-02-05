@@ -8,7 +8,7 @@
       :is="button.component"
       @click="button.click ? button.click() : undefined"
     >
-      <GLocText :table="button.table" :key="button.key">{{ button.text }}</GLocText>
+      <GLocText :table="button.table" :code="button.key">{{ button.text }}</GLocText>
     </component>
 
   </GBox>

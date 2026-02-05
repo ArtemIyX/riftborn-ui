@@ -2,7 +2,7 @@
 
 <template>
   <GHeading>
-    <GLocText key="#Input" table="ST_Menu">
+    <GLocText code="#Input" :table="ST_MENU">
       Input
     </GLocText>
   </GHeading>
@@ -18,7 +18,7 @@
 
         <!-- Category title -->
         <GDivider>
-          <GLocText :key="category.key" :table="category.table">
+          <GLocText :code="category.key" :table="category.table">
             {{ category.name }}
           </GLocText>
         </GDivider>
@@ -27,7 +27,7 @@
         <div class="input-grid">
           <div class="setting-row" v-for="inputData in category.keyBindings" :key="inputData.name">
             <GLabel>
-              <GLocText :key="inputData.key" :table="category.table">
+              <GLocText :code="inputData.key" :table="category.table">
                 {{ inputData.name }}
               </GLocText>
             </GLabel>
@@ -44,7 +44,7 @@
       </div>
 
       <GDivider>
-        <GLocText key="#Mouse" table="ST_Menu">
+        <GLocText code="#Mouse" :table="ST_MENU">
           Mouse
         </GLocText>
       </GDivider>
@@ -53,7 +53,7 @@
 
         <GSlider v-model="xSens_look" variant="success" :min="1" :max="1000" editable>
           <template #label>
-            <GLocText key="#XSens_Look" table="ST_Menu">
+            <GLocText code="#XSens_Look" :table="ST_MENU">
               Look (Horizontal)
             </GLocText>
           </template>
@@ -61,7 +61,7 @@
 
         <GSlider v-model="ySens_look" variant="success" :min="1" :max="1000" editable>
           <template #label>
-            <GLocText key="#XSens_Look" table="ST_Menu">
+            <GLocText code="#XSens_Look" :table="ST_MENU">
               Look (Vertical)
             </GLocText>
           </template>
@@ -69,7 +69,7 @@
 
         <GSlider v-model="xSens_aim" :min="1" :max="1000" editable>
           <template #label>
-            <GLocText key="#XSens_Aim" table="ST_Menu">
+            <GLocText code="#XSens_Aim" :table="ST_MENU">
               Aim (Horizontal)
             </GLocText>
           </template>
@@ -77,21 +77,21 @@
 
         <GSlider v-model="ySens_aim" :min="1" :max="1000" editable>
           <template #label>
-            <GLocText key="#XSens_Aim" table="ST_Menu">
+            <GLocText code="#XSens_Aim" :table="ST_MENU">
               Aim (Vertical)
             </GLocText>
           </template>
         </GSlider>
 
         <GCheckbox v-model="invertY">
-          <GLocText key="#InvertY" table="ST_Menu">
+          <GLocText code="#InvertY" :table="ST_MENU">
             Invert Y
           </GLocText>
         </GCheckbox>
       </div>
 
       <GDivider>
-        <GLocText key="#Toggle" table="ST_Menu">
+        <GLocText code="#Toggle" :table="ST_MENU">
           Toggles
         </GLocText>
       </GDivider>
@@ -99,13 +99,13 @@
       <div class="input-grid">
 
         <GToggle v-model="holdCrouch">
-          <GLocText key="#CrouchHold" table="ST_Menu">
+          <GLocText code="#CrouchHold" :table="ST_MENU">
             Crouch Hold
           </GLocText>
         </GToggle>
 
         <GToggle v-model="holdAim">
-          <GLocText key="#AimHold" table="ST_Menu">
+          <GLocText code="#AimHold" :table="ST_MENU">
             Aim Hold
           </GLocText>
         </GToggle>
@@ -116,7 +116,7 @@
     <!-- Always on bottom of page -->
     <div class="settings-footer">
       <GButtonCommon @click="resetToDefaults" style="width: 100%">
-        <GLocText key="#ResetToDefaults" table="ST_Menu">
+        <GLocText code="#ResetToDefaults" :table="ST_MENU">
           Reset to defaults
         </GLocText>
       </GButtonCommon>
@@ -128,6 +128,7 @@
 
 import {reactive, ref} from "vue";
 import {useInputStore} from "@/stores/inputStore.js";
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
 
 const inputStore = useInputStore();
 

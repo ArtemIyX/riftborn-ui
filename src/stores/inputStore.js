@@ -2,6 +2,7 @@
 import {ref} from 'vue'
 
 import {emitter} from '@/assets/js/eventBus.js';
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
 
 export const useInputStore = defineStore('input', () => {
 
@@ -9,33 +10,33 @@ export const useInputStore = defineStore('input', () => {
     {
       name: "Movement",
       key: '#Category_Input_Movement',
-      table: 'ST_Menu',
+      table: ST_MENU,
       keyBindings: [
         {
           name: 'Move Forward',
           key: '#Move_Forward',
-          table: 'ST_Menu',
+          table: ST_MENU,
           defaultKey: 'W',
           currentKey: 'W',
         },
         {
           name: 'Move Backward',
           key: '#Move_Backward',
-          table: 'ST_Menu',
+          table: ST_MENU,
           defaultKey: 'S',
           currentKey: 'S',
         },
         {
           name: 'Move Right',
           key: '#Move_Right',
-          table: 'ST_Menu',
+          table: ST_MENU,
           defaultKey: 'D',
           currentKey: 'D',
         },
         {
           name: 'Move Left',
           key: '#Move_Right',
-          table: 'ST_Menu',
+          table: ST_MENU,
           defaultKey: 'A',
           currentKey: 'A',
         }
@@ -44,19 +45,19 @@ export const useInputStore = defineStore('input', () => {
     {
       name: "Action",
       key: '#Category_Input_Action',
-      table: 'ST_Menu',
+      table: ST_MENU,
       keyBindings: [
         {
           name: 'Interact',
           key: '#Interact',
-          table: 'ST_Menu',
+          table: ST_MENU,
           defaultKey: 'E',
           currentKey: 'E',
         },
         {
           name: 'Jump',
           key: '#Jump',
-          table: 'ST_Menu',
+          table: ST_MENU,
           defaultKey: 'Space',
           currentKey: 'Space',
         }

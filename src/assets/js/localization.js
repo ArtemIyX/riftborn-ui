@@ -1,33 +1,38 @@
-﻿export const fetchLocalization = async (key, table) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(null);
-    }, 1);
+﻿export const getLocText = async (key, table, defaultValue) => {
+  const createResult = (success, result) => ({
+    key,
+    table,
+    result,
+    success
   });
-};
 
-export const fetchLocalizationArray = async (array) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(null);
-    }, 1);
-  });
-};
+  const request = {key, table};
 
-
-export const getLocText = async (key, table, defaultValue) => {
   try {
-    const localizedText = await fetchLocalization(key, table);
+    //console.log("Localization request:", JSON.stringify(request));
 
-    if (localizedText) {
-      return localizedText;
-    } else {
-      return defaultValue;
+    // Check if UE backend is available
+    if (!window.ue?.handler?.loctext) {
+      console.warn(`Localization backend unavailable for ${key}, using fallback`);
+      return createResult(false, defaultValue);
     }
+
+    // Call UE backend
+    const responseJsonStr = await window.ue.handler.loctext(JSON.stringify(request));
+    const response = JSON.parse(responseJsonStr);
+
+    // If backend returned a valid result, use it
+    if (response?.success && response?.result) {
+      return response;
+    }
+
+    // Backend responded but didn't find the text
+    console.warn(`Localization key not found: ${key}, using fallback`);
+    return createResult(false, defaultValue);
+
   } catch (error) {
-    // Error occurred, use default
-    console.error('Failed to fetch localization:', error);
-    return defaultValue;
+    console.error(`Localization error for ${key}:`, error);
+    return createResult(false, defaultValue);
   }
 }
 
@@ -49,7 +54,7 @@ export const getLocText = async (key, table, defaultValue) => {
  * @returns {string} return[].result - Localized text or default value
  * @returns {boolean} return[].success - True if localization succeeded, false otherwise
  *
- * @throws {Error} Catches and logs any errors from fetchLocalizationArray
+ * @throws {Error} Catches and logs any errors from UE backend
  *
  * @example
  * const requests = [
@@ -63,32 +68,64 @@ export const getLocText = async (key, table, defaultValue) => {
  * //   { key: 'GREETING', table: 'UI', result: 'Hello', success: true },
  * //   { key: 'FAREWELL', table: 'UI', result: 'GOOD', success: false }
  * // ]
- *
- * @returns {Promise<Array<{key: string, table: string, result: string, success: boolean}>>}
  */
 export const getLocTextArray = async (arr) => {
-  try {
-    const localizedArr = await fetchLocalizationArray(arr);
-
-    if (localizedArr) {
-      return localizedArr;
-    } else {
-      // Server returned falsy value, create fallback array
-      return arr.map(item => ({
-        key: item.key,
-        table: item.table,
-        result: item.defaultValue,
-        success: false
-      }));
-    }
-  } catch (error) {
-    // Error occurred, use default values
-    console.error('Failed to fetch localization:', error);
-    return arr.map(item => ({
+  const createFallbackArray = () =>
+    arr.map(item => ({
       key: item.key,
       table: item.table,
       result: item.defaultValue,
       success: false
     }));
+
+  try {
+    // Check if UE backend is available
+    if (!window.ue?.handler?.loctextarr) {
+      console.warn('Localization array backend unavailable, using fallback');
+      return createFallbackArray();
+    }
+
+    // Prepare request array (without defaultValue for backend)
+    const request = arr.map(item => ({
+      key: item.key,
+      table: item.table
+    }));
+
+    // Call UE backend
+    const responseJsonStr = await window.ue.handler.loctextarr(JSON.stringify(request));
+    const response = JSON.parse(responseJsonStr);
+
+    // Validate response
+    if (!Array.isArray(response) || response.length === 0) {
+      console.warn('Invalid response from localization backend, using fallback');
+      return createFallbackArray();
+    }
+
+    // Merge backend response with default values
+    return arr.map((item, index) => {
+      const backendResult = response[index];
+
+      // If backend succeeded for this item, use its result
+      if (backendResult?.success && backendResult?.result) {
+        return {
+          key: item.key,
+          table: item.table,
+          result: backendResult.result,
+          success: true
+        };
+      }
+
+      // Otherwise use default value
+      return {
+        key: item.key,
+        table: item.table,
+        result: item.defaultValue,
+        success: false
+      };
+    });
+
+  } catch (error) {
+    console.error('Failed to fetch localization array:', error);
+    return createFallbackArray();
   }
-}
+};

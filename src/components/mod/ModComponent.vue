@@ -1,6 +1,6 @@
 ﻿<!-- components/ModComponent.vue -->
 <script setup>
-import { computed, defineProps, defineEmits } from 'vue'
+import { computed } from 'vue'
 import {modSystem} from "@/assets/mods/ModSystem.js";
 
 const props = defineProps({

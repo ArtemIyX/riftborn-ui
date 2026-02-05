@@ -3,7 +3,7 @@
 
 <template>
   <GHeading>
-    <GLocText key="#Mods" table="ST_Menu">
+    <GLocText code="#Mods" table="ST_Menu">
       Mods
     </GLocText>
   </GHeading>

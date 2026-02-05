@@ -1,5 +1,6 @@
 ﻿<style src="./MainMenu.css" scoped/>
 <template>
+
   <GFlex class="main-container" direction="row" align="center">
     <MenuButtons/>
     <GBox class="router-box">

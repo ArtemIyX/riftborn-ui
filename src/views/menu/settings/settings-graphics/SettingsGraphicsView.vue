@@ -2,7 +2,7 @@
 
 <template>
   <GHeading>
-    <GLocText key="#Graphics" table="ST_Menu">
+    <GLocText code="#Graphics" :table="ST_MENU">
       Graphics
     </GLocText>
   </GHeading>
@@ -11,7 +11,7 @@
     <div class="settings-main">
 
       <GDivider>
-        <GLocText key="#Display" table="ST_Menu">
+        <GLocText code="#Display" :table="ST_MENU">
           Display
         </GLocText>
       </GDivider>
@@ -19,7 +19,7 @@
       <div class="graphics-grid">
         <div>
           <GLabel>
-            <GLocText key="#Resolution" table="ST_Menu">
+            <GLocText code="#Resolution" :table="ST_MENU">
               Resolution
             </GLocText>
           </GLabel>
@@ -30,7 +30,7 @@
 
         <div>
           <GLabel>
-            <GLocText key="#DisplayMode" table="ST_Menu">
+            <GLocText code="#DisplayMode" :table="ST_MENU">
               Display Mode
             </GLocText>
           </GLabel>
@@ -42,13 +42,13 @@
 
       <div class="graphics-grid" style="padding-top: 1rem">
         <GCheckbox v-model="motionBlur">
-          <GLocText key="#MotionBlur" table="ST_Menu">
+          <GLocText code="#MotionBlur" :table="ST_MENU">
             Motion blur
           </GLocText>
         </GCheckbox>
 
         <GCheckbox v-model="vsync">
-          <GLocText key="#VSync" table="ST_Menu">
+          <GLocText code="#VSync" :table="ST_MENU">
             VSync
           </GLocText>
         </GCheckbox>
@@ -56,7 +56,7 @@
 
 
       <GDivider>
-        <GLocText key="#AntiAliasing" table="ST_Menu">
+        <GLocText code="#AntiAliasing" :table="ST_MENU">
           Anti-Aliasing
         </GLocText>
       </GDivider>
@@ -64,7 +64,7 @@
       <div class="graphics-grid">
         <div>
           <GLabel>
-            <GLocText key="#AntiAliasingQuality" table="ST_Menu">
+            <GLocText code="#AntiAliasingQuality" :table="ST_MENU">
               Anti-Aliasing quality
             </GLocText>
           </GLabel>
@@ -74,7 +74,7 @@
 
         <div>
           <GLabel>
-            <GLocText key="#AntiAliasingType" table="ST_Menu">
+            <GLocText code="#AntiAliasingType" :table="ST_MENU">
               Anti-Aliasing
             </GLocText>
           </GLabel>
@@ -85,7 +85,7 @@
       </div>
 
       <GDivider>
-        <GLocText key="#PostProcess" table="ST_Menu">
+        <GLocText code="#PostProcess" :table="ST_MENU">
           Post-Processing
         </GLocText>
       </GDivider>
@@ -93,7 +93,7 @@
       <div class="graphics-grid">
         <div>
           <GLabel>
-            <GLocText key="#PostProcessQual" table="ST_Menu">
+            <GLocText code="#PostProcessQual" :table="ST_MENU">
               Post-Process
             </GLocText>
           </GLabel>
@@ -102,7 +102,7 @@
         </div>
         <div>
           <GLabel>
-            <GLocText key="#ViewDistanceQual" table="ST_Menu">
+            <GLocText code="#ViewDistanceQual" :table="ST_MENU">
               View Distance
             </GLocText>
           </GLabel>
@@ -111,7 +111,7 @@
         </div>
         <div>
           <GLabel>
-            <GLocText key="#ShadowsQual" table="ST_Menu">
+            <GLocText code="#ShadowsQual" :table="ST_MENU">
               Shadows
             </GLocText>
           </GLabel>
@@ -121,7 +121,7 @@
 
         <div>
           <GLabel>
-            <GLocText key="#GlobalIlluminationQual" table="ST_Menu">
+            <GLocText code="#GlobalIlluminationQual" :table="ST_MENU">
               Global Illumination
             </GLocText>
           </GLabel>
@@ -131,7 +131,7 @@
 
         <div>
           <GLabel>
-            <GLocText key="#ReflectionsQual" table="ST_Menu">
+            <GLocText code="#ReflectionsQual" :table="ST_MENU">
               Reflections
             </GLocText>
           </GLabel>
@@ -141,7 +141,7 @@
 
         <div>
           <GLabel>
-            <GLocText key="#TexturesQual" table="ST_Menu">
+            <GLocText code="#TexturesQual" :table="ST_MENU">
               Textures
             </GLocText>
           </GLabel>
@@ -150,7 +150,7 @@
         </div>
         <div>
           <GLabel>
-            <GLocText key="#EffectsQual" table="ST_Menu">
+            <GLocText code="#EffectsQual" :table="ST_MENU">
               Effects
             </GLocText>
           </GLabel>
@@ -159,7 +159,7 @@
         </div>
         <div>
           <GLabel>
-            <GLocText key="#FoliageQual" table="ST_Menu">
+            <GLocText code="#FoliageQual" :table="ST_MENU">
               Foliage
             </GLocText>
           </GLabel>
@@ -168,7 +168,7 @@
         </div>
         <div>
           <GLabel>
-            <GLocText key="#ShadingQual" table="ST_Menu">
+            <GLocText code="#ShadingQual" :table="ST_MENU">
               Foliage
             </GLocText>
           </GLabel>
@@ -179,7 +179,7 @@
       </div>
 
       <GDivider>
-        <GLocText key="#FPS" table="ST_Menu">
+        <GLocText code="#FPS" :table="ST_MENU">
           Frame Rate
         </GLocText>
       </GDivider>
@@ -187,14 +187,14 @@
       <div class="graphics-grid">
         <div>
           <GCheckbox v-model="limitFpsCheck">
-            <GLocText key="#LimitFpsCheck" table="ST_Menu">
+            <GLocText code="#LimitFpsCheck" :table="ST_MENU">
               Limit FPS
             </GLocText>
           </GCheckbox>
           <GSlider :disabled="!limitFpsCheck" editable :min="1" :step="1" :max="480"
                    v-model="fpsLimit">
             <template #label>
-              <GLocText key="#FpsLimit" table="ST_Menu">
+              <GLocText code="#FpsLimit" :table="ST_MENU">
                 Max. FPS
               </GLocText>
             </template>
@@ -202,13 +202,13 @@
         </div>
         <div>
           <GCheckbox v-model="renderScaleCheck">
-            <GLocText key="#RenderScaleTitle" table="ST_Menu">
+            <GLocText code="#RenderScaleTitle" :table="ST_MENU">
               Custom Render Scale
             </GLocText>
           </GCheckbox>
           <GSlider :disabled="!renderScaleCheck" :min="1" :max="300" editable v-model="renderScale">
             <template #label>
-              <GLocText key="#RenderScale" table="ST_Menu">
+              <GLocText code="#RenderScale" :table="ST_MENU">
                 Render Scale
               </GLocText>
             </template>
@@ -222,7 +222,7 @@
         <GSlider editable :min="75" :max="145"
                  v-model="fov">
           <template #label>
-            <GLocText key="#FOV" table="ST_Menu">
+            <GLocText code="#FOV" :table="ST_MENU">
               FOV
             </GLocText>
           </template>
@@ -233,12 +233,12 @@
     <div class="settings-footer">
       <div class="graphics-grid">
         <GButton variant="secondary">
-          <GLocText key="#Cancel" table="ST_Menu">
+          <GLocText code="#Cancel" :table="ST_MENU">
             Cancel
           </GLocText>
         </GButton>
         <GButton variant="primary">
-          <GLocText key="#Apply" table="ST_Menu">
+          <GLocText code="#Apply" :table="ST_MENU">
             Apply
           </GLocText>
         </GButton>
@@ -252,7 +252,9 @@
 <script setup>
 
 import {onMounted, ref} from "vue";
-import {fetchLocalization, getLocText, getLocTextArray} from "@/assets/js/localization.js";
+import {getLocText, getLocTextArray} from "@/assets/js/localization.js";
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
+
 
 const placeHolder = ref('Select');
 const qualOptions = ref([]);
@@ -328,97 +330,96 @@ const fetchResolutionOptions = async () => {
   }
 };
 
-onMounted(() => {
-  getLocText('#ComboPlaceHolder', 'ST_Menu', 'Select').then((result) => {
-    placeHolder.value = result;
-  });
+onMounted(async () => {
+  // Fetch all localizations in parallel
+  const [placeHolderResult, qualResult, aaResult, displayResult] = await Promise.all([
+    getLocText('#ComboPlaceHolder', ST_MENU, 'Select'),
+    getLocTextArray([
+      {
+        key: '#Low',
+        table: ST_MENU,
+        defaultValue: 'Low'
+      },
+      {
+        key: '#Medium',
+        table: ST_MENU,
+        defaultValue: 'Medium'
+      },
+      {
+        key: '#High',
+        table: ST_MENU,
+        defaultValue: 'High'
+      },
+      {
+        key: '#Epic',
+        table: ST_MENU,
+        defaultValue: 'Epic'
+      },
+      {
+        key: '#Cinematic',
+        table: ST_MENU,
+        defaultValue: 'Cinematic'
+      }
+    ]),
+    getLocTextArray([
+      {
+        key: '#AA_None',
+        table: ST_MENU,
+        defaultValue: 'None'
+      },
+      {
+        key: '#AA_FXAA',
+        table: ST_MENU,
+        defaultValue: 'FXAA'
+      },
+      {
+        key: '#AA_TSR',
+        table: ST_MENU,
+        defaultValue: 'TSR'
+      },
+      {
+        key: '#AA_TAA',
+        table: ST_MENU,
+        defaultValue: 'TAA'
+      }
+    ]),
+    getLocTextArray([
+      {
+        key: '#Display_Fullscreen',
+        table: ST_MENU,
+        defaultValue: 'Fullscreen'
+      },
+      {
+        key: '#Display_Windowed',
+        table: ST_MENU,
+        defaultValue: 'Windowed'
+      },
+      {
+        key: '#Display_Borderless',
+        table: ST_MENU,
+        defaultValue: 'Borderless'
+      }
+    ])
+  ]);
 
-  getLocTextArray([
-    {
-      key: '#Low',
-      table: '#ST_Menu',
-      defaultValue: 'Low'
-    },
-    {
-      key: '#Medium',
-      table: '#ST_Menu',
-      defaultValue: 'Medium'
-    },
-    {
-      key: '#High',
-      table: '#ST_Menu',
-      defaultValue: 'High'
-    },
-    {
-      key: '#Epic',
-      table: '#ST_Menu',
-      defaultValue: 'Epic'
-    },
-    {
-      key: '#Cinematic',
-      table: '#ST_Menu',
-      defaultValue: 'Cinematic'
-    }
-  ]).then((result) => {
-    qualOptions.value = result.map(item => ({
-      value: item.key,
-      label: item.result
-    }));
-  });
+  // Assign results
+  placeHolder.value = placeHolderResult;
 
-  getLocTextArray([
-    {
-      key: '#AA_None',
-      table: '#ST_Menu',
-      defaultValue: 'None'
-    },
-    {
-      key: '#AA_FXAA',
-      table: '#ST_Menu',
-      defaultValue: 'FXAA'
-    },
-    {
-      key: '#AA_TSR',
-      table: '#ST_Menu',
-      defaultValue: 'TSR'
-    },
-    {
-      key: '#AA_TAA',
-      table: '#ST_Menu',
-      defaultValue: 'TAA'
-    },
-  ]).then((result) => {
-    aaOptions.value = result.map(item => ({
-      value: item.key,
-      label: item.result
-    }));
-  });
+  qualOptions.value = qualResult.map(item => ({
+    value: item.key,
+    label: item.result
+  }));
 
-  getLocTextArray([
-    {
-      key: '#Display_Fullscreen',
-      table: '#ST_Menu',
-      defaultValue: 'Fullscreen'
-    },
-    {
-      key: '#Display_Windowed',
-      table: '#ST_Menu',
-      defaultValue: 'Windowed'
-    },
-    {
-      key: '#Display_Borderless',
-      table: '#ST_Menu',
-      defaultValue: 'Borderless'
-    },
-  ]).then((result) => {
-    displayOptions.value = result.map(item => ({
-      value: item.key,
-      label: item.result
-    }));
-  });
+  aaOptions.value = aaResult.map(item => ({
+    value: item.key,
+    label: item.result
+  }));
 
-  fetchResolutionOptions();
+  displayOptions.value = displayResult.map(item => ({
+    value: item.key,
+    label: item.result
+  }));
 
-
+  await fetchResolutionOptions();
 });
 </script>
