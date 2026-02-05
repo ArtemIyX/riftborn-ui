@@ -1,15 +1,17 @@
 // vite.config.js
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'          // assuming this is what you meant by vueDevTools()
 import Components from 'unplugin-vue-components/vite'     // ← this line is missing in your code
 
-import { fileURLToPath, URL } from 'node:url'
+import {fileURLToPath, URL} from 'node:url'
+import {viteSingleFile} from "vite-plugin-singlefile";
 
 export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
+    viteSingleFile(),
 
     // Add the auto-components plugin here
     Components({
@@ -29,6 +31,10 @@ export default defineConfig({
       deep: true,
     }),
   ],
+  build: {
+    outDir: './dist',
+    assetsDir: './assets',
+  },
 
   resolve: {
     alias: {

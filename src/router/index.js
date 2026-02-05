@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 import MainMenu from "@/views/menu/main-menu/MainMenu.vue";
 import MenuPlayView from "@/views/menu/menu-play/MenuPlayView.vue";
 import MenuSettingsView from "@/views/menu/menu-settings/MenuSettingsView.vue";
@@ -10,7 +10,7 @@ import SettingsMiscView from "@/views/menu/settings/settings-misc/SettingsMiscVi
 import SettingsModsView from "@/views/menu/settings/settings-mods/SettingsModsView.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',

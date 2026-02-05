@@ -15,6 +15,10 @@ import ExampleMod from './assets/mods/ExampleMod'
 const pinia = createPinia()
 const app = createApp(App)
 
+window.navigateTo = async (args) => {
+  await router.push(args);
+}
+
 modSystem.register(ExampleMod)
 
 app.use(pinia)
