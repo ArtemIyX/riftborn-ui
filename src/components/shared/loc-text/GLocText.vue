@@ -12,6 +12,9 @@
 <script setup>
 import {ref, onMounted, useSlots} from 'vue';
 import {getLocText} from "@/assets/js/localization.js";
+import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
+
+const locStore = useLocalizationStore();
 
 const props = defineProps({
   code: {
@@ -27,7 +30,7 @@ const props = defineProps({
 const slots = useSlots();
 
 const displayText = ref('');
-const defaultText = ref('');
+
 
 const getDefaultText = () => {
   return slots.default?.()?.[0]?.children || '';
@@ -39,14 +42,9 @@ const fetchLocalizedText = async () => {
   try {
     console.log(`GLocText request: ${props.code} (${props.table})`);
 
-    const result = await getLocText(props.code, props.table, defaultText);
+    // Store automatically handles caching and fallback
+    displayText.value = await locStore.getText(props.code, props.table, defaultText);
 
-    // Use localized text if found, otherwise use default
-    displayText.value = result.success ? result.result : defaultText;
-
-    if (!result.success) {
-      //console.log(`Using default text for ${props.code}`);
-    }
   } catch (error) {
     console.error(`GLocText error (${props.code}, ${props.table}):`, error);
     displayText.value = defaultText;

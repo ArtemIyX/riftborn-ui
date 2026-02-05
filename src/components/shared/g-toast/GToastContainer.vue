@@ -7,9 +7,9 @@
     >
       <TransitionGroup
         name="g-toast-list"
-        tag="div"
+
         class="g-toast-container__list"
-        :style="{ gap: `${gap}px` }"
+
       >
         <GToast
           v-for="toast in visibleToasts"
@@ -56,10 +56,10 @@ const props = defineProps({
     type: Number,
     default: 5
   },
-  gap: {
+/*  gapRem: {
     type: Number,
-    default: 12
-  },
+    default: 1
+  },*/
   zIndex: {
     type: Number,
     default: 9000

@@ -252,9 +252,11 @@
 <script setup>
 
 import {onMounted, ref} from "vue";
-import {getLocText, getLocTextArray} from "@/assets/js/localization.js";
-import {ST_MENU} from "@/assets/js/localizationConstants.js";
 
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
+import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
+
+const locStore = useLocalizationStore();
 
 const placeHolder = ref('Select');
 const qualOptions = ref([]);
@@ -333,8 +335,8 @@ const fetchResolutionOptions = async () => {
 onMounted(async () => {
   // Fetch all localizations in parallel
   const [placeHolderResult, qualResult, aaResult, displayResult] = await Promise.all([
-    getLocText('#ComboPlaceHolder', ST_MENU, 'Select'),
-    getLocTextArray([
+    locStore.getText('#ComboPlaceHolder', ST_MENU, 'Select'),
+    locStore.getTextArray([
       {
         key: '#Low',
         table: ST_MENU,
@@ -361,7 +363,7 @@ onMounted(async () => {
         defaultValue: 'Cinematic'
       }
     ]),
-    getLocTextArray([
+    locStore.getTextArray([
       {
         key: '#AA_None',
         table: ST_MENU,
@@ -383,7 +385,7 @@ onMounted(async () => {
         defaultValue: 'TAA'
       }
     ]),
-    getLocTextArray([
+    locStore.getTextArray([
       {
         key: '#Display_Fullscreen',
         table: ST_MENU,

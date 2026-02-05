@@ -1,6 +1,6 @@
 ﻿// stores/menuStore.js
 import {defineStore} from 'pinia'
-import {ref} from 'vue'
+import {markRaw, ref, shallowRef} from 'vue'
 
 import {emitter} from '@/assets/js/eventBus.js';
 import GButton from "@/components/shared/buttons/GButton.vue";
@@ -13,42 +13,42 @@ export const useMenuStore = defineStore('menu', () => {
       table: ST_MENU,
       key: '#Play',
       text: 'Find Servers',
-      component: GButton,
+      component: markRaw(GButton),
       click: () => emitter.emit('menu:button:play')
     },
     {
       table: ST_MENU,
       key: '#Host',
       text: 'Host server',
-      component: GButton,
+      component: markRaw(GButton),
       click: () => emitter.emit('menu:button:host')
     },
     {
       table: ST_MENU,
       key: '#Settings',
       text: 'Settings',
-      component: GButton,
+      component: markRaw(GButton),
       click: () => emitter.emit('menu:button:settings')
     },
     {
       table: ST_MENU,
       key: '#Credits',
       text: 'Credits',
-      component: GButton,
+      component: markRaw(GButton),
       click: () => emitter.emit('menu:button:credits')
     },
     {
       table: ST_MENU,
       key: '#Social',
       text: 'Social',
-      component: GButton,
+      component: markRaw(GButton),
       click: () => emitter.emit('menu:button:social')
     },
     {
       table: ST_MENU,
       key: '#Quit',
       text: 'Quit',
-      component: GButton,
+      component: markRaw(GButton),
       click: () => emitter.emit('menu:button:quit')
     }
   ])

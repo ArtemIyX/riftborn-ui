@@ -62,6 +62,7 @@
 import {onMounted, ref} from "vue";
 import {getLocText} from "@/assets/js/localization.js";
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
+import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
 
 
 const placeholder = ref('Select');
@@ -71,6 +72,8 @@ const language = ref('en');
 const languages = ref();
 
 const uiScale = ref(1.0);
+
+const locStore = useLocalizationStore();
 
 const fetchLanguages = async () => {
   return new Promise(resolve => {
@@ -95,16 +98,16 @@ const fetchLanguages = async () => {
 onMounted(async () => {
   // Fetch all localizations and languages in parallel
   const [placeholderResult, emptyTextResult, searchPlaceHolderResult, languagesResult] = await Promise.all([
-    getLocText('#ComboPlaceHolder', ST_MENU, 'Select'),
-    getLocText('#ComboEmpty', ST_MENU, 'Not found'),
-    getLocText('#ComboSearch', ST_MENU, 'Search...'),
+    locStore.getText('#ComboPlaceHolder', ST_MENU, 'Select'),
+    locStore.getText('#ComboEmpty', ST_MENU, 'Not found'),
+    locStore.getText('#ComboSearch', ST_MENU, 'Search...'),
     fetchLanguages()
   ]);
 
   // Assign results
-  placeholder.value = placeholderResult.result;
-  emptyText.value = emptyTextResult.result;
-  searchPlaceHolder.value = searchPlaceHolderResult.result;
+  placeholder.value = placeholderResult;
+  emptyText.value = emptyTextResult;
+  searchPlaceHolder.value = searchPlaceHolderResult;
   languages.value = languagesResult;
 });
 </script>

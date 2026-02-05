@@ -141,6 +141,7 @@
 import {onMounted, ref} from "vue";
 import {getLocText} from "@/assets/js/localization.js";
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
+import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
 
 
 const master = ref(100.0);
@@ -202,10 +203,12 @@ const fetchSpeaker = async () => {
   })
 };
 
+const locStore = useLocalizationStore();
+
 onMounted(async () => {
   // Fetch all data in parallel
   const [placeholderResult, speakerResult, micResult] = await Promise.all([
-    getLocText("#AudioDevicePlaceHoder", ST_MENU, "Select device"),
+    locStore.getText("#AudioDevicePlaceHoder", ST_MENU, "Select device"),
     fetchSpeaker(),
     fetchMic()
   ]);
