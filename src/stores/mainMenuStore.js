@@ -49,7 +49,9 @@ export const useMenuStore = defineStore('menu', () => {
       key: '#Quit',
       text: 'Quit',
       component: markRaw(GButton),
-      click: () => emitter.emit('menu:button:quit')
+      click: () => {
+        emitter.emit('menu:button:quit');
+      }
     }
   ])
 

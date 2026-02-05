@@ -42,7 +42,7 @@ export const useLocalizationStore = defineStore('localization', () => {
     return result;
   };
 
-  const getTextArray = async (requests) => {
+  /*const getTextArray = async (requests) => {
     const results = [];
     const toFetch = [];
     const fetchIndices = [];
@@ -70,6 +70,47 @@ export const useLocalizationStore = defineStore('localization', () => {
 
         cache.value.set(cacheKey, response.result);
         results[originalIndex] = response.result;
+      });
+    }
+
+    return results;
+  };*/
+  const getTextArray = async (requests) => {
+    const results = [];
+    const toFetch = [];
+    const fetchIndices = [];
+
+    // Check cache for each request
+    requests.forEach((request, index) => {
+      const cacheKey = `${request.table}:${request.key}`;
+
+      if (cache.value.has(cacheKey)) {
+        // Return object with key and cached result
+        results[index] = {
+          key: request.key,
+          result: cache.value.get(cacheKey)
+        };
+      } else {
+        toFetch.push(request);
+        fetchIndices.push(index);
+      }
+    });
+
+    // Fetch missing items if any
+    if (toFetch.length > 0) {
+      const responses = await getLocTextArray(toFetch);
+
+      // Cache and assign fetched results
+      responses.forEach((response, fetchIndex) => {
+        const originalIndex = fetchIndices[fetchIndex];
+        const cacheKey = `${response.table}:${response.key}`;
+
+        cache.value.set(cacheKey, response.result);
+        // Return the full response object
+        results[originalIndex] = {
+          key: response.key,
+          result: response.result
+        };
       });
     }
 

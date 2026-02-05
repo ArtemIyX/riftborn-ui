@@ -32,7 +32,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    outDir: './dist',
+    outDir: 'C:/Users/Wellsaik/source/repos/Barich/Content/HTML',
     assetsDir: './assets',
   },
 

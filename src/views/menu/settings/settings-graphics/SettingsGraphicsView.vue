@@ -407,6 +407,7 @@ onMounted(async () => {
   // Assign results
   placeHolder.value = placeHolderResult;
 
+  console.log("qual result is " + JSON.stringify(qualResult));
   qualOptions.value = qualResult.map(item => ({
     value: item.key,
     label: item.result

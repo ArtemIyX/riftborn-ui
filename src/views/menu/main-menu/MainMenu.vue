@@ -3,22 +3,73 @@
 
   <GFlex class="main-container" direction="row" align="center">
     <MenuButtons/>
-    <GBox class="router-box">
-      <router-view />
-    </GBox>
+    <div class="router-box">
+      <router-view/>
+    </div>
   </GFlex>
+
+  <GModal
+    v-model="showQuitConfirm"
+    title="CONFIRM QUIT"
+    variant="default"
+
+    :persistent="true"
+    :close-button="false"
+  >
+    <template #title>
+      <GHeading>
+        <GLocText code="#QuitConfirm" :table="ST_MENU">Are you sure?</GLocText>
+      </GHeading>
+    </template>
+    <!-- Content slot -->
+    <template #default>
+      <GText size="large">
+        <GLocText code="#QuitInfo" :table="ST_MENU">Are you sure you want to quit the game?
+        </GLocText>
+      </GText>
+    </template>
+
+    <!-- Actions slot with Yes/No buttons -->
+    <template #actions>
+      <GButton @click="handleQuitYes" variant="warning">
+        <GText>
+          <GLocText code="#Yes" :table="ST_MENU">Yes</GLocText>
+        </GText>
+      </GButton>
+      <GButton @click="handleQuitNo">
+        <GText>
+          <GLocText code="#No" :table="ST_MENU">No</GLocText>
+        </GText>
+      </GButton>
+    </template>
+  </GModal>
 </template>
 
 <script setup>
 import MenuButtons from "@/components/menu/MenuButtons.vue";
 
+
 import {emitter} from '@/assets/js/eventBus.js';
 import {useRouter} from 'vue-router';
-import {onMounted, onUnmounted} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
+import {ST_MENU} from "@/assets/js/localizationConstants.js";
 
 const router = useRouter();
+const showQuitConfirm = ref(false)
+
+
+const handleQuitYes = () => {
+  showQuitConfirm.value = false
+  emitter.emit("ue:quit");
+  // Add your quit logic here
+}
+
+const handleQuitNo = () => {
+  showQuitConfirm.value = false
+}
 
 onMounted(() => {
+
   emitter.on('menu:button:play', () => {
     router.push({name: 'menu-play'});
   });
@@ -40,7 +91,7 @@ onMounted(() => {
   });
 
   emitter.on('menu:button:quit', () => {
-    // Handle quit logic
+    showQuitConfirm.value = true;
   });
 });
 
