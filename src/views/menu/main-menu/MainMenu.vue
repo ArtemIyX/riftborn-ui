@@ -54,6 +54,7 @@ import {useRouter} from 'vue-router';
 import {onMounted, onUnmounted, ref} from "vue";
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
 
+
 const router = useRouter();
 const showQuitConfirm = ref(false)
 

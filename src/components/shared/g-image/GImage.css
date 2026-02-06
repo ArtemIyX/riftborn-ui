@@ -1,0 +1,365 @@
+﻿/* ============================================
+   G-IMAGE
+   Space Horror UI Component - Lazy Loading Image
+   ============================================ */
+
+.g-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--image-bg, #161b24);
+  border: 0.0625rem solid var(--image-border, #2a3444);
+  isolation: isolate;
+}
+
+/* --------------------------------------------
+   OBJECT FIT VARIANTS
+   -------------------------------------------- */
+
+.g-image--contain .g-image__img {
+  object-fit: contain;
+}
+
+.g-image--cover .g-image__img {
+  object-fit: cover;
+}
+
+.g-image--fill .g-image__img {
+  object-fit: fill;
+}
+
+.g-image--none .g-image__img {
+  object-fit: none;
+}
+
+.g-image--scale-down .g-image__img {
+  object-fit: scale-down;
+}
+
+/* --------------------------------------------
+   IMAGE ELEMENT
+   -------------------------------------------- */
+
+.g-image__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: inherit;
+}
+
+/* Fade-in animation when image loads */
+.g-image__img--fade-in {
+  animation: g-image-fade-in 0.3s ease-in-out;
+}
+
+@keyframes g-image-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   LOADING OVERLAY (alternative to skeleton)
+   -------------------------------------------- */
+
+.g-image__loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--image-loading-bg, rgba(22, 27, 36, 0.9));
+  z-index: 1;
+}
+
+.g-image__spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.1875rem solid var(--image-spinner-track, rgba(0, 212, 212, 0.2));
+  border-top-color: var(--image-spinner-color, rgba(0, 212, 212, 0.8));
+  border-radius: 50%;
+  animation: g-image-spin 0.8s linear infinite;
+}
+
+@keyframes g-image-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------
+   ERROR STATE
+   -------------------------------------------- */
+
+.g-image__error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--image-error-bg, #1a1f28);
+  border: 0.0625rem solid var(--image-error-border, #3a2a2a);
+  z-index: 2;
+}
+
+.g-image__error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  max-width: 80%;
+}
+
+.g-image__error-icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--image-error-icon, rgba(212, 50, 50, 0.7));
+  opacity: 0.8;
+  animation: g-image-error-pulse 2s ease-in-out infinite;
+}
+
+@keyframes g-image-error-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.g-image__error-text {
+  font-size: 0.875rem;
+  color: var(--image-error-text, rgba(212, 50, 50, 0.9));
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------
+   RETRY BUTTON
+   -------------------------------------------- */
+
+.g-image__retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--image-retry-bg, rgba(0, 212, 212, 0.1));
+  border: 0.0625rem solid var(--image-retry-border, rgba(0, 212, 212, 0.3));
+  color: var(--image-retry-text, rgba(0, 212, 212, 0.9));
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0.125rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.g-image__retry-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--image-retry-shine, rgba(0, 212, 212, 0.2)),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.g-image__retry-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.g-image__retry-btn:hover {
+  background-color: var(--image-retry-hover-bg, rgba(0, 212, 212, 0.2));
+  border-color: var(--image-retry-hover-border, rgba(0, 212, 212, 0.5));
+  transform: translateY(-0.0625rem);
+  box-shadow: 0 0 0.625rem var(--image-retry-glow, rgba(0, 212, 212, 0.3));
+}
+
+.g-image__retry-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0.3125rem var(--image-retry-glow, rgba(0, 212, 212, 0.2));
+}
+
+.g-image__retry-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.g-image__retry-btn:hover .g-image__retry-icon {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------
+   CORNER ACCENTS (ERROR STATE)
+   -------------------------------------------- */
+
+.g-image__corner {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.0625rem solid var(--image-corner-error, rgba(212, 50, 50, 0.4));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.g-image__corner--tl {
+  top: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0.0625rem 0 0 0.0625rem;
+}
+
+.g-image__corner--tr {
+  top: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0.0625rem 0.0625rem 0 0;
+}
+
+.g-image__corner--bl {
+  bottom: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0 0 0.0625rem 0.0625rem;
+}
+
+.g-image__corner--br {
+  bottom: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0 0.0625rem 0.0625rem 0;
+}
+
+/* Pulse animation for error corners */
+.g-image--error .g-image__corner {
+  animation: g-image-corner-pulse 2s ease-in-out infinite;
+}
+
+@keyframes g-image-corner-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   ROUNDED MODIFIER
+   -------------------------------------------- */
+
+.g-image--rounded {
+  border-radius: 0.5rem;
+}
+
+.g-image--rounded .g-image__error {
+  border-radius: 0.4375rem; /* Slightly less to account for parent border */
+}
+
+/* --------------------------------------------
+   STATE CLASSES
+   -------------------------------------------- */
+
+.g-image--loading {
+  cursor: wait;
+}
+
+.g-image--loaded {
+  cursor: default;
+}
+
+.g-image--error {
+  cursor: not-allowed;
+}
+
+/* Add subtle glow when loading */
+.g-image--loading::after {
+  content: '';
+  position: absolute;
+  inset: -0.0625rem;
+  border: 0.0625rem solid var(--image-loading-glow, rgba(0, 212, 212, 0.1));
+  border-radius: inherit;
+  opacity: 0;
+  animation: g-image-loading-glow 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes g-image-loading-glow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   ASPECT RATIO SUPPORT
+   -------------------------------------------- */
+
+.g-image[style*="aspect-ratio"] {
+  height: auto;
+}
+
+/* --------------------------------------------
+   ACCESSIBILITY
+   -------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .g-image__img--fade-in,
+  .g-image__spinner,
+  .g-image__error-icon,
+  .g-image__corner,
+  .g-image--loading::after {
+    animation: none;
+  }
+
+  .g-image__retry-icon {
+    transition: none;
+  }
+}
+
+/* Focus styles for retry button */
+.g-image__retry-btn:focus-visible {
+  outline: 0.125rem solid var(--image-focus, rgba(0, 212, 212, 0.6));
+  outline-offset: 0.125rem;
+}
+
+/* --------------------------------------------
+   THEME VARIATIONS (CSS vars)
+   -------------------------------------------- */
+
+.g-image {
+  --image-bg: #161b24;
+  --image-border: #2a3444;
+  --image-loading-bg: rgba(22, 27, 36, 0.9);
+  --image-loading-glow: rgba(0, 212, 212, 0.1);
+  --image-spinner-track: rgba(0, 212, 212, 0.2);
+  --image-spinner-color: rgba(0, 212, 212, 0.8);
+  --image-error-bg: #1a1f28;
+  --image-error-border: #3a2a2a;
+  --image-error-icon: rgba(212, 50, 50, 0.7);
+  --image-error-text: rgba(212, 50, 50, 0.9);
+  --image-corner-error: rgba(212, 50, 50, 0.4);
+  --image-retry-bg: rgba(0, 212, 212, 0.1);
+  --image-retry-border: rgba(0, 212, 212, 0.3);
+  --image-retry-text: rgba(0, 212, 212, 0.9);
+  --image-retry-hover-bg: rgba(0, 212, 212, 0.2);
+  --image-retry-hover-border: rgba(0, 212, 212, 0.5);
+  --image-retry-shine: rgba(0, 212, 212, 0.2);
+  --image-retry-glow: rgba(0, 212, 212, 0.3);
+  --image-focus: rgba(0, 212, 212, 0.6);
+}
