@@ -46,5 +46,6 @@ declare module 'vue' {
     GTooltip: typeof import('./components/shared/g-tooltip/GTooltip.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UImage: typeof import('./components/shared/u-image/UImage.vue')['default']
   }
 }

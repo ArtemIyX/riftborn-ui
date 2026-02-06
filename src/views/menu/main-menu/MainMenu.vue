@@ -1,12 +1,17 @@
 ﻿<style src="./MainMenu.css" scoped/>
 <template>
 
+<!--  <UImage style="width: 100px; height: 100px" :lazyLoad="false"
+          asset-path="/Game/Barich/Assets/Textures/UI/Menu/T_House.T_House" @error="imgError"
+          @load="imgLoad"
+          :show-corners="false"/>-->
   <GFlex class="main-container" direction="row" align="center">
     <MenuButtons/>
     <div class="router-box">
       <router-view/>
     </div>
   </GFlex>
+
 
   <GModal
     v-model="showQuitConfirm"
@@ -53,6 +58,7 @@ import {emitter} from '@/assets/js/eventBus.js';
 import {useRouter} from 'vue-router';
 import {onMounted, onUnmounted, ref} from "vue";
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
+import UEImage from "@/components/shared/u-image/UImage.vue";
 
 
 const router = useRouter();
@@ -104,6 +110,14 @@ onUnmounted(() => {
   emitter.off('menu:button:social');
   emitter.off('menu:button:quit');
 });
+
+const imgError = (obj) => {
+  console.error(obj);
+};
+
+const imgLoad = (obj) => {
+  console.log(obj);
+}
 
 </script>
 

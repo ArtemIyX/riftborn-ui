@@ -15,6 +15,7 @@ import {useInputStore} from "@/stores/inputStore.js";
 import {useSettingsStore} from "@/stores/settingsStore.js";
 import {useMenuStore} from "@/stores/mainMenuStore.js";
 import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
+import {useUnrealStore} from "@/stores/useUnrealStore.js";
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -25,12 +26,14 @@ const inputStore = useInputStore();
 const settingsStore = useSettingsStore();
 const menuStore = useMenuStore();
 const localizationStore = useLocalizationStore();
+const unrealStore = useUnrealStore();
 
 const stores = {
   input: inputStore,
   settings: settingsStore,
   menu: menuStore,
   localization: localizationStore,
+  unreal: unrealStore,
 }
 window.navigateTo = async (args) => {
   await router.push(args);

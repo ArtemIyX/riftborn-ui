@@ -1,0 +1,453 @@
+﻿/* ============================================
+   UE-IMAGE
+   Unreal Engine Asset Loading Component
+   Space Horror UI Theme
+   ============================================ */
+
+.ue-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--ue-image-bg, #0d1117);
+/*  border: 0.0625rem solid var(--ue-image-border, #2d3748);*/
+  isolation: isolate;
+}
+
+/* --------------------------------------------
+   OBJECT FIT VARIANTS
+   -------------------------------------------- */
+
+.ue-image--contain .ue-image__img {
+  object-fit: contain;
+}
+
+.ue-image--cover .ue-image__img {
+  object-fit: cover;
+}
+
+.ue-image--fill .ue-image__img {
+  object-fit: fill;
+}
+
+.ue-image--none .ue-image__img {
+  object-fit: none;
+}
+
+.ue-image--scale-down .ue-image__img {
+  object-fit: scale-down;
+}
+
+/* --------------------------------------------
+   IMAGE ELEMENT
+   -------------------------------------------- */
+
+.ue-image__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: inherit;
+}
+
+/* Fade-in animation when image loads */
+.ue-image__img--fade-in {
+  animation: ue-image-fade-in 0.3s ease-in-out;
+}
+
+@keyframes ue-image-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   LOADING OVERLAY (alternative to skeleton)
+   -------------------------------------------- */
+
+.ue-image__loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ue-image-loading-bg, rgba(13, 17, 23, 0.95));
+  z-index: 1;
+}
+
+.ue-image__spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.1875rem solid var(--ue-image-spinner-track, rgba(0, 212, 212, 0.2));
+  border-top-color: var(--ue-image-spinner-color, rgba(0, 212, 212, 0.8));
+  border-radius: 50%;
+  animation: ue-image-spin 0.8s linear infinite;
+}
+
+@keyframes ue-image-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------
+   ERROR STATE
+   -------------------------------------------- */
+
+.ue-image__error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--ue-image-error-bg-1, #1a1f28) 0%,
+    var(--ue-image-error-bg-2, #0d1117) 100%
+  );
+  border: 0.0625rem solid var(--ue-image-error-border, #4a2a2a);
+  z-index: 2;
+}
+
+.ue-image__error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  max-width: 80%;
+}
+
+.ue-image__error-icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--ue-image-error-icon, rgba(255, 87, 87, 0.8));
+  opacity: 0.9;
+  animation: ue-image-error-pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 0.5rem var(--ue-image-error-glow, rgba(255, 87, 87, 0.4)));
+}
+
+@keyframes ue-image-error-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.ue-image__error-text {
+  font-size: 0.875rem;
+  color: var(--ue-image-error-text, rgba(255, 87, 87, 0.95));
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ue-image__asset-path {
+  font-size: 0.75rem;
+  color: var(--ue-image-path-text, rgba(150, 150, 170, 0.8));
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+  padding: 0.375rem 0.75rem;
+  background-color: var(--ue-image-path-bg, rgba(0, 0, 0, 0.4));
+  border: 0.0625rem solid var(--ue-image-path-border, rgba(100, 100, 120, 0.3));
+  border-radius: 0.125rem;
+  max-width: 100%;
+}
+
+/* --------------------------------------------
+   RETRY BUTTON
+   -------------------------------------------- */
+
+.ue-image__retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    var(--ue-image-retry-bg-1, rgba(0, 212, 212, 0.15)) 0%,
+    var(--ue-image-retry-bg-2, rgba(0, 212, 212, 0.05)) 100%
+  );
+  border: 0.0625rem solid var(--ue-image-retry-border, rgba(0, 212, 212, 0.4));
+  color: var(--ue-image-retry-text, rgba(0, 212, 212, 0.95));
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0.125rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0.5rem var(--ue-image-retry-shadow, rgba(0, 212, 212, 0.2));
+}
+
+.ue-image__retry-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ue-image-retry-shine, rgba(0, 212, 212, 0.3)),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.ue-image__retry-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    var(--ue-image-retry-overlay, rgba(255, 255, 255, 0.1)) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ue-image__retry-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.ue-image__retry-btn:hover::after {
+  opacity: 1;
+}
+
+.ue-image__retry-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--ue-image-retry-hover-bg-1, rgba(0, 212, 212, 0.25)) 0%,
+    var(--ue-image-retry-hover-bg-2, rgba(0, 212, 212, 0.15)) 100%
+  );
+  border-color: var(--ue-image-retry-hover-border, rgba(0, 212, 212, 0.6));
+  transform: translateY(-0.0625rem);
+  box-shadow:
+    0 0 0.75rem var(--ue-image-retry-glow, rgba(0, 212, 212, 0.4)),
+    0 0 1.5rem var(--ue-image-retry-glow-outer, rgba(0, 212, 212, 0.2));
+}
+
+.ue-image__retry-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0.375rem var(--ue-image-retry-glow, rgba(0, 212, 212, 0.3));
+}
+
+.ue-image__retry-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.ue-image__retry-btn:hover .ue-image__retry-icon {
+  transform: rotate(-180deg);
+}
+
+/* --------------------------------------------
+   CORNER ACCENTS (ERROR STATE)
+   -------------------------------------------- */
+
+.ue-image__corner {
+  position: absolute;
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 0.0625rem solid var(--ue-image-corner-error, rgba(255, 87, 87, 0.5));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ue-image__corner--tl {
+  top: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0.0625rem 0 0 0.0625rem;
+}
+
+.ue-image__corner--tr {
+  top: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0.0625rem 0.0625rem 0 0;
+}
+
+.ue-image__corner--bl {
+  bottom: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0 0 0.0625rem 0.0625rem;
+}
+
+.ue-image__corner--br {
+  bottom: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0 0.0625rem 0.0625rem 0;
+}
+
+/* Pulse animation for error corners */
+.ue-image--error .ue-image__corner {
+  animation: ue-image-corner-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ue-image-corner-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 0 0.25rem var(--ue-image-corner-glow, rgba(255, 87, 87, 0.3));
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 0.5rem var(--ue-image-corner-glow, rgba(255, 87, 87, 0.5));
+  }
+}
+
+/* --------------------------------------------
+   ROUNDED MODIFIER
+   -------------------------------------------- */
+
+.ue-image--rounded {
+  border-radius: 0.5rem;
+}
+
+.ue-image--rounded .ue-image__error {
+  border-radius: 0.4375rem; /* Slightly less to account for parent border */
+}
+
+/* --------------------------------------------
+   STATE CLASSES
+   -------------------------------------------- */
+
+.ue-image--loading {
+  cursor: wait;
+}
+
+.ue-image--loaded {
+  cursor: default;
+}
+
+.ue-image--error {
+  cursor: not-allowed;
+}
+
+/* Add UE-style scan line when loading */
+.ue-image--loading::after {
+  content: '';
+  position: absolute;
+  inset: -0.0625rem;
+  border: 0.0625rem solid var(--ue-image-loading-border, rgba(0, 212, 212, 0.15));
+  border-radius: inherit;
+  opacity: 0;
+  animation: ue-image-loading-glow 2.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow:
+    inset 0 0 1rem var(--ue-image-loading-inner-glow, rgba(0, 212, 212, 0.1)),
+    0 0 1rem var(--ue-image-loading-outer-glow, rgba(0, 212, 212, 0.1));
+}
+
+@keyframes ue-image-loading-glow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------
+   ASPECT RATIO SUPPORT
+   -------------------------------------------- */
+
+.ue-image[style*="aspect-ratio"] {
+  height: auto;
+}
+
+/* --------------------------------------------
+   ACCESSIBILITY
+   -------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ue-image__img--fade-in,
+  .ue-image__spinner,
+  .ue-image__error-icon,
+  .ue-image__corner,
+  .ue-image--loading::after {
+    animation: none;
+  }
+
+  .ue-image__retry-icon {
+    transition: none;
+  }
+
+  .ue-image__retry-btn::before,
+  .ue-image__retry-btn::after {
+    transition: none;
+  }
+}
+
+/* Focus styles for retry button */
+.ue-image__retry-btn:focus-visible {
+  outline: 0.125rem solid var(--ue-image-focus, rgba(0, 212, 212, 0.7));
+  outline-offset: 0.1875rem;
+  box-shadow:
+    0 0 0 0.25rem var(--ue-image-focus-ring, rgba(0, 212, 212, 0.2)),
+    0 0 0.75rem var(--ue-image-retry-glow, rgba(0, 212, 212, 0.4));
+}
+
+/* --------------------------------------------
+   THEME VARIATIONS (CSS vars)
+   UE-Inspired Dark Theme
+   -------------------------------------------- */
+
+.ue-image {
+  /* Background */
+  --ue-image-bg: #0d1117;
+  --ue-image-border: #2d3748;
+
+  /* Loading states */
+  --ue-image-loading-bg: rgba(13, 17, 23, 0.95);
+  --ue-image-loading-border: rgba(0, 212, 212, 0.15);
+  --ue-image-loading-inner-glow: rgba(0, 212, 212, 0.1);
+  --ue-image-loading-outer-glow: rgba(0, 212, 212, 0.1);
+  --ue-image-spinner-track: rgba(0, 212, 212, 0.2);
+  --ue-image-spinner-color: rgba(0, 212, 212, 0.8);
+
+  /* Error states */
+  --ue-image-error-bg-1: #1a1f28;
+  --ue-image-error-bg-2: #0d1117;
+  --ue-image-error-border: #4a2a2a;
+  --ue-image-error-icon: rgba(255, 87, 87, 0.8);
+  --ue-image-error-text: rgba(255, 87, 87, 0.95);
+  --ue-image-error-glow: rgba(255, 87, 87, 0.4);
+  --ue-image-corner-error: rgba(255, 87, 87, 0.5);
+  --ue-image-corner-glow: rgba(255, 87, 87, 0.3);
+
+  /* Asset path display */
+  --ue-image-path-text: rgba(150, 150, 170, 0.8);
+  --ue-image-path-bg: rgba(0, 0, 0, 0.4);
+  --ue-image-path-border: rgba(100, 100, 120, 0.3);
+
+  /* Retry button */
+  --ue-image-retry-bg-1: rgba(0, 212, 212, 0.15);
+  --ue-image-retry-bg-2: rgba(0, 212, 212, 0.05);
+  --ue-image-retry-border: rgba(0, 212, 212, 0.4);
+  --ue-image-retry-text: rgba(0, 212, 212, 0.95);
+  --ue-image-retry-hover-bg-1: rgba(0, 212, 212, 0.25);
+  --ue-image-retry-hover-bg-2: rgba(0, 212, 212, 0.15);
+  --ue-image-retry-hover-border: rgba(0, 212, 212, 0.6);
+  --ue-image-retry-shine: rgba(0, 212, 212, 0.3);
+  --ue-image-retry-overlay: rgba(255, 255, 255, 0.1);
+  --ue-image-retry-glow: rgba(0, 212, 212, 0.4);
+  --ue-image-retry-glow-outer: rgba(0, 212, 212, 0.2);
+  --ue-image-retry-shadow: rgba(0, 212, 212, 0.2);
+
+  /* Focus states */
+  --ue-image-focus: rgba(0, 212, 212, 0.7);
+  --ue-image-focus-ring: rgba(0, 212, 212, 0.2);
+}
