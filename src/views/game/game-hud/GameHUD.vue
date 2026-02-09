@@ -4,6 +4,8 @@
   <div class="version-container">
     <GameVersion/>
   </div>
+
+  <AlphaBadge variant="creep" :pulse="true" :glitch="true"/>
 </template>
 
 
@@ -11,6 +13,7 @@
 import {emitter, ueHandler} from "@/assets/js/eventBus.js";
 import {onMounted, ref} from "vue";
 import GameVersion from "@/components/game/misc/game-version/GameVersion.vue";
+import AlphaBadge from "@/components/game/misc/alpha-badge/AlphaBadge.vue";
 
 
 onMounted(() => {
