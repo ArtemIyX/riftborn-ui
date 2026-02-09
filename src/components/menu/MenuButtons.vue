@@ -32,5 +32,6 @@ const menuButtons = store.menuButtons;
 
   /* Spacing */
   padding: clamp(1rem, 2vw, 2rem);
+  background-color: var(--bg-secondary);
 }
 </style>

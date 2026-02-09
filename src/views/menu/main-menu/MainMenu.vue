@@ -82,7 +82,7 @@ onMounted(() => {
   });
 
   emitter.on('menu:button:host', () => {
-
+    emitter.emit('ue:host');
   });
 
   emitter.on('menu:button:settings', () => {
@@ -111,13 +111,7 @@ onUnmounted(() => {
   emitter.off('menu:button:quit');
 });
 
-const imgError = (obj) => {
-  console.error(obj);
-};
 
-const imgLoad = (obj) => {
-  console.log(obj);
-}
 
 </script>
 
