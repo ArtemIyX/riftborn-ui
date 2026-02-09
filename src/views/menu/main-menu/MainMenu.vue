@@ -1,10 +1,10 @@
 ﻿<style src="./MainMenu.css" scoped/>
 <template>
 
-<!--  <UImage style="width: 100px; height: 100px" :lazyLoad="false"
-          asset-path="/Game/Barich/Assets/Textures/UI/Menu/T_House.T_House" @error="imgError"
-          @load="imgLoad"
-          :show-corners="false"/>-->
+  <!--  <UImage style="width: 100px; height: 100px" :lazyLoad="false"
+            asset-path="/Game/Barich/Assets/Textures/UI/Menu/T_House.T_House" @error="imgError"
+            @load="imgLoad"
+            :show-corners="false"/>-->
   <GFlex class="main-container" direction="row" align="center">
     <MenuButtons/>
     <div class="router-box">
@@ -12,42 +12,11 @@
     </div>
   </GFlex>
 
-
-  <GModal
+  <QuitModal
     v-model="showQuitConfirm"
-    title="CONFIRM QUIT"
-    variant="default"
+    @yes="handleQuitYes"
+    @no="handleQuitNo"/>
 
-    :persistent="true"
-    :close-button="false"
-  >
-    <template #title>
-      <GHeading>
-        <GLocText code="#QuitConfirm" :table="ST_MENU">Are you sure?</GLocText>
-      </GHeading>
-    </template>
-    <!-- Content slot -->
-    <template #default>
-      <GText size="large">
-        <GLocText code="#QuitInfo" :table="ST_MENU">Are you sure you want to quit the game?
-        </GLocText>
-      </GText>
-    </template>
-
-    <!-- Actions slot with Yes/No buttons -->
-    <template #actions>
-      <GButton @click="handleQuitYes" variant="warning">
-        <GText>
-          <GLocText code="#Yes" :table="ST_MENU">Yes</GLocText>
-        </GText>
-      </GButton>
-      <GButton @click="handleQuitNo">
-        <GText>
-          <GLocText code="#No" :table="ST_MENU">No</GLocText>
-        </GText>
-      </GButton>
-    </template>
-  </GModal>
 </template>
 
 <script setup>
@@ -59,6 +28,7 @@ import {useRouter} from 'vue-router';
 import {onMounted, onUnmounted, ref} from "vue";
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
 import UEImage from "@/components/shared/u-image/UImage.vue";
+import QuitModal from "@/views/menu/settings/quit-modal/QuitModal.vue";
 
 
 const router = useRouter();
@@ -68,7 +38,6 @@ const showQuitConfirm = ref(false)
 const handleQuitYes = () => {
   showQuitConfirm.value = false
   emitter.emit("ue:quit");
-  // Add your quit logic here
 }
 
 const handleQuitNo = () => {
@@ -110,7 +79,6 @@ onUnmounted(() => {
   emitter.off('menu:button:social');
   emitter.off('menu:button:quit');
 });
-
 
 
 </script>
