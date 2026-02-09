@@ -1,10 +1,6 @@
 ﻿<style src="./MainMenu.css" scoped/>
 <template>
 
-  <!--  <UImage style="width: 100px; height: 100px" :lazyLoad="false"
-            asset-path="/Game/Barich/Assets/Textures/UI/Menu/T_House.T_House" @error="imgError"
-            @load="imgLoad"
-            :show-corners="false"/>-->
   <GFlex class="main-container" direction="row" align="center">
     <MenuButtons/>
     <div class="router-box">
@@ -28,23 +24,24 @@ import {useRouter} from 'vue-router';
 import {onMounted, onUnmounted, ref} from "vue";
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
 import UEImage from "@/components/shared/u-image/UImage.vue";
-import QuitModal from "@/views/menu/settings/quit-modal/QuitModal.vue";
+import QuitModal from "@/components/menu/modals/QuitModal.vue";
+
 
 
 const router = useRouter();
-const showQuitConfirm = ref(false)
-
+const showQuitConfirm = ref(false);
 
 const handleQuitYes = () => {
   showQuitConfirm.value = false
   emitter.emit("ue:quit");
-}
+};
 
 const handleQuitNo = () => {
   showQuitConfirm.value = false
-}
+};
 
 onMounted(() => {
+
 
   emitter.on('menu:button:play', () => {
     router.push({name: 'menu-play'});
@@ -69,6 +66,11 @@ onMounted(() => {
   emitter.on('menu:button:quit', () => {
     showQuitConfirm.value = true;
   });
+
+  emitter.emit('ue:view', {
+    name: "menu"
+  });
+
 });
 
 onUnmounted(() => {

@@ -1,4 +1,5 @@
 ﻿import mitt from 'mitt';
+
 export const emitter = mitt();
 
 class UEHandler {
@@ -9,7 +10,8 @@ class UEHandler {
   // Send event to Unreal Engine
   notify(eventName, payload = {}) {
     if (!this.isUnrealAvailable) {
-      console.warn('Unreal Engine bridge not available');
+      const data = JSON.stringify(payload);
+      console.warn(`${eventName} -> ${data} Unreal Engine bridge not available`);
       return;
     }
 

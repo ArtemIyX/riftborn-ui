@@ -2,7 +2,6 @@
 
 <template>
 
-
   <div class="settings-container">
     <SettingsButtons/>
     <GBox class="router-box">
@@ -20,30 +19,23 @@ import SettingsButtons from "@/components/menu/SettingsButtons.vue";
 
 import {onMounted, onUnmounted} from "vue";
 import {emitter} from '@/assets/js/eventBus.js';
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
+
+const navigateToSetting = (settingName) => {
+  const parentName = route.name; // 'menu-settings' or 'pause-settings'
+  const prefix = parentName.split('-')[0]; // 'menu' or 'pause'
+  router.push({ name: `${prefix}-${settingName}` });
+};
 
 onMounted(() => {
-  emitter.on('menu:settings:button:graphics', () => {
-    router.push({name: 'settings-graphics'});
-  });
-
-  emitter.on('menu:settings:button:audio', () => {
-    router.push({name: 'settings-audio'});
-  });
-
-  emitter.on('menu:settings:button:input', () => {
-    router.push({name: 'settings-input'});
-  });
-
-  emitter.on('menu:settings:button:misc', () => {
-    router.push({name: 'settings-misc'});
-  });
-
-  emitter.on('menu:settings:button:mods', () => {
-    router.push({name: 'settings-mods'});
-  });
+  emitter.on('menu:settings:button:graphics', () => navigateToSetting('graphics'));
+  emitter.on('menu:settings:button:audio', () => navigateToSetting('audio'));
+  emitter.on('menu:settings:button:input', () => navigateToSetting('input'));
+  emitter.on('menu:settings:button:misc', () => navigateToSetting('misc'));
+  emitter.on('menu:settings:button:mods', () => navigateToSetting('mods'));
 
 });
 onUnmounted(() => {
@@ -54,5 +46,7 @@ onUnmounted(() => {
   emitter.off('menu:settings:button:mods');
 
 });
+
+;
 
 </script>

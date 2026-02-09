@@ -40,7 +40,7 @@ const fetchLocalizedText = async () => {
   const defaultText = getDefaultText();
 
   try {
-    console.log(`GLocText request: ${props.code} (${props.table})`);
+    //console.log(`GLocText request: ${props.code} (${props.table})`);
 
     // Store automatically handles caching and fallback
     displayText.value = await locStore.getText(props.code, props.table, defaultText);

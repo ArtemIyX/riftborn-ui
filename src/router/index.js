@@ -8,14 +8,16 @@ import SettingsAudioView from "@/views/menu/settings/settings-audio/SettingsAudi
 import SettingsInputView from "@/views/menu/settings/settings-input/SettingsInputView.vue";
 import SettingsMiscView from "@/views/menu/settings/settings-misc/SettingsMiscView.vue";
 import SettingsModsView from "@/views/menu/settings/settings-mods/SettingsModsView.vue";
+import PauseMenuView from "@/views/pause/pause-menu/PauseMenuView.vue";
+import GameHUD from "@/views/game/game-hud/GameHUD.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    {
+/*    {
       path: '/',
       redirect: '/menu'
-    },
+    },*/
     {
       path: '/menu',
       name: 'menu',
@@ -61,10 +63,54 @@ const router = createRouter({
       ]
     },
     {
-      path: '/:pathMatch(.*)*',
-      name: 'notFound',
-      redirect: '/menu'
+      path: '/pause',
+      name: 'pause',
+      component: PauseMenuView,
+      children: [
+        {
+          path: 'settings',
+          name: 'pause-settings',
+          component: MenuSettingsView,
+          children: [
+            {
+              path: 'graphics',
+              name: 'pause-graphics',
+              component: SettingsGraphicsView
+            },
+            {
+              path: 'audio',
+              name: 'pause-audio',
+              component: SettingsAudioView
+            },
+            {
+              path: 'input',
+              name: 'pause-input',
+              component: SettingsInputView
+            },
+            {
+              path: 'misc',
+              name: 'pause-misc',
+              component: SettingsMiscView
+            },
+            {
+              path: 'mods',
+              name: 'pause-mods',
+              component: SettingsModsView
+            }
+          ]
+        },
+      ]
+    },
+    {
+      path: '/game',
+      name: 'game',
+      component: GameHUD,
     }
+    /* {
+       path: '/:pathMatch(.*)*',
+       name: 'notFound',
+       redirect: '/menu'
+     }*/
   ],
 })
 

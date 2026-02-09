@@ -1,5 +1,4 @@
-﻿/* Parent container -  wraps both MenuButtons and GBox */
-.main-container {
+﻿.main-container {
   position: absolute;
   left: 0;
   top: 50%;
@@ -13,5 +12,3 @@
   width: 100%;
   margin-left: 1rem;
 }
-
-

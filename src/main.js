@@ -16,28 +16,38 @@ import {useSettingsStore} from "@/stores/settingsStore.js";
 import {useMenuStore} from "@/stores/mainMenuStore.js";
 import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
 import {useUnrealStore} from "@/stores/useUnrealStore.js";
+import {usePauseStore} from "@/stores/pauseStore.js";
+import {emitter} from "@/assets/js/eventBus.js";
+
+
 
 const pinia = createPinia()
 const app = createApp(App)
+
 app.use(pinia)
 app.use(router)
+
+window.router = router;
+window.navigateTo = async (args) => {
+  await router.push(args);
+}
 
 const inputStore = useInputStore();
 const settingsStore = useSettingsStore();
 const menuStore = useMenuStore();
 const localizationStore = useLocalizationStore();
 const unrealStore = useUnrealStore();
+const pauseStore = usePauseStore();
 
 const stores = {
   input: inputStore,
   settings: settingsStore,
   menu: menuStore,
+  pause: pauseStore,
   localization: localizationStore,
   unreal: unrealStore,
 }
-window.navigateTo = async (args) => {
-  await router.push(args);
-}
+
 window.stores = stores;
 
 modSystem.registerProjectStores(stores);
@@ -46,3 +56,5 @@ modSystem.register(ExampleMod)
 modSystem.install(app, pinia)
 
 app.mount('#app')
+
+emitter.emit('ue:app:ready');
