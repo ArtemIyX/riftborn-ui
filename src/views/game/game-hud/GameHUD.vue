@@ -1,21 +1,20 @@
-﻿<template>
-<div class="test">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quae temporibus vero? At dolor ducimus fuga, laboriosam mollitia possimus sed totam voluptates! Amet architecto consectetur, consequatur excepturi exercitationem reprehenderit similique? </p>
-</div>
+﻿<style scoped src="./GameHUD.css"/>
+
+<template>
+  <div class="version-container">
+    <GameVersion/>
+  </div>
 </template>
 
-<style scoped>
-.test {
-  width: 100vh;
-  height: 100vh;
-  background-color: darkolivegreen;
-}
-</style>
+
 <script setup>
-import {emitter} from "@/assets/js/eventBus.js";
-import {onMounted} from "vue";
+import {emitter, ueHandler} from "@/assets/js/eventBus.js";
+import {onMounted, ref} from "vue";
+import GameVersion from "@/components/game/misc/game-version/GameVersion.vue";
+
 
 onMounted(() => {
+
   emitter.emit('ue:view', {
     name: "game"
   });

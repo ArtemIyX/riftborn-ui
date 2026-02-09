@@ -8,13 +8,18 @@
 #app {
   padding: 1rem;
 }
+
+.dev-body {
+  background-color: var(--bg-primary);
+}
 </style>
 
 <script setup>
 
 import ModComponent from "@/components/mod/ModComponent.vue";
 import {modSystem} from './assets/mods/ModSystem.js'
-import {ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
+import {ueHandler} from "@/assets/js/eventBus.js";
 
 const counterMod = modSystem.getMod('counter-mod')
 
@@ -26,6 +31,20 @@ const customData = ref({
   showHistory: true,
   multiplier: 2
 })
+
+
+onMounted(() => {
+  if (!ueHandler.isUnrealAvailable) {
+    document.body.classList.add('dev-body');
+  }
+
+});
+
+onUnmounted(() => {
+  if (!ueHandler.isUnrealAvailable) {
+    document.body.classList.remove('dev-body');
+  }
+});
 
 </script>
 
