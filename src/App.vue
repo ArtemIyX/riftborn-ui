@@ -37,7 +37,9 @@ onMounted(() => {
   if (!ueHandler.isUnrealAvailable) {
     document.body.classList.add('dev-body');
   }
-
+  if (window.ue && window.ue.handler && window.ue.handler.vueready) {
+    window.ue.handler.vueready();
+  }
 });
 
 onUnmounted(() => {

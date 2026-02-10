@@ -27,6 +27,13 @@ const app = createApp(App)
 app.use(pinia)
 app.use(router)
 
+/*router.afterEach(() => {
+  // Notify UE5 after every route change
+  if (window.ue && window.ue.handler && window.ue.handler.vueready) {
+    window.ue.handler.vueready();
+  }
+});*/
+
 window.router = router;
 window.navigateTo = async (args) => {
   await router.push(args);
@@ -57,4 +64,10 @@ modSystem.install(app, pinia)
 
 app.mount('#app')
 
+/*
 emitter.emit('ue:app:ready');
+
+if (window.ue && window.ue.handler && window.ue.handler.vueready) {
+  window.ue.handler.vueready();
+}
+*/
