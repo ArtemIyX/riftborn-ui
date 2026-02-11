@@ -1,0 +1,430 @@
+﻿/* ============================================
+   INVENTORY SLOT
+   Space Horror UI Component
+   Slot-based inventory system
+   ============================================ */
+
+.inventory-slot {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+/* Hover effect */
+.inventory-slot:hover {
+  transform: translateY(-0.125rem);
+}
+
+.inventory-slot:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------
+   BACKGROUND
+   -------------------------------------------- */
+
+.inventory-slot__background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary) 0%,
+    var(--bg-primary) 100%
+  );
+  border: 0.0625rem solid var(--border-subtle);
+  transition: all 0.2s ease;
+  z-index: 0;
+}
+
+/* Enhanced border when item present */
+.inventory-slot--has-item .inventory-slot__background {
+  border-color: var(--border-default);
+  background: linear-gradient(
+    135deg,
+    var(--bg-tertiary) 0%,
+    var(--bg-secondary) 100%
+  );
+}
+
+/* Hover glow */
+.inventory-slot:hover .inventory-slot__background {
+  border-color: var(--border-focus);
+  box-shadow:
+    inset 0 0 0.5rem rgba(0, 212, 212, 0.05),
+    0 0 0.5rem rgba(0, 212, 212, 0.1);
+}
+
+/* --------------------------------------------
+   CORNER ACCENTS
+   -------------------------------------------- */
+
+.inventory-slot__corner {
+  position: absolute;
+  width: 0.375rem;
+  height: 0.375rem;
+  border: 0.0625rem solid var(--border-subtle);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.inventory-slot__corner--tl {
+  top: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0.0625rem 0 0 0.0625rem;
+}
+
+.inventory-slot__corner--tr {
+  top: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0.0625rem 0.0625rem 0 0;
+}
+
+.inventory-slot__corner--bl {
+  bottom: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0 0 0.0625rem 0.0625rem;
+}
+
+.inventory-slot__corner--br {
+  bottom: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0 0.0625rem 0.0625rem 0;
+}
+
+/* Brighten corners on hover */
+.inventory-slot:hover .inventory-slot__corner {
+  opacity: 0.8;
+  border-color: var(--primary-dim);
+}
+
+/* Glow corners when item present */
+.inventory-slot--has-item .inventory-slot__corner {
+  opacity: 0.6;
+  border-color: var(--primary-dim);
+}
+
+.inventory-slot--has-item:hover .inventory-slot__corner {
+  opacity: 1;
+  border-color: var(--primary);
+  box-shadow: 0 0 0.25rem var(--primary-glow);
+}
+
+/* --------------------------------------------
+   ITEM CONTAINER
+   -------------------------------------------- */
+
+.inventory-slot__item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  z-index: 2;
+}
+
+/* --------------------------------------------
+   IMAGE
+   -------------------------------------------- */
+
+.inventory-slot__image {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated; /* For pixel art games */
+}
+
+/* Remove border from UImage inside slot */
+.inventory-slot__image :deep(.ue-image) {
+  border: none;
+}
+
+/* --------------------------------------------
+   STACK COUNT (Bottom-Right)
+   -------------------------------------------- */
+
+.inventory-slot__stack {
+  position: absolute;
+  bottom: 0.625rem;
+  right: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.125rem;
+  height: 1rem;
+  padding: 0.125rem 0.25rem;
+  z-index: 5;
+}
+
+.inventory-slot__stack-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 12, 16, 0.95) 0%,
+    rgba(22, 27, 36, 0.9) 100%
+  );
+  border: 0.0625rem solid rgba(0, 212, 212, 0.3);
+  border-radius: 0.125rem;
+  backdrop-filter: blur(0.125rem);
+}
+
+/* Corner accents for stack count */
+.inventory-slot__stack-bg::before,
+.inventory-slot__stack-bg::after {
+  content: '';
+  position: absolute;
+  width: 0.1875rem;
+  height: 0.1875rem;
+  border: 0.0625rem solid var(--primary);
+  opacity: 0.5;
+}
+
+.inventory-slot__stack-bg::before {
+  top: -0.0625rem;
+  right: -0.0625rem;
+  border-width: 0.0625rem 0.0625rem 0 0;
+}
+
+.inventory-slot__stack-bg::after {
+  bottom: -0.0625rem;
+  left: -0.0625rem;
+  border-width: 0 0 0.0625rem 0.0625rem;
+}
+
+.inventory-slot__stack-text {
+  position: relative;
+  z-index: 1;
+  text-shadow:
+    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.8),
+    0 0 0.25rem rgba(0, 212, 212, 0.5);
+  color: var(--primary) !important;
+}
+
+/* Glow animation for stack count */
+.inventory-slot:hover .inventory-slot__stack-bg {
+  border-color: rgba(0, 212, 212, 0.6);
+  box-shadow:
+    0 0 0.375rem rgba(0, 212, 212, 0.3),
+    inset 0 0 0.375rem rgba(0, 212, 212, 0.1);
+}
+
+/* --------------------------------------------
+   DURABILITY BAR (Bottom)
+   -------------------------------------------- */
+
+.inventory-slot__durability {
+  position: absolute;
+  bottom: 0.125rem;
+  left: 0.125rem;
+  right: 0.125rem;
+  z-index: 4;
+}
+
+/* Remove top margin/padding from progress bar */
+.inventory-slot__durability :deep(.g-progress) {
+  margin: 0;
+}
+
+.inventory-slot__durability :deep(.g-progress__header) {
+  display: none;
+}
+
+.inventory-slot__durability :deep(.g-progress__track) {
+  height: 0.375rem;
+  border-radius: 0.125rem;
+  border-width: 0.0625rem;
+}
+
+.inventory-slot__durability :deep(.g-progress__fill) {
+  border-radius: 0.0625rem;
+}
+
+/* Enhanced styling for broken state */
+.inventory-slot__durability :deep(.g-progress--striped) .g-progress__stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.15) 0,
+    rgba(255, 255, 255, 0.15) 0.125rem,
+    transparent 0.125rem,
+    transparent 0.25rem
+  );
+  background-size: 0.375rem 0.375rem;
+}
+
+/* Glow effect for durability bar */
+.inventory-slot:hover .inventory-slot__durability :deep(.g-progress__track) {
+  box-shadow: 0 0 0.25rem rgba(0, 212, 212, 0.2);
+}
+
+/* --------------------------------------------
+   SLOT INDEX (Top-Left)
+   -------------------------------------------- */
+
+.inventory-slot__index {
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.inventory-slot:hover .inventory-slot__index {
+  opacity: 0.6;
+}
+
+.inventory-slot__index :deep(.g-text) {
+  font-size: 0.625rem;
+  line-height: 1;
+  text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.8);
+}
+
+/* --------------------------------------------
+   GLOW EFFECT (When Item Present)
+   -------------------------------------------- */
+
+.inventory-slot__glow {
+  position: absolute;
+  inset: -0.0625rem;
+  border: 0.0625rem solid transparent;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.inventory-slot--has-item .inventory-slot__glow {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 212, 0.1) 0%,
+    transparent 50%,
+    rgba(0, 212, 212, 0.05) 100%
+  );
+  opacity: 0.3;
+}
+
+.inventory-slot--has-item:hover .inventory-slot__glow {
+  opacity: 0.6;
+  box-shadow:
+    inset 0 0 0.5rem rgba(0, 212, 212, 0.2),
+    0 0 0.75rem rgba(0, 212, 212, 0.15);
+}
+
+/* --------------------------------------------
+   PULSING ANIMATION (Optional)
+   -------------------------------------------- */
+
+@keyframes inventory-slot-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Add pulse to rare/special items (can be controlled via class) */
+.inventory-slot--rare .inventory-slot__glow {
+  animation: inventory-slot-pulse 2s ease-in-out infinite;
+}
+
+/* --------------------------------------------
+   EMPTY STATE
+   -------------------------------------------- */
+
+.inventory-slot:not(.inventory-slot--has-item) .inventory-slot__background {
+  opacity: 0.5;
+}
+
+.inventory-slot:not(.inventory-slot--has-item):hover .inventory-slot__background {
+  opacity: 0.7;
+}
+
+/* --------------------------------------------
+   DISABLED STATE
+   -------------------------------------------- */
+
+.inventory-slot--disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.inventory-slot--disabled .inventory-slot__background {
+  background: var(--bg-primary);
+  border-color: var(--border-subtle);
+}
+
+/* --------------------------------------------
+   SELECTED STATE
+   -------------------------------------------- */
+
+.inventory-slot--selected .inventory-slot__background {
+  border-color: var(--primary);
+  box-shadow:
+    inset 0 0 0.5rem rgba(0, 212, 212, 0.2),
+    0 0 0.75rem rgba(0, 212, 212, 0.3);
+}
+
+.inventory-slot--selected .inventory-slot__corner {
+  border-color: var(--primary);
+  opacity: 1;
+  box-shadow: 0 0 0.375rem var(--primary-glow);
+}
+
+/* --------------------------------------------
+   ACCESSIBILITY
+   -------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .inventory-slot,
+  .inventory-slot__background,
+  .inventory-slot__corner,
+  .inventory-slot__glow,
+  .inventory-slot__stack-bg {
+    transition: none;
+  }
+
+  .inventory-slot--rare .inventory-slot__glow {
+    animation: none;
+  }
+}
+
+/* Focus styles */
+.inventory-slot:focus-visible {
+  outline: 0.125rem solid var(--primary);
+  outline-offset: 0.125rem;
+}
+
+/* --------------------------------------------
+   RESPONSIVE
+   -------------------------------------------- */
+
+@media (max-width: 600px) {
+  .inventory-slot {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .inventory-slot__stack {
+    bottom: 0.5rem;
+    right: 0.1875rem;
+  }
+
+  .inventory-slot__durability {
+    bottom: 0.0625rem;
+    left: 0.0625rem;
+    right: 0.0625rem;
+  }
+}
