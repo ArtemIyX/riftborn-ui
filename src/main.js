@@ -18,6 +18,7 @@ import {useLocalizationStore} from "@/stores/localizationStore.js";
 import {useUnrealStore} from "@/stores/UnrealStore.js";
 import {usePauseStore} from "@/stores/pauseStore.js";
 import {emitter} from "@/assets/js/eventBus.js";
+import {useHotbarStore} from "@/stores/inventoryStore.js";
 
 
 const pinia = createPinia()
@@ -44,6 +45,7 @@ const menuStore = useMenuStore();
 const localizationStore = useLocalizationStore();
 const unrealStore = useUnrealStore();
 const pauseStore = usePauseStore();
+const hotBarStore = useHotbarStore();
 
 const stores = {
   input: inputStore,
@@ -52,6 +54,7 @@ const stores = {
   pause: pauseStore,
   localization: localizationStore,
   unreal: unrealStore,
+  hotbar: hotBarStore
 }
 
 window.stores = stores;
