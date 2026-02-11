@@ -1,5 +1,5 @@
-﻿import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+﻿import {defineStore} from 'pinia';
+import {ref, computed} from 'vue';
 
 /**
  * Hotbar Store
@@ -8,15 +8,7 @@ import { ref, computed } from 'vue';
 export const useHotbarStore = defineStore('hotbar', () => {
   // State
   const slots = ref([
-    { slotIndex: 0, item: null },
-    { slotIndex: 1, item: null },
-    { slotIndex: 2, item: null },
-    { slotIndex: 3, item: null },
-    { slotIndex: 4, item: null },
-    { slotIndex: 5, item: null },
-    { slotIndex: 6, item: null },
-    { slotIndex: 7, item: null },
-    { slotIndex: 8, item: null }
+    {slotIndex: 0, item: null}
   ]);
 
   // Getters
@@ -47,7 +39,15 @@ export const useHotbarStore = defineStore('hotbar', () => {
 
   const slotCount = computed(() => slots.value.length);
 
+  const updateCallbacks = ref([]);
+
   // Actions
+
+
+  const updateItemStr = (index, str) => {
+    const item = JSON.parse(str);
+    updateItem(index, item);
+  };
 
   /**
    * Update item at specific slot index
@@ -55,20 +55,22 @@ export const useHotbarStore = defineStore('hotbar', () => {
    * @param {Object|null} item - Item data with { name, icon, stack?, durability? }
    */
   const updateItem = (index, item) => {
+    console.log(`[useHotbarStore] updateItem[${index}]: ${JSON.stringify(item)}`);
     if (index < 0 || index >= slots.value.length) {
       console.error(`[useHotbarStore] Cannot update item: invalid index ${index}`);
       return false;
     }
 
     // Validate item structure if not null
-    if (item !== null && item !== undefined) {
-      if (!item.name || !item.icon) {
-        console.error('[useHotbarStore] Item must have name and icon properties');
-        return false;
-      }
-    }
+    /*    if (item !== null && item !== undefined) {
+          if (!item.name || !item.icon) {
+            console.error('[useHotbarStore] Item must have name and icon properties');
+            return false;
+          }
+        }*/
 
     slots.value[index].item = item;
+    notifyUpdate(index, "updateItem", slots.value[index].item);
     return true;
   };
 
@@ -83,14 +85,28 @@ export const useHotbarStore = defineStore('hotbar', () => {
     }
 
     slots.value[index].item = null;
+
+    notifyUpdate(index, "resetItem", null);
     return true;
   };
+
+
+  /**
+   * Set entire inventory from array of slots
+   * @param {String} str - JSON array string of objects
+   */
+  const setInventoryStr = (str) => {
+    const arr = JSON.parse(str);
+    setInventory(arr);
+  }
+
 
   /**
    * Set entire inventory from array of slots
    * @param {Array} newSlots - Array of slot objects
    */
   const setInventory = (newSlots) => {
+    console.log(`[useHotbarStore] setInventory: ${JSON.stringify(newSlots)}`);
     if (!Array.isArray(newSlots)) {
       console.error('[useHotbarStore] setInventory requires an array');
       return false;
@@ -103,12 +119,12 @@ export const useHotbarStore = defineStore('hotbar', () => {
         return false;
       }
 
-      if (slot.item !== null && slot.item !== undefined) {
-        if (!slot.item.name || !slot.item.icon) {
+      /*if (slot.item !== null && slot.item !== undefined) {
+        if (!slot.item.name /!*|| !slot.item.icon*!/) {
           console.error(`[useHotbarStore] Item at slot ${index} missing name or icon`);
           return false;
         }
-      }
+      }*/
 
       return true;
     });
@@ -146,6 +162,9 @@ export const useHotbarStore = defineStore('hotbar', () => {
     const temp = slots.value[fromIndex].item;
     slots.value[fromIndex].item = slots.value[toIndex].item;
     slots.value[toIndex].item = temp;
+
+    notifyUpdate(fromIndex, "swapItemsFrom", slots.value[fromIndex].item);
+    notifyUpdate(toIndex, "swapItemsTo",  slots.value[toIndex].item);
     return true;
   };
 
@@ -197,6 +216,8 @@ export const useHotbarStore = defineStore('hotbar', () => {
     }
 
     slot.item.stack = newStack;
+
+    notifyUpdate(index, "updateStack", slot.item);
     return true;
   };
 
@@ -223,7 +244,29 @@ export const useHotbarStore = defineStore('hotbar', () => {
     }
 
     slot.item.durability = newDurability;
+
+    notifyUpdate(index, "updateDurability", slot.item);
     return true;
+  };
+
+  // Helper to notify listeners
+  const notifyUpdate = (slotIndex, action, item) => {
+    updateCallbacks.value.forEach(callback => {
+      callback({ slotIndex, action, item });
+    });
+  };
+
+  // Register callback for updates
+  const onItemUpdate = (callback) => {
+    updateCallbacks.value.push(callback);
+
+    // Return unsubscribe function
+    return () => {
+      const index = updateCallbacks.value.indexOf(callback);
+      if (index > -1) {
+        updateCallbacks.value.splice(index, 1);
+      }
+    };
   };
 
   return {
@@ -239,13 +282,17 @@ export const useHotbarStore = defineStore('hotbar', () => {
 
     // Actions
     updateItem,
+    updateItemStr,
     resetItem,
     setInventory,
+    setInventoryStr,
     clearAll,
     swapItems,
     findEmptySlot,
     addItem,
     updateStack,
-    updateDurability
+    updateDurability,
+    onItemUpdate,
+    updateCallbacks
   };
 });

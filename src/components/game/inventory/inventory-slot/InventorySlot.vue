@@ -1,7 +1,8 @@
 ﻿<template>
   <div
     class="inventory-slot"
-    :class="{ 'inventory-slot--has-item': hasItem }"
+    :class="{ 'inventory-slot--has-item': hasItem,
+            'inventory-slot--animating': isAnimating}"
   >
     <!-- Slot background with corners -->
     <div class="inventory-slot__background">
@@ -70,7 +71,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import {computed, ref} from 'vue';
 
 defineOptions({
   name: 'InventorySlot'
@@ -129,6 +130,21 @@ const durabilityVariant = computed(() => {
   if (durability < 0.6) return 'warning'; // Orange
   return 'success'; // Green
 });
+
+const isAnimating = ref(false);
+// Play animation method exposed to parent
+const playAnimation = () => {
+  isAnimating.value = true;
+  setTimeout(() => {
+    isAnimating.value = false;
+  }, 300);
+};
+
+// Expose the method so parent can call it
+defineExpose({
+  playAnimation
+});
+
 </script>
 
 <style src="./InventorySlot.css" scoped/>
