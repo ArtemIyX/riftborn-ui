@@ -15,6 +15,7 @@
     <div v-if="hasItem" class="inventory-slot__item">
       <!-- Item image using UImage -->
       <u-image
+        :lazyLoad="false"
         :asset-path="slot.item.icon"
         :alt="slot.item.name || 'Item'"
         fit="contain"
