@@ -254,7 +254,7 @@
 import {onMounted, ref} from "vue";
 
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
-import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
+import {useLocalizationStore} from "@/stores/localizationStore.js";
 
 const locStore = useLocalizationStore();
 

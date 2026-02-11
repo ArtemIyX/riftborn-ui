@@ -100,7 +100,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
-import {useUnrealStore} from "@/stores/useUnrealStore.js";
+import {useUnrealStore} from "@/stores/unrealStore.js";
 
 defineOptions({
   name: 'UEImage'

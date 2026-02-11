@@ -1,9 +1,37 @@
 ﻿.version-container {
   position: fixed;
-  bottom: 1rem;
+  top: 1rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
 }
 
+.hotbar-inventory {
+  position: fixed;
+  bottom: 1rem; /* adjust spacing from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100; /* ensure it's above other content */
+}
 
+/* Scale down on smaller screens */
+@media (max-width: 768px) {
+  .hotbar-inventory {
+    bottom: 10px;
+    transform: translateX(-50%) scale(0.8); /* scale down to 80% */
+  }
+}
+
+@media (max-width: 480px) {
+  .hotbar-inventory {
+    bottom: 5px;
+    transform: translateX(-50%) scale(0.6); /* scale down to 60% */
+  }
+}
+
+/* Optional: adjust slot sizes in inventory-container */
+.hotbar-inventory .inventory-container__slot {
+  /* Use relative units instead of fixed pixels */
+  width: clamp(40px, 8vw, 64px); /* min 40px, max 64px, scales with viewport */
+  height: clamp(40px, 8vw, 64px);
+}

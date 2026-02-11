@@ -12,7 +12,7 @@
 <script setup>
 import {ref, onMounted, useSlots} from 'vue';
 import {getLocText} from "@/assets/js/localization.js";
-import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
+import {useLocalizationStore} from "@/stores/localizationStore.js";
 
 const locStore = useLocalizationStore();
 

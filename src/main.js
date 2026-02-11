@@ -14,11 +14,10 @@ import ExampleMod from './assets/mods/ExampleMod'
 import {useInputStore} from "@/stores/inputStore.js";
 import {useSettingsStore} from "@/stores/settingsStore.js";
 import {useMenuStore} from "@/stores/mainMenuStore.js";
-import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
-import {useUnrealStore} from "@/stores/useUnrealStore.js";
+import {useLocalizationStore} from "@/stores/localizationStore.js";
+import {useUnrealStore} from "@/stores/UnrealStore.js";
 import {usePauseStore} from "@/stores/pauseStore.js";
 import {emitter} from "@/assets/js/eventBus.js";
-
 
 
 const pinia = createPinia()

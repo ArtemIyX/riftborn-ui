@@ -141,7 +141,7 @@
 import {onMounted, ref} from "vue";
 import {getLocText} from "@/assets/js/localization.js";
 import {ST_MENU} from "@/assets/js/localizationConstants.js";
-import {useLocalizationStore} from "@/stores/useLocalizationStore.js";
+import {useLocalizationStore} from "@/stores/localizationStore.js";
 
 
 const master = ref(100.0);

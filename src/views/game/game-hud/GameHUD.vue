@@ -5,14 +5,15 @@
     <GameVersion/>
   </div>
 
-
-
   <AlphaBadge variant="creep" :pulse="true" :glitch="true"/>
 
-  <inventory-container
-    :slots="hotbarSlots"
-    :rows="2"
-  />
+  <div class="hotbar-inventory">
+    <inventory-container
+                         :slots="hotbarStore.slots"
+                         :rows="1"
+    />
+  </div>
+
 </template>
 
 
@@ -24,19 +25,9 @@ import AlphaBadge from "@/components/game/misc/alpha-badge/AlphaBadge.vue";
 import InventorySlot from "@/components/game/inventory/inventory-slot/InventorySlot.vue";
 import InventoryContainer
   from "@/components/game/inventory/inventory-container/InventoryContainer.vue";
+import {useHotbarStore} from "@/stores/inventoryStore.js";
 
-const hotbarSlots = ref([
-  { slotIndex: 0, item: null },
-  { slotIndex: 1, item: { name: 'Sword', icon: '/icons/sword.png', durability: 0.8 } },
-  { slotIndex: 2, item: { name: 'Health Potion', icon: '/icons/potion.png', stack: 5 } },
-  { slotIndex: 3, item: null },
-  { slotIndex: 4, item: null },
-  { slotIndex: 5, item: null },
-  { slotIndex: 6, item: null },
-  { slotIndex: 7, item: null },
-  { slotIndex: 8, item: null }
-]);
-
+const hotbarStore = useHotbarStore();
 
 
 onMounted(() => {
