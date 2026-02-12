@@ -11,20 +11,58 @@
         :key="slot.slotIndex"
         :slot="slot"
         class="inventory-container__slot"
-        @drag-start="$emit('slot-drag-start', $event)"
-        @drag-end="$emit('slot-drag-end', $event)"
+        @drag-start="onDragStart"
+        @drag-end="onDragEnd"
         @drag-enter="$emit('slot-drag-enter', $event)"
         @drag-leave="$emit('slot-drag-leave', $event)"
         @drop="$emit('slot-drop', $event)"
       />
     </div>
+
+    <!-- Drag preview (follows cursor) -->
+    <teleport to="body">
+      <div
+        v-if="dragPreview.isActive"
+        class="inventory-drag-preview"
+        :style="dragPreviewStyle"
+      >
+        <div class="inventory-drag-preview__background">
+          <span class="inventory-drag-preview__corner inventory-drag-preview__corner--tl"></span>
+          <span class="inventory-drag-preview__corner inventory-drag-preview__corner--tr"></span>
+          <span class="inventory-drag-preview__corner inventory-drag-preview__corner--bl"></span>
+          <span class="inventory-drag-preview__corner inventory-drag-preview__corner--br"></span>
+        </div>
+        <u-image
+          v-if="dragPreview.item"
+          :lazyLoad="false"
+          :asset-path="dragPreview.item.icon"
+          :alt="dragPreview.item.name || 'Item'"
+          fit="contain"
+          :show-skeleton="false"
+          :show-corners="false"
+          :fade-in="false"
+          class="inventory-drag-preview__image"
+        />
+        <div v-if="dragPreview.item?.stack > 1" class="inventory-drag-preview__stack">
+          <div class="inventory-drag-preview__stack-bg"></div>
+          <g-text
+            class="inventory-drag-preview__stack-text"
+            size="xs"
+            weight="bold"
+            variant="default"
+            family="mono"
+          >
+            {{ dragPreview.item.stack }}
+          </g-text>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>
 
 <script setup>
 import {computed, ref, toRef} from 'vue';
 import InventorySlot from "@/components/game/inventory/inventory-slot/InventorySlot.vue";
-
 
 defineOptions({
   name: 'InventoryContainer'
@@ -98,6 +136,49 @@ const containerStyle = computed(() => ({
   '--inventory-rows': props.rows,
   '--inventory-columns': columns.value
 }));
+
+// --- Drag Preview ---
+const dragPreview = ref({
+  isActive: false,
+  item: null,
+  x: 0,
+  y: 0
+});
+
+const dragPreviewStyle = computed(() => ({
+  left: `${dragPreview.value.x}px`,
+  top: `${dragPreview.value.y}px`,
+  transform: 'translate(-50%, -50%)'
+}));
+
+
+const onDragStart = (event) => {
+  dragPreview.value.isActive = true;
+  dragPreview.value.item = event.item;
+  dragPreview.value.x = event.e.clientX;
+  dragPreview.value.y = event.e.clientY;
+
+  // Track pointer movement
+  document.addEventListener('pointermove', updateDragPreview);
+
+  emit('slot-drag-start', event);
+};
+
+const onDragEnd = (event) => {
+  dragPreview.value.isActive = false;
+  dragPreview.value.item = null;
+
+  document.removeEventListener('pointermove', updateDragPreview);
+
+  emit('slot-drag-end', event);
+};
+
+const updateDragPreview = (event) => {
+  if (dragPreview.value.isActive) {
+    dragPreview.value.x = event.clientX;
+    dragPreview.value.y = event.clientY;
+  }
+};
 </script>
 
 <style src="./InventoryContainer.css" scoped/>
