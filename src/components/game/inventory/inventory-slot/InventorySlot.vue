@@ -7,13 +7,7 @@
       'inventory-slot--dragging': isDragging,
       'inventory-slot--drag-over': isDragOver
     }"
-    :draggable="hasItem"
-    @dragstart="onDragStart"
-    @dragend="onDragEnd"
-    @dragover="onDragOver"
-    @dragenter="onDragEnter"
-    @dragleave="onDragLeave"
-    @drop="onDrop"
+    @pointerdown="onPointerDown"
   >
     <!-- Slot background with corners -->
     <div class="inventory-slot__background">
@@ -82,7 +76,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from 'vue';
+import {computed, ref, onBeforeUnmount} from 'vue';
 
 defineOptions({
   name: 'InventorySlot'
@@ -91,7 +85,9 @@ defineOptions({
 const emit = defineEmits([
   'drag-start',
   'drag-end',
-  'drop'
+  'drop',
+  'drag-enter',
+  'drag-leave'
 ]);
 
 const props = defineProps({
@@ -152,80 +148,175 @@ const isAnimating = ref(false);
 const isDragging = ref(false);
 const isDragOver = ref(false);
 
-// --- Drag & Drop ---
+// Drag state
+const dragState = ref({
+  isDragging: false,
+  startX: 0,
+  startY: 0,
+  dragThreshold: 5 // Minimum pixels to move before starting drag
+});
 
-const onDragStart = (event) => {
-  if (!hasItem.value) {
-    event.preventDefault();
-    return;
+// --- Pointer-based Drag & Drop ---
+
+const onPointerDown = (event) => {
+  if (!hasItem.value) return;
+
+  // Only handle left mouse button or touch
+  if (event.button !== undefined && event.button !== 0) return;
+
+  dragState.value.startX = event.clientX;
+  dragState.value.startY = event.clientY;
+  dragState.value.isDragging = false;
+
+  // Capture pointer to continue receiving events even if pointer leaves element
+  event.target.setPointerCapture(event.pointerId);
+
+  // Attach move and up handlers
+  document.addEventListener('pointermove', onPointerMove);
+  document.addEventListener('pointerup', onPointerUp);
+  document.addEventListener('pointercancel', onPointerCancel);
+
+  // Prevent default to avoid text selection
+  event.preventDefault();
+};
+
+const onPointerMove = (event) => {
+  const deltaX = Math.abs(event.clientX - dragState.value.startX);
+  const deltaY = Math.abs(event.clientY - dragState.value.startY);
+  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+  // Start dragging if moved beyond threshold
+  if (!dragState.value.isDragging && distance > dragState.value.dragThreshold) {
+    dragState.value.isDragging = true;
+    isDragging.value = true;
+
+    console.log("drag start");
+    emit('drag-start', {
+      slotIndex: props.slot.slotIndex,
+      item: props.slot.item,
+      e: event
+    });
   }
 
-  isDragging.value = true;
+  // If dragging, check for drag over events
+  if (dragState.value.isDragging) {
+    // Get element at current pointer position
+    const elementBelow = document.elementFromPoint(event.clientX, event.clientY);
 
-  // Store source slot index in dataTransfer
-  event.dataTransfer.effectAllowed = 'move';
-  event.dataTransfer.setData('application/json', JSON.stringify({
-    slotIndex: props.slot.slotIndex,
-    item: props.slot.item
-  }));
+    if (elementBelow) {
+      // Find the closest inventory slot
+      const slotElement = elementBelow.closest('.inventory-slot');
 
-  console.log("drag start");
-  emit('drag-start', {
-    slotIndex: props.slot.slotIndex,
-    item: props.slot.item,
-    e: event
-  });
+      if (slotElement) {
+        const customEvent = new CustomEvent('inventory-drag-over', {
+          bubbles: true,
+          detail: {
+            sourceSlotIndex: props.slot.slotIndex,
+            sourceItem: props.slot.item,
+            clientX: event.clientX,
+            clientY: event.clientY
+          }
+        });
+        slotElement.dispatchEvent(customEvent);
+      }
+    }
+  }
 };
 
-const onDragEnd = (event) => {
-  isDragging.value = false;
+const onPointerUp = (event) => {
+  if (dragState.value.isDragging) {
+    console.log("drag end");
 
-  console.log("drag end");
-  emit('drag-end', {
-    slotIndex: props.slot.slotIndex,
-    e: event
-  });
+    // Get element at drop position
+    const elementBelow = document.elementFromPoint(event.clientX, event.clientY);
+
+    if (elementBelow) {
+      // Find the closest inventory slot
+      const slotElement = elementBelow.closest('.inventory-slot');
+
+      if (slotElement) {
+        // Dispatch drop event to target slot
+        const customEvent = new CustomEvent('inventory-drop', {
+          bubbles: true,
+          detail: {
+            sourceSlotIndex: props.slot.slotIndex,
+            sourceItem: props.slot.item
+          }
+        });
+        slotElement.dispatchEvent(customEvent);
+      }
+    }
+
+    emit('drag-end', {
+      slotIndex: props.slot.slotIndex,
+      e: event
+    });
+
+    isDragging.value = false;
+  }
+
+  // Clean up
+  cleanupPointerEvents();
 };
 
-const onDragOver = (event) => {
-  console.log("drag over");
-  event.preventDefault();
-  event.dataTransfer.dropEffect = 'move';
+const onPointerCancel = (event) => {
+  if (dragState.value.isDragging) {
+    console.log("drag cancel");
+
+    emit('drag-end', {
+      slotIndex: props.slot.slotIndex,
+      e: event
+    });
+
+    isDragging.value = false;
+  }
+
+  cleanupPointerEvents();
 };
 
-const onDragEnter = (event) => {
-  console.log("drag enter");
-  event.preventDefault();
-  isDragOver.value = true;
+const cleanupPointerEvents = () => {
+  document.removeEventListener('pointermove', onPointerMove);
+  document.removeEventListener('pointerup', onPointerUp);
+  document.removeEventListener('pointercancel', onPointerCancel);
+  dragState.value.isDragging = false;
 };
 
-const onDragLeave = () => {
-  console.log("drag leave");
-  isDragOver.value = false;
+// Handle custom drag over event from other slots
+const handleDragOver = (event) => {
+  if (!dragState.value.isDragging && event.detail.sourceSlotIndex !== props.slot.slotIndex) {
+    if (!isDragOver.value) {
+      console.log("drag enter");
+      isDragOver.value = true;
+      emit('drag-enter', {
+        sourceSlotIndex: event.detail.sourceSlotIndex,
+        sourceItem: event.detail.sourceItem,
+        targetSlotIndex: props.slot.slotIndex,
+        targetItem: props.slot.item
+      });
+    }
+  }
 };
 
-const onDrop = (event) => {
+// Handle custom drop event
+const handleDrop = (event) => {
   console.log("drag drop");
-  event.preventDefault();
   isDragOver.value = false;
 
-  let sourceData;
-  try {
-    sourceData = JSON.parse(event.dataTransfer.getData('application/json'));
-  } catch {
-    return;
-  }
-
-  if (sourceData.slotIndex === props.slot.slotIndex) return;
+  if (event.detail.sourceSlotIndex === props.slot.slotIndex) return;
 
   emit('drop', {
-    sourceSlotIndex: sourceData.slotIndex,
-    sourceItem: sourceData.item,
+    sourceSlotIndex: event.detail.sourceSlotIndex,
+    sourceItem: event.detail.sourceItem,
     targetSlotIndex: props.slot.slotIndex,
     targetItem: props.slot.item,
     e: event
   });
+
+  emit('drag-leave', {
+    targetSlotIndex: props.slot.slotIndex
+  });
 };
+
 // Play animation method exposed to parent
 const playAnimation = () => {
   isAnimating.value = true;
@@ -233,6 +324,54 @@ const playAnimation = () => {
     isAnimating.value = false;
   }, 300);
 };
+
+// Set up custom event listeners
+const setupCustomEvents = () => {
+  const element = document.querySelector(`[data-slot-index="${props.slot.slotIndex}"]`);
+  if (element) {
+    element.addEventListener('inventory-drag-over', handleDragOver);
+    element.addEventListener('inventory-drop', handleDrop);
+  }
+};
+
+// Use mounted lifecycle to set up listeners (since we need DOM access)
+import {onMounted, getCurrentInstance} from 'vue';
+
+onMounted(() => {
+  const instance = getCurrentInstance();
+  const element = instance?.vnode?.el;
+
+  if (element) {
+    // Add data attribute for easy selection
+    element.setAttribute('data-slot-index', props.slot.slotIndex);
+    element.addEventListener('inventory-drag-over', handleDragOver);
+    element.addEventListener('inventory-drop', handleDrop);
+
+    // Clean up drag over state when pointer leaves
+    element.addEventListener('pointerleave', () => {
+      if (isDragOver.value && !dragState.value.isDragging) {
+        console.log("drag leave");
+        isDragOver.value = false;
+        emit('drag-leave', {
+          targetSlotIndex: props.slot.slotIndex
+        });
+      }
+    });
+  }
+});
+
+// Clean up event listeners on unmount
+onBeforeUnmount(() => {
+  cleanupPointerEvents();
+
+  const instance = getCurrentInstance();
+  const element = instance?.vnode?.el;
+
+  if (element) {
+    element.removeEventListener('inventory-drag-over', handleDragOver);
+    element.removeEventListener('inventory-drop', handleDrop);
+  }
+});
 
 // Expose the method so parent can call it
 defineExpose({

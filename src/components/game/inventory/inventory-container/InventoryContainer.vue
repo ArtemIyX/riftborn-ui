@@ -13,6 +13,8 @@
         class="inventory-container__slot"
         @drag-start="$emit('slot-drag-start', $event)"
         @drag-end="$emit('slot-drag-end', $event)"
+        @drag-enter="$emit('slot-drag-enter', $event)"
+        @drag-leave="$emit('slot-drag-leave', $event)"
         @drop="$emit('slot-drop', $event)"
       />
     </div>
@@ -31,6 +33,8 @@ defineOptions({
 defineEmits([
   'slot-drag-start',
   'slot-drag-end',
+  'slot-drag-enter',
+  'slot-drag-leave',
   'slot-drop'
 ]);
 

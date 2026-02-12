@@ -50,7 +50,7 @@ const slotDropHandle = (data) => {
     const targetItem = data.targetItem;
     const ev = data.e;
     console.log(JSON.stringify(data));*/
-  emitter.emit("ue:inv:drop", JSON.stringify(data));
+  emitter.emit("ue:inv:drop", data);
 };
 
 onMounted(() => {
