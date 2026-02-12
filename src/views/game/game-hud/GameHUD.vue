@@ -11,6 +11,7 @@
     <inventory-container ref="inventoryContainerRef"
                          :slots="hotbarStore.slots"
                          :rows="1"
+                         @slot-drop="slotDropHandle"
     />
   </div>
 
@@ -31,6 +32,26 @@ const hotbarStore = useHotbarStore();
 
 const inventoryContainerRef = ref(null);
 let unsubscribe = null;
+
+/*
+const slotDragStartHandle = () => {
+
+};
+
+const slotDragEndHandle = () => {
+
+};
+*/
+
+const slotDropHandle = (data) => {
+  /*  const sourceIndex = data.sourceSlotIndex;
+    const sourceItem = data.sourceItem;
+    const targetSlotIndex = data.targetSlotIndex;
+    const targetItem = data.targetItem;
+    const ev = data.e;
+    console.log(JSON.stringify(data));*/
+  emitter.emit("ue:inv:drop", JSON.stringify(data));
+};
 
 onMounted(() => {
 

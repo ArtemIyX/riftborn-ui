@@ -1,8 +1,19 @@
 ﻿<template>
   <div
     class="inventory-slot"
-    :class="{ 'inventory-slot--has-item': hasItem,
-            'inventory-slot--animating': isAnimating}"
+    :class="{
+      'inventory-slot--has-item': hasItem,
+      'inventory-slot--animating': isAnimating,
+      'inventory-slot--dragging': isDragging,
+      'inventory-slot--drag-over': isDragOver
+    }"
+    :draggable="hasItem"
+    @dragstart="onDragStart"
+    @dragend="onDragEnd"
+    @dragover="onDragOver"
+    @dragenter="onDragEnter"
+    @dragleave="onDragLeave"
+    @drop="onDrop"
   >
     <!-- Slot background with corners -->
     <div class="inventory-slot__background">
@@ -77,6 +88,12 @@ defineOptions({
   name: 'InventorySlot'
 });
 
+const emit = defineEmits([
+  'drag-start',
+  'drag-end',
+  'drop'
+]);
+
 const props = defineProps({
   slot: {
     type: Object,
@@ -132,6 +149,83 @@ const durabilityVariant = computed(() => {
 });
 
 const isAnimating = ref(false);
+const isDragging = ref(false);
+const isDragOver = ref(false);
+
+// --- Drag & Drop ---
+
+const onDragStart = (event) => {
+  if (!hasItem.value) {
+    event.preventDefault();
+    return;
+  }
+
+  isDragging.value = true;
+
+  // Store source slot index in dataTransfer
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('application/json', JSON.stringify({
+    slotIndex: props.slot.slotIndex,
+    item: props.slot.item
+  }));
+
+  console.log("drag start");
+  emit('drag-start', {
+    slotIndex: props.slot.slotIndex,
+    item: props.slot.item,
+    e: event
+  });
+};
+
+const onDragEnd = (event) => {
+  isDragging.value = false;
+
+  console.log("drag end");
+  emit('drag-end', {
+    slotIndex: props.slot.slotIndex,
+    e: event
+  });
+};
+
+const onDragOver = (event) => {
+  console.log("drag over");
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+};
+
+const onDragEnter = (event) => {
+  console.log("drag enter");
+  event.preventDefault();
+  isDragOver.value = true;
+};
+
+const onDragLeave = () => {
+  console.log("drag leave");
+  isDragOver.value = false;
+};
+
+const onDrop = (event) => {
+  console.log("drag drop");
+  event.preventDefault();
+  isDragOver.value = false;
+
+  let sourceData;
+  try {
+    sourceData = JSON.parse(event.dataTransfer.getData('application/json'));
+  } catch {
+    return;
+  }
+
+  if (sourceData.slotIndex === props.slot.slotIndex) return;
+
+  emit('drop', {
+    sourceSlotIndex: sourceData.slotIndex,
+    sourceItem: sourceData.item,
+    targetSlotIndex: props.slot.slotIndex,
+    targetItem: props.slot.item,
+    e: event
+  });
+};
 // Play animation method exposed to parent
 const playAnimation = () => {
   isAnimating.value = true;

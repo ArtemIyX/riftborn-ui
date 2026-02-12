@@ -64,6 +64,8 @@ modSystem.register(ExampleMod)
 
 modSystem.install(app, pinia)
 
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
 app.mount('#app')
 
 /*

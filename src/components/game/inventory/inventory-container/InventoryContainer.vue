@@ -11,6 +11,9 @@
         :key="slot.slotIndex"
         :slot="slot"
         class="inventory-container__slot"
+        @drag-start="$emit('slot-drag-start', $event)"
+        @drag-end="$emit('slot-drag-end', $event)"
+        @drop="$emit('slot-drop', $event)"
       />
     </div>
   </div>
@@ -24,6 +27,12 @@ import InventorySlot from "@/components/game/inventory/inventory-slot/InventoryS
 defineOptions({
   name: 'InventoryContainer'
 });
+
+defineEmits([
+  'slot-drag-start',
+  'slot-drag-end',
+  'slot-drop'
+]);
 
 const props = defineProps({
   slots: {

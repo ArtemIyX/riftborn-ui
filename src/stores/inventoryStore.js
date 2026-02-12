@@ -8,7 +8,15 @@ import {ref, computed} from 'vue';
 export const useHotbarStore = defineStore('hotbar', () => {
   // State
   const slots = ref([
-    {slotIndex: 0, item: null}
+    {slotIndex: 0, item: null},
+    {
+      slotIndex: 1, item: {
+        id: "a",
+        stack: 5,
+        durability: 0.65
+      }
+      /*null*/,
+    }
   ]);
 
   // Getters
@@ -164,7 +172,7 @@ export const useHotbarStore = defineStore('hotbar', () => {
     slots.value[toIndex].item = temp;
 
     notifyUpdate(fromIndex, "swapItemsFrom", slots.value[fromIndex].item);
-    notifyUpdate(toIndex, "swapItemsTo",  slots.value[toIndex].item);
+    notifyUpdate(toIndex, "swapItemsTo", slots.value[toIndex].item);
     return true;
   };
 
@@ -252,7 +260,7 @@ export const useHotbarStore = defineStore('hotbar', () => {
   // Helper to notify listeners
   const notifyUpdate = (slotIndex, action, item) => {
     updateCallbacks.value.forEach(callback => {
-      callback({ slotIndex, action, item });
+      callback({slotIndex, action, item});
     });
   };
 
